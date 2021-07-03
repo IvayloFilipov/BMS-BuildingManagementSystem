@@ -8,7 +8,12 @@
 
     using BuildingManagementSystem.Data.Common.Models;
     using BuildingManagementSystem.Data.Models;
-
+    using BuildingManagementSystem.Data.Models.BuildingData;
+    using BuildingManagementSystem.Data.Models.BuildingExpenses;
+    using BuildingManagementSystem.Data.Models.BuildingFunds;
+    using BuildingManagementSystem.Data.Models.BuildingIncomes;
+    using BuildingManagementSystem.Data.Models.Common;
+    using BuildingManagementSystem.Data.Models.Debts;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
@@ -24,7 +29,51 @@
         {
         }
 
-        public DbSet<Setting> Settings { get; set; }
+        // BuildingData
+        public DbSet<Address> Addresses { get; set; }
+
+        public DbSet<Building> Building { get; set; }
+
+        public DbSet<City> Cities { get; set; }
+
+        public DbSet<CompanyOwner> CompanyOwners { get; set; }
+
+        public DbSet<Owner> Owners { get; set; }
+
+        public DbSet<Property> Properties { get; set; }
+
+        public DbSet<PropertyFloor> PropertyFloors { get; set; }
+
+        public DbSet<PropertyOwner> PropertiesOwners { get; set; }
+
+        public DbSet<PropertyType> PropertyTypes { get; set; }
+
+        public DbSet<Tenant> Tenants { get; set; }
+
+        // BuildingExpenses
+        public DbSet<ExpenseType> ExpenseTypes { get; set; }
+
+        public DbSet<Transaction> OutgoingPayments { get; set; }
+
+        // BuildingFunds
+        public DbSet<Account> BuildingAccounts { get; set; }
+
+        // BuildingIncomes
+        public DbSet<Payment> IncomingPayments { get; set; }
+
+        public DbSet<PaymentType> PaymentTypes { get; set; }
+
+        // Common
+        public DbSet<ContactForm> ContactForms { get; set; }
+
+        public DbSet<File> Files { get; set; }
+
+        // Debts
+        public DbSet<Fee> Fees { get; set; }
+
+        public DbSet<PropertyDebt> PropertyDebtsMonthly { get; set; }
+
+        public DbSet<PropertyStatus> PropertyStatusMonthly { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

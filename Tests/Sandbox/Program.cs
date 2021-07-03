@@ -11,7 +11,6 @@
     using BuildingManagementSystem.Data.Models;
     using BuildingManagementSystem.Data.Repositories;
     using BuildingManagementSystem.Data.Seeding;
-    using BuildingManagementSystem.Services.Data;
     using BuildingManagementSystem.Services.Messaging;
 
     using CommandLine;
@@ -52,9 +51,6 @@
         {
             var sw = Stopwatch.StartNew();
 
-            var settingsService = serviceProvider.GetService<ISettingsService>();
-            Console.WriteLine($"Count of settings: {settingsService.GetCount()}");
-
             Console.WriteLine(sw.Elapsed);
             return await Task.FromResult(0);
         }
@@ -81,7 +77,6 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
         }
     }
 }

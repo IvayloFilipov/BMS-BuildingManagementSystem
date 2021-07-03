@@ -36,4 +36,8 @@
     <ProjectReference Include="..\BuildingManagementSystem.Web.Infrastructure\BuildingManagementSystem.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\BuildingManagementSystem.Web.ViewModels\BuildingManagementSystem.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Administration\Views\Dashboard\" />
+  </ItemGroup>
 </Project>
