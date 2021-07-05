@@ -5,6 +5,8 @@
 
     using BuildingManagementSystem.Data.Common.Models;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     public class Owner : BaseDeletableModel<int>
     {
         public Owner()
@@ -13,20 +15,21 @@
         }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(OwnerFirstNameMaxLength)]
         public string FirstName { get; set; }
 
+        [MaxLength(OwnerMiddleNameMaxLength)]
         public string MiddleName { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(OwnerLastNameMaxLength)]
         public string LastName { get; set; }
 
-        [MaxLength(80)]
+        [MaxLength(OwnerEmailMaxLength)]
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(OwnerPhoneMaxLength)]
         public string Phone { get; set; }
 
         // many-to-many with Property - make class PropertyOwner

@@ -5,6 +5,8 @@
 
     using BuildingManagementSystem.Data.Common.Models;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     public class Tenant : BaseDeletableModel<int>
     {
         public Tenant()
@@ -13,22 +15,22 @@
         }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(TenantFirstNameMaxLength)]
         public string FirstName { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(TenantMiddleNameMaxLength)]
         public string MiddleName { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(TenantLastNameMaxLength)]
         public string LastName { get; set; }
 
         [Required]
-        [MaxLength(80)]
+        [MaxLength(TenantEmailMaxLength)]
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(TenantPhoneMaxLength)]
         public string Phone { get; set; }
 
         // many-to-one with Property - many Properties can be hired by one Tenant

@@ -3,6 +3,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     public class City
     {
         public City()
@@ -14,7 +16,7 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(80)]
+        [MaxLength(CityNameMaxLength)]
         public string Name { get; set; }
 
         // many-to-one with Address - many addresses can be in one city

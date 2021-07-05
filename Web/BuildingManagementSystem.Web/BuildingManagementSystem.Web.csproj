@@ -39,5 +39,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Administration\Views\Dashboard\" />
+    <Folder Include="ViewComponents\" />
   </ItemGroup>
 </Project>

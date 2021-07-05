@@ -3,7 +3,7 @@
     using System.Diagnostics;
 
     using BuildingManagementSystem.Web.ViewModels;
-
+    using BuildingManagementSystem.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
@@ -15,7 +15,13 @@
 
         public IActionResult Privacy()
         {
-            return this.View();
+            var privacy = new PrivacyViewModel
+            {
+                Title = "Политика на поверителност",
+                PolicyDescription = "Съгласни ли сте...",
+            };
+
+            return this.View(privacy);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

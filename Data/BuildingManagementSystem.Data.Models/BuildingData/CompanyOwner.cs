@@ -5,6 +5,8 @@
 
     using BuildingManagementSystem.Data.Common.Models;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     public class CompanyOwner : BaseDeletableModel<int>
     {
         public CompanyOwner()
@@ -13,22 +15,22 @@
         }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(CompanyNameMaxLength)]
         public string CompanyName { get; set; }
 
-        [MaxLength(20)]
+        [MaxLength(UICMaxLength)]
         public string UIC { get; set; }
 
         [Required]
-        [MaxLength(150)]
+        [MaxLength(CompanyOwnerFullNameMaxLength)]
         public string CompanyOwnerFullName { get; set; }
 
         [Required]
-        [MaxLength(80)]
+        [MaxLength(CompanyEmailMaxLength)]
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [MaxLength(CompanyPhoneMaxLength)]
         public string Phone { get; set; }
 
         // one-to-one with Address - one/every CompanyOwner has only one permanent address

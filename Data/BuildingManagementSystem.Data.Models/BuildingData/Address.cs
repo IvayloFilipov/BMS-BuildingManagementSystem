@@ -4,6 +4,8 @@
 
     using BuildingManagementSystem.Data.Common.Models;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     public class Address : BaseDeletableModel<int>
     {
         // one-to-many with City -> one unique address can be/have in only one City
@@ -11,21 +13,21 @@
 
         public virtual City City { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(DistrictMaxLength)]
         public string District { get; set; }
 
         public byte ZipCode { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(StreetMaxLength)]
         public string Street { get; set; }
 
-        [MaxLength(6)]
+        [MaxLength(StreetNumberMaxLength)]
         public string StreetNumber { get; set; }
 
-        [MaxLength(6)]
+        [MaxLength(BlockNumberMaxLength)]
         public string BlockNumber { get; set; }
 
-        [MaxLength(6)]
+        [MaxLength(EntranceNumberMaxLength)]
         public string EntranceNumber { get; set; }
 
         public int? Floor { get; set; }

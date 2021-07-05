@@ -8,6 +8,8 @@
     using BuildingManagementSystem.Data.Models.BuildingExpenses;
     using BuildingManagementSystem.Data.Models.BuildingIncomes;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     public class Account : BaseDeletableModel<int>
     {
         public Account()
@@ -18,7 +20,7 @@
 
         // cash account & bank account
         [Required]
-        [MaxLength(20)]
+        [MaxLength(AccountTypeMaxLength)]
         public string AccountType { get; set; }
 
         // total curr amount in cash & total curr amount in bank
@@ -30,7 +32,7 @@
         public virtual Building Buildings { get; set; }
 
         [Required]
-        [MaxLength(250)]
+        [MaxLength(AccountDescriptionMaxLength)]
         public string Description { get; set; }
 
         // many-to-one with Payment

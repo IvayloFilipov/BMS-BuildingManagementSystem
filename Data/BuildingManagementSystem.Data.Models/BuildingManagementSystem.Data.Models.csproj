@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BuildingManagementSystem.Common\BuildingManagementSystem.Common.csproj" />
     <ProjectReference Include="..\BuildingManagementSystem.Data.Common\BuildingManagementSystem.Data.Common.csproj" />
   </ItemGroup>
   

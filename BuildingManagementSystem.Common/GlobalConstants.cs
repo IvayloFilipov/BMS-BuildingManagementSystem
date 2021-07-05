@@ -2,8 +2,95 @@
 {
     public static class GlobalConstants
     {
-        public const string SystemName = "BuildingManagementSystem";
+        // Common
+        public const string SystemName = "Building Management System";
+        public const string ShortSystemName = "BMS";
 
+        // Building email - added by me
+        public const string SupportEmail = "bms.admin@gmail.com";
+
+        // Roles
         public const string AdministratorRoleName = "Administrator";
+        public const string UserRoleName = "User";
+        public const string ControllerRoleName = "Controller";
+        public const string TenantRoleName = "Tenant";
+
+        // Building Data constraints
+        // Entity Address
+        public const int DistrictMaxLength = 50;
+        public const int StreetMaxLength = 100;
+        public const int StreetNumberMaxLength = 5;
+        public const int BlockNumberMaxLength = 5;
+        public const int EntranceNumberMaxLength = 5;
+
+        // Entity City
+        public const int CityNameMaxLength = 80;
+
+        // Entity Company Owner
+        public const int CompanyNameMaxLength = 100;
+        public const int UICMaxLength = 20;
+        public const int CompanyOwnerFullNameMaxLength = 150;
+        public const int CompanyEmailMaxLength = 80;
+        public const int CompanyPhoneMaxLength = 20;
+
+        // Entity Owner
+        public const int OwnerFirstNameMaxLength = 50;
+        public const int OwnerMiddleNameMaxLength = 50;
+        public const int OwnerLastNameMaxLength = 50;
+        public const int OwnerEmailMaxLength = 80;
+        public const int OwnerPhoneMaxLength = 20;
+
+        // Entity Property type
+        public const int PropertyTypeMaxLength = 50;
+
+        // Entity Tenant
+        public const int TenantFirstNameMaxLength = 50;
+        public const int TenantMiddleNameMaxLength = 50;
+        public const int TenantLastNameMaxLength = 50;
+        public const int TenantEmailMaxLength = 80;
+        public const int TenantPhoneMaxLength = 20;
+
+        // Building Expenses constraints
+        // Entity Expense type
+        public const int ExpenseTypeMaxLength = 50;
+
+        // Entity Transaction
+        public const int TransactionDescriptionMaxLength = 250;
+
+        // Building Funds constraints
+        // Entity Account
+        public const int AccountTypeMaxLength = 20;
+        public const int AccountDescriptionMaxLength = 250;
+
+        // Building Incomes constraints
+        // Entity Payment
+        public const int PaymentPeriodMaxLength = 250;
+
+        // Enatity Payment type
+        public const int PaymentTypeMaxLength = 20;
+
+        // Folder Common constraints
+        // Entity Contact form
+        public const int FullNameMaxLength = 100;
+        public const int ContactEmailMaxLength = 80;
+        public const int ContactPhoneMaxLength = 20;
+        public const int ContactTitleMaxLength = 200;
+        public const int ContactContentMaxLength = 15000;
+
+        // Entity File
+        public const int URLMaxLength = 1000;
+        public const int FileDescriptionMaxLength = 250;
+        public const int FileExtensionMaxLength = 10;
+
+        // Folder Debts constraints
+        // Entity Fee
+        public const int FeeTypeMaxLength = 100;
+        public const int FeeDescriptionMaxLength = 250;
+
+        // Entity Property debt
+        public const int PropertyDebtDescriptionMaxLength = 250;
+
+        // Entity Property status
+        public const int PropertyStatusMaxLength = 50;
     }
 }

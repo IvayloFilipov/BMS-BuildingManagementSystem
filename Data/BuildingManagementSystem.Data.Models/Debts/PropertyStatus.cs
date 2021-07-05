@@ -5,6 +5,8 @@
 
     using BuildingManagementSystem.Data.Common.Models;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     public class PropertyStatus : BaseDeletableModel<int>
     {
         public PropertyStatus()
@@ -14,7 +16,7 @@
 
         // Occupied/Обитаем, Unoccupied/Необитаем, Commertial/С търг. дейност
         [Required]
-        [MaxLength(50)]
+        [MaxLength(PropertyStatusMaxLength)]
         public string Status { get; set; }
 
         // many-to-one with MonthlyDebt - many Properties can have one type of Status at a time

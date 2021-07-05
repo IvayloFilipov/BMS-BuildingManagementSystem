@@ -5,6 +5,8 @@
     using BuildingManagementSystem.Data.Common.Models;
     using BuildingManagementSystem.Data.Models.BuildingData;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     public class PropertyDebt : BaseDeletableModel<int>
     {
         // one-to-many with Property - one property can have many monthly debts
@@ -22,7 +24,7 @@
 
         public virtual Fee Fee { get; set; }
 
-        [MaxLength(250)]
+        [MaxLength(PropertyDebtDescriptionMaxLength)]
         public string Descrtiption { get; set; }
     }
 }

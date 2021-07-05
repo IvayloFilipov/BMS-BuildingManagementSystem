@@ -6,12 +6,14 @@
     using BuildingManagementSystem.Data.Models.BuildingFunds;
     using BuildingManagementSystem.Data.Models.BuildingIncomes;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     public class Transaction : BaseModel<int>
     {
         public decimal Amount { get; set; }
 
         [Required]
-        [MaxLength(250)]
+        [MaxLength(TransactionDescriptionMaxLength)]
         public string Description { get; set; }
 
         // one-to-many with ExpenseType

@@ -6,11 +6,13 @@
     using BuildingManagementSystem.Data.Models.BuildingData;
     using BuildingManagementSystem.Data.Models.BuildingFunds;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     public class Payment : BaseModel<int>
     {
         public decimal Amount { get; set; }
 
-        [MaxLength(250)]
+        [MaxLength(PaymentPeriodMaxLength)]
         public string PaymentPeriod { get; set; }
 
         // one-to-many with Property - one Property can make many(every month) payments

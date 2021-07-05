@@ -2,25 +2,31 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     public class ContactForm
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(FullNameMaxLength)]
         public string FullName { get; set; }
 
         [Required]
-        [MaxLength(80)]
+        [MaxLength(ContactEmailMaxLength)]
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(ContactPhoneMaxLength)]
+        public string Phone { get; set; }
+
+        [Required]
+        [MaxLength(ContactTitleMaxLength)]
         public string Title { get; set; }
 
         [Required]
-        [MaxLength(15000)]
+        [MaxLength(ContactContentMaxLength)]
         public string Content { get; set; }
 
         public string Ip { get; set; }

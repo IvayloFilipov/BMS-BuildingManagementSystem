@@ -5,6 +5,8 @@
 
     using BuildingManagementSystem.Data.Models.BuildingExpenses;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     public class PaymentType
     {
         public PaymentType()
@@ -18,7 +20,7 @@
 
         // cash, bank
         [Required]
-        [MaxLength(20)]
+        [MaxLength(PaymentTypeMaxLength)]
         public string Type { get; set; }
 
         // many-to-one - many incoming payments can have one type payment
