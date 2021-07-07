@@ -64,6 +64,8 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
+
+            // services.AddTransient<IEmailSender>(x => new SendGridEmailSender("here is the API Key from SendGrid after registration and generate API Key"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

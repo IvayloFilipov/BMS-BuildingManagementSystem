@@ -6,7 +6,7 @@
     {
         public string Title { get; set; }
 
-        [DataType(DataType.MultilineText)]
+        // [DataType(DataType.MultilineText)]
         public string PolicyDescription { get; set; }
     }
 }

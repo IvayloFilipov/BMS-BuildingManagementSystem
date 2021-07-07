@@ -2,20 +2,21 @@
 {
     public static class GlobalConstants
     {
-        // Common
+        // Common constants
         public const string SystemName = "Building Management System";
         public const string ShortSystemName = "BMS";
 
-        // Building email - added by me
+        // Building email - added by me. Should create it.
         public const string SupportEmail = "bms.admin@gmail.com";
 
-        // Roles
+        // Roles constants
         public const string AdministratorRoleName = "Administrator";
         public const string UserRoleName = "User";
         public const string ControllerRoleName = "Controller";
         public const string TenantRoleName = "Tenant";
 
-        // Building Data constraints
+        // Input models constraints
+        // Folder - Building Data
         // Entity Address
         public const int DistrictMaxLength = 50;
         public const int StreetMaxLength = 100;
@@ -50,26 +51,26 @@
         public const int TenantEmailMaxLength = 80;
         public const int TenantPhoneMaxLength = 20;
 
-        // Building Expenses constraints
+        // Folder - Building Expenses
         // Entity Expense type
         public const int ExpenseTypeMaxLength = 50;
 
         // Entity Transaction
         public const int TransactionDescriptionMaxLength = 250;
 
-        // Building Funds constraints
+        // Folder - Building Funds
         // Entity Account
         public const int AccountTypeMaxLength = 20;
         public const int AccountDescriptionMaxLength = 250;
 
-        // Building Incomes constraints
+        // Folder - Building Incomes
         // Entity Payment
         public const int PaymentPeriodMaxLength = 250;
 
         // Enatity Payment type
         public const int PaymentTypeMaxLength = 20;
 
-        // Folder Common constraints
+        // Folder - Common
         // Entity Contact form
         public const int FullNameMaxLength = 100;
         public const int ContactEmailMaxLength = 80;
@@ -82,7 +83,7 @@
         public const int FileDescriptionMaxLength = 250;
         public const int FileExtensionMaxLength = 10;
 
-        // Folder Debts constraints
+        // Folder - Debts
         // Entity Fee
         public const int FeeTypeMaxLength = 100;
         public const int FeeDescriptionMaxLength = 250;
