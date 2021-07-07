@@ -32,6 +32,7 @@
         {
             [Required]
             [EmailAddress]
+            [Display(Name = "Е-мейл")]
             public string Email { get; set; }
         }
 
