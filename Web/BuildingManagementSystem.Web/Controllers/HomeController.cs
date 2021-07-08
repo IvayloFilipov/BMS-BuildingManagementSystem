@@ -15,13 +15,7 @@
 
         public IActionResult Privacy()
         {
-            var privacy = new PrivacyViewModel
-            {
-                Title = "Политика на поверителност и общи условия за ползване на Приложението",
-                PolicyDescription = "Съгласни ли сте...",
-            };
-
-            return this.View(privacy);
+            return this.View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

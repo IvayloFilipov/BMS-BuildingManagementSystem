@@ -10,10 +10,11 @@
         public const string SupportEmail = "bms.admin@gmail.com";
 
         // Roles constants
-        public const string AdministratorRoleName = "Administrator";
+        public const string AdministratorRoleName = "Admin";
         public const string UserRoleName = "User";
         public const string ControllerRoleName = "Controller";
         public const string TenantRoleName = "Tenant";
+        public const string GuestRoleName = "Guest";
 
         // Input models constraints
         // Folder - Building Data
@@ -30,7 +31,8 @@
         // Entity Company Owner
         public const int CompanyNameMaxLength = 100;
         public const int UICMaxLength = 20;
-        public const int CompanyOwnerFullNameMaxLength = 150;
+        public const int CompanyOwnerFirstNameMaxLength = 50;
+        public const int CompanyOwnerLastNameMaxLength = 50;
         public const int CompanyEmailMaxLength = 80;
         public const int CompanyPhoneMaxLength = 20;
 

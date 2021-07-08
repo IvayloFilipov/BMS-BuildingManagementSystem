@@ -22,8 +22,12 @@
         public string UIC { get; set; }
 
         [Required]
-        [MaxLength(CompanyOwnerFullNameMaxLength)]
-        public string CompanyOwnerFullName { get; set; }
+        [MaxLength(CompanyOwnerFirstNameMaxLength)]
+        public string CompanyOwnerFirstName { get; set; }
+
+        [Required]
+        [MaxLength(CompanyOwnerLastNameMaxLength)]
+        public string CompanyOwnerLastName { get; set; }
 
         [Required]
         [MaxLength(CompanyEmailMaxLength)]

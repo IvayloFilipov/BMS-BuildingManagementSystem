@@ -47,6 +47,16 @@
         public class InputModel
         {
             [Required]
+            [StringLength(50, MinimumLength = 3)]
+            [Display(Name = "Име")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [StringLength(50, MinimumLength = 5)]
+            [Display(Name = "Фамилия")]
+            public string LastName { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Е-мейл")]
             public string Email { get; set; }
@@ -60,8 +70,6 @@
             [DataType(DataType.Password)]
             [Display(Name = "Повторете паролата")]
             [Compare("Password", ErrorMessage = "Въведените данни в полето 'Парола' и 'Повторете паролата' не съвпадат.")]
-
-            // [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
         }
 
