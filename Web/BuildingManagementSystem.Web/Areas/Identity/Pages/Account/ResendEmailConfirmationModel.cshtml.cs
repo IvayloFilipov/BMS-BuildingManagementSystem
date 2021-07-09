@@ -50,7 +50,7 @@
             var user = await this.userManager.FindByEmailAsync(this.Input.Email);
             if (user == null)
             {
-                this.ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+                this.ModelState.AddModelError(string.Empty, "Изпратен е имейл за потвърждение. Моля, проверете електронната си поща.");
                 return this.Page();
             }
 
@@ -64,10 +64,10 @@
                 protocol: this.Request.Scheme);
             await this.emailSender.SendEmailAsync(
                 this.Input.Email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                "Потвърдете е-мейла си",
+                $"Моля, потвърдете акаунта си, като <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>натиснете тук</a>.");
 
-            this.ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+            this.ModelState.AddModelError(string.Empty, "Изпратен е имейл за потвърждение. Моля, проверете електронната си поща.");
             return this.Page();
         }
     }

@@ -59,8 +59,8 @@
 
                 await this.emailSender.SendEmailAsync(
                     this.Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    "Нулиране (рисет) на парола",
+                    $"Моля, потвърдете паролата си, като <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>натиснете тук</a>.");
 
                 return this.RedirectToPage("./ForgotPasswordConfirmation");
             }

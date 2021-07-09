@@ -21,7 +21,7 @@
         {
             if (string.IsNullOrWhiteSpace(subject) && string.IsNullOrWhiteSpace(htmlContent))
             {
-                throw new ArgumentException("Subject and message should be provided.");
+                throw new ArgumentException("Въведете тема и текст на съобщението.");
             }
 
             var fromAddress = new EmailAddress(from, fromName);

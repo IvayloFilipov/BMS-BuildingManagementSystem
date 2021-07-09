@@ -13,6 +13,8 @@
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Logging;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
@@ -40,7 +42,7 @@
         public class InputModel
         {
             [Required]
-            [EmailAddress]
+            [EmailAddress(ErrorMessage = EmailErrorMessage)]
             [Display(Name = "Е-мейл")]
             public string Email { get; set; }
 
@@ -82,7 +84,7 @@
                 var result = await this.signInManager.PasswordSignInAsync(this.Input.Email, this.Input.Password, this.Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    this.logger.LogInformation("User logged in.");
+                    this.logger.LogInformation("Потребителят е влязъл в системата.");
                     return this.LocalRedirect(returnUrl);
                 }
 
@@ -93,12 +95,12 @@
 
                 if (result.IsLockedOut)
                 {
-                    this.logger.LogWarning("User account locked out.");
+                    this.logger.LogWarning("Потребителският акаунт е блокиран.");
                     return this.RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    this.ModelState.AddModelError(string.Empty, "Невалиден опит за влизане.");
                     return this.Page();
                 }
             }

@@ -17,6 +17,8 @@
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
@@ -47,29 +49,35 @@
         public class InputModel
         {
             [Required]
-            [StringLength(50, MinimumLength = 3)]
+            [StringLength(50, ErrorMessage = FirstNameErrorMessage, MinimumLength = 3)]
             [Display(Name = "Име")]
             public string FirstName { get; set; }
 
             [Required]
-            [StringLength(50, MinimumLength = 5)]
+            [StringLength(50, ErrorMessage = LasttNameErrorMessage, MinimumLength = 5)]
             [Display(Name = "Фамилия")]
             public string LastName { get; set; }
 
             [Required]
-            [EmailAddress]
+            [EmailAddress(ErrorMessage = EmailErrorMessage)]
             [Display(Name = "Е-мейл")]
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Phone]
+            [RegularExpression(@"^[+]{1}[3][5][9][0-9]{9}$", ErrorMessage = PhoneNumberErrorMessage)]
+            [Display(Name = "Мобилен телефонен номер")]
+            public string PhoneNumber { get; set; }
+
+            [Required]
+            [StringLength(100, ErrorMessage = PasswordErrorMessage, MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Парола")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
             [Display(Name = "Повторете паролата")]
-            [Compare("Password", ErrorMessage = "Въведените данни в полето 'Парола' и 'Повторете паролата' не съвпадат.")]
+            [Compare("Password", ErrorMessage = ConfirmPasswordErrorMessage)]
             public string ConfirmPassword { get; set; }
         }
 
@@ -89,7 +97,7 @@
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
                 if (result.Succeeded)
                 {
-                    this.logger.LogInformation("User created a new account with password.");
+                    this.logger.LogInformation("Потребителят създаде нов акаунт с парола.");
 
                     var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -99,7 +107,7 @@
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: this.Request.Scheme);
 
-                    await this.emailSender.SendEmailAsync(this.Input.Email, "Confirm your email", $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await this.emailSender.SendEmailAsync(this.Input.Email, "Потвърдете имейла си", $"Моля, потвърдете акаунта си, като <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>натиснете тук</a>.");
 
                     if (this.userManager.Options.SignIn.RequireConfirmedAccount)
                     {

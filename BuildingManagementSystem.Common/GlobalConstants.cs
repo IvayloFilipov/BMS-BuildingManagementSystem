@@ -95,5 +95,13 @@
 
         // Entity Property status
         public const int PropertyStatusMaxLength = 50;
+
+        // Register Error messages
+        public const string FirstNameErrorMessage = "Полето '{0}' трябва да съдържа само букви и да има минимум {2} и максимум {1} символа.";
+        public const string LasttNameErrorMessage = "Полето '{0}' трябва да съдържа само букви и да има минимум {2} и максимум {1} символа.";
+        public const string EmailErrorMessage = "В полето '{0}' е въведен невалиден е-мейл адрес.";
+        public const string PhoneNumberErrorMessage = "В полето '{0}' е въведен невалиден телефонен номер. Модела за въвеждане на коректен телефонен номер е '+359ххххххххх'. Празни пространства не са разрешени.";
+        public const string PasswordErrorMessage = "Полето '{0}' трябва да съдържа минимум {2} и максимум {1} символа.";
+        public const string ConfirmPasswordErrorMessage = "Въведените данни в полето 'Парола' и 'Повторете паролата' не съвпадат.";
     }
 }
