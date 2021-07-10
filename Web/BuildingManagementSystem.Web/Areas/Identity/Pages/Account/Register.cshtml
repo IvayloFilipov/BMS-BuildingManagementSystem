@@ -5,10 +5,10 @@
 }
 
 <div class="row">
-    <div class="col-sm-12 col-md-6 offset-md-2">
+    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
         <h2>@ViewData["Title"]</h2>
     </div>
-    <div class="col-sm-12 col-md-6 offset-md-2">
+    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <p>Попълнете всички полета във формата за регистрация.</p>
             <hr />
@@ -49,6 +49,10 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
+            <p>
+                Натискайки бутона "Регистрация", вие потвърждавате, че сте запознати и съгласни с
+                <a asp-area="" asp-controller="Home" asp-action="Privacy">Общите условия и Политиката за поверителност</a>
+            </p>
             <button type="submit" class="btn btn-primary">РЕГИСТРАЦИЯ</button>
         </form>
     </div>

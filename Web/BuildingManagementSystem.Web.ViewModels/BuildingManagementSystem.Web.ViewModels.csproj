@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\BuildingManagementSystem.Data.Models\BuildingManagementSystem.Data.Models.csproj" />
     <ProjectReference Include="..\..\Services\BuildingManagementSystem.Services.Mapping\BuildingManagementSystem.Services.Mapping.csproj" />
+    <ProjectReference Include="..\BuildingManagementSystem.Web.Infrastructure\BuildingManagementSystem.Web.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

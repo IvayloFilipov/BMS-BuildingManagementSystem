@@ -48,33 +48,34 @@
 
         public class InputModel
         {
-            [Required]
+            [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете вашето име")]
             [StringLength(50, ErrorMessage = FirstNameErrorMessage, MinimumLength = 3)]
             [Display(Name = "Име")]
             public string FirstName { get; set; }
 
-            [Required]
+            [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете вашата фамилия")]
             [StringLength(50, ErrorMessage = LasttNameErrorMessage, MinimumLength = 5)]
             [Display(Name = "Фамилия")]
             public string LastName { get; set; }
 
-            [Required]
+            [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете вашият email адрес")]
             [EmailAddress(ErrorMessage = EmailErrorMessage)]
             [Display(Name = "Е-мейл")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете вашият телефонен номер")]
             [Phone]
             [RegularExpression(@"^[+]{1}[3][5][9][0-9]{9}$", ErrorMessage = PhoneNumberErrorMessage)]
             [Display(Name = "Мобилен телефонен номер")]
             public string PhoneNumber { get; set; }
 
-            [Required]
+            [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете парола")]
             [StringLength(100, ErrorMessage = PasswordErrorMessage, MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Парола")]
             public string Password { get; set; }
 
+            [Required(AllowEmptyStrings = false, ErrorMessage = "Моля повторете паролата")]
             [DataType(DataType.Password)]
             [Display(Name = "Повторете паролата")]
             [Compare("Password", ErrorMessage = ConfirmPasswordErrorMessage)]

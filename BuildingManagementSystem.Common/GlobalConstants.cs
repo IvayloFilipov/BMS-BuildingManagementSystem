@@ -6,8 +6,8 @@
         public const string SystemName = "Building Management System";
         public const string ShortSystemName = "BMS";
 
-        // Building email - added by me. Should create it.
-        public const string SupportEmail = "bms.admin@gmail.com";
+        // Building email - added by me. Should create one. This below is myne.
+        public const string SystemEmail = "ivaylo_filipov@abv.bg";
 
         // Roles constants
         public const string AdministratorRoleName = "Admin";

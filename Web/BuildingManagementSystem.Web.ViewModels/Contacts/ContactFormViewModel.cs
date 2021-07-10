@@ -2,17 +2,20 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using BuildingManagementSystem.Web.Infrastructure;
+
     using static BuildingManagementSystem.Common.GlobalConstants;
 
     public class ContactFormViewModel
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете вашите имена")]
+        [StringLength(50, ErrorMessage = LasttNameErrorMessage, MinimumLength = 8)]
         [Display(Name = "Вашите имена")]
-        public string Name { get; set; }
+        public string FullName { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете вашият email адрес")]
         [EmailAddress(ErrorMessage = "Моля въведете валиден email адрес")]
-        [Display(Name = "Вашият email адрес")]
+        [Display(Name = "Вашият е-мейл адрес")]
         public string Email { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете вашият телефонен номер")]
