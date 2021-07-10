@@ -2,13 +2,12 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using BuildingManagementSystem.Data.Common.Models;
+
     using static BuildingManagementSystem.Common.GlobalConstants;
 
-    public class ContactForm
+    public class ContactForm : BaseModel<int>
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(FullNameMaxLength)]
         public string FullName { get; set; }
@@ -30,7 +29,5 @@
         public string Content { get; set; }
 
         public string Ip { get; set; }
-
-        public bool Readed { get; set; }
     }
 }
