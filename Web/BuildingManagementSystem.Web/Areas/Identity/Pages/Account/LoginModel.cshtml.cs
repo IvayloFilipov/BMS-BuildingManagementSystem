@@ -41,12 +41,13 @@
 
         public class InputModel
         {
-            [Required]
+            [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете вашият email адрес")]
             [EmailAddress(ErrorMessage = EmailErrorMessage)]
             [Display(Name = "Е-мейл")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете парола")]
+            [StringLength(100, ErrorMessage = PasswordErrorMessage, MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Парола")]
             public string Password { get; set; }

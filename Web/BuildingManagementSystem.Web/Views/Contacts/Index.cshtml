@@ -1,56 +1,57 @@
 ﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @model BuildingManagementSystem.Web.ViewModels.Contacts.ContactFormViewModel
-@{ 
-    this.ViewData["Title"] = "Изпратете ни съобщение"; 
-}
+@{ this.ViewData["Title"] = "Изпратете ни съобщение"; }
 
-<div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
-    <h2>Форма за контакти</h2>
-    <p>Ако желаете да се свъръжете с нас попълнете всички полета от формата за контакти</p>
-</div>
+<div class="row">
+    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
+        <h2>Форма за контакти</h2>
+        <p>Ако желаете да се свъръжете с нас попълнете всички полета от формата за контакти</p>
+        <hr />
+    </div>
 
-<div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
-    <form method="post">
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="form-group">
-            <i class="fas fa-user"></i>
-            <label asp-for="FullName"></label>
-            <input asp-for="FullName" class="form-control" />
-            <span asp-validation-for="FullName" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <i class="fas fa-envelope"></i>
-            <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control" value="@this.User.Identity.Name" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <i class="fas fa-mobile-alt"></i>
-            <label asp-for="Phone"></label>
-            <input asp-for="Phone" class="form-control" />
-            <span asp-validation-for="Phone" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <i class="fas fa-font"></i>
-            <label asp-for="Title"></label>
-            <input asp-for="Title" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <i class="fas fa-pencil-alt"></i>
-            <label asp-for="Content"></label>
-            <textarea asp-for="Content" class="form-control" rows="5"></textarea>
-            <span asp-validation-for="Content" class="text-danger"></span>
-        </div>
-        <p>
-            Натискайки бутона "Изпрати съобщение", вие потвърждавате, че сте запознати и съгласни с
-            <a asp-area="" asp-controller="Home" asp-action="Privacy">Общите условия и Политиката за поверителност</a>
-        </p>
+    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <label asp-for="FullName"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" value="@this.User.Identity.Name" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-mobile-alt"></i>
+                <label asp-for="Phone"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-font"></i>
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-pencil-alt"></i>
+                <label asp-for="Content"></label>
+                <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <p>
+                Натискайки бутона "Изпрати съобщение", вие потвърждавате, че сте запознати и съгласни с
+                <a asp-area="" asp-controller="Home" asp-action="Privacy">Общите условия и Политиката за поверителност</a>
+            </p>
 
-        <input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />
-        <button type="submit" class="btn btn-primary">ИЗПРАТИ СЪОБЩЕНИЕ</button>
-    </form>
-    <br />
+            <input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />
+            <button type="submit" class="btn btn-primary">ИЗПРАТИ СЪОБЩЕНИЕ</button>
+        </form>
+        <br />
+    </div>
 </div>
 
 @section Scripts

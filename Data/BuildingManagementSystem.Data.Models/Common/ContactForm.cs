@@ -27,7 +27,5 @@
         [Required]
         [MaxLength(ContactContentMaxLength)]
         public string Content { get; set; }
-
-        public string Ip { get; set; }
     }
 }

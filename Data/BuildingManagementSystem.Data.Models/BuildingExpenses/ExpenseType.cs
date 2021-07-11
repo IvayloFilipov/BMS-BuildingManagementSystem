@@ -3,12 +3,12 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using BuildingManagementSystem.Data.Common.Models;
+
     using static BuildingManagementSystem.Common.GlobalConstants;
 
-    public class ExpenseType
+    public class ExpenseType : BaseDeletableModel<int>
     {
-        public int Id { get; set; }
-
         // Elevator, Cleaning, ManagementFee, BankFee, ElectricityElevator, ElectricityStairs, OtherExpenses -> should be describe into field Description
         [Required]
         [MaxLength(ExpenseTypeMaxLength)]
