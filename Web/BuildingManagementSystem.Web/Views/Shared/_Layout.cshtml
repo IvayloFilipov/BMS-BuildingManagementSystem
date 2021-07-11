@@ -43,17 +43,22 @@
             </div>
         </nav>
     </header>
-    
+
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @this.RenderBody()
         </main>
     </div>
-    
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Поверителност</a>
+
+    <footer class="container-fluid border-top footer text-muted">
+        <div class="row">
+            <div class="text col-md-5 offset-1">
+                ВСИЧКИ ПРАВА СА ЗАПАЗЕНИ &copy; @DateTime.Now.Year - @GlobalConstants.SystemName
+            </div>
+            <div class="text-right col-md-4">
+                <a href="https://github.com/IvayloFilipov/BMS-BuildingManagementSystem" target="_blank">ПРОДУКТ С ОТВОРЕН КОД (Open source system)</p>
+            </div>
         </div>
     </footer>
 
