@@ -12,7 +12,7 @@
         <form id="account" method="post">
             <p>Регистрирайте се в "BMS" платформата за да получите достъп до всички съобщения, събития, плащания и отчети, касаещи Етажната Собственост.</p>
             <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
+            @*<div asp-validation-summary="All" class="text-danger"></div>*@
             <div class="form-group">
                 <i class="fas fa-envelope"></i>
                 <label asp-for="Input.Email"></label>
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">ВЛИЗАНЕ</button>
+                <button type="submit" class="btn btn-primary text-uppercase">Влизане</button>
             </div>
             <div class="form-group">
                 <p>

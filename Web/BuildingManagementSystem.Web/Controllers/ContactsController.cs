@@ -36,8 +36,6 @@
                 return this.View(contact);
             }
 
-            // TODO: Extract to IP provider (service)
-            var ip = this.HttpContext.Connection.RemoteIpAddress.ToString();
             var contactFormEntry = new ContactForm
             {
                 FullName = contact.FullName,
@@ -45,8 +43,8 @@
                 Phone = contact.Phone,
                 Title = contact.Title,
                 Content = contact.Content,
-                Ip = ip,
             };
+
             await this.contactsRepository.AddAsync(contactFormEntry);
             await this.contactsRepository.SaveChangesAsync();
 

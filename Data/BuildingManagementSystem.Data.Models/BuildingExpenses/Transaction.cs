@@ -16,7 +16,7 @@
         [MaxLength(TransactionDescriptionMaxLength)]
         public string Description { get; set; }
 
-        // one-to-many with ExpenseType
+        // one-to-many with ExpenseType -> ElevatorFee, Cleaning, etc...
         [Required]
         public int ExpenseTypeId { get; set; }
 
