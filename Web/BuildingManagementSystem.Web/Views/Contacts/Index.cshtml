@@ -1,10 +1,12 @@
 ﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @model BuildingManagementSystem.Web.ViewModels.Contacts.ContactFormViewModel
-@{ this.ViewData["Title"] = "Изпратете ни съобщение"; }
+@{ 
+    this.ViewData["Title"] = "Форма за контакти"; 
+}
 
 <div class="row">
     <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
-        <h2>Форма за контакти</h2>
+        <h2>@this.ViewData["Title"]</h2>
         <p>Ако желаете да се свъръжете с нас попълнете всички полета от формата за контакти</p>
         <hr />
     </div>
@@ -58,9 +60,11 @@
 {
     <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
     <script>
-        grecaptcha.ready(function () {
-            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'contact_form' }).then(function (token) {
-                document.getElementById("RecaptchaValue").value = token;
+        grecaptcha
+            .ready(function () {
+                grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'contact_form' })
+                .then(function (token) {document.getElementById("RecaptchaValue")
+                .value = token;
             });
         });
     </script>
