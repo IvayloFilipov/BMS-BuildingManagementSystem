@@ -90,7 +90,8 @@
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= this.Url.Content("~/");
+            // returnUrl ??= this.Url.Content("~/Home/Info"); // was, and redirected to the Landing page
+            returnUrl ??= this.Url.Content("~/Home/Info");
             this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (this.ModelState.IsValid)
             {
