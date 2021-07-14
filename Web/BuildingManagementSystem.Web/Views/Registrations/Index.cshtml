@@ -1,2 +1,25 @@
 ﻿@page
 
+<div class="container mt-3">
+    <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <h2>Регистрация за Домовата книга - Стъпка 1</h2>
+        <h5>Уважаеми <b class="text-primary">@this.User.Identity.Name</b>. Вие сте в Стъпка 1 от попълване на необходимите данни за електронната Домова книга на Етажната собственост.</h5>
+        <hr />
+
+        <p>Тук трябва да посочите какъв собствник се явявате. Двата възможни варианта са: <b>'Физическо лице'</b> или <b>'Юридическо лице'</b>. След това натиснете бутона <b>'ПРОДЪЛЖИ'</b> за да преминете на следващата страница и да продължите с попълване на електронната Домова книга.</p>
+        <br />
+
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="radio" name="radio" id="person">
+            <label class="form-check-label" for="person"><b>Собственик - физическо лице</b></label>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="radio" name="radio" id="company">
+            <label class="form-check-label" for="company"><b>Собственик - юридическо лице</b></label>
+        </div>
+        <hr />
+
+        <button type="submit" class="btn btn-primary text-uppercase">Продължи</button>
+    </div>
+</div>
+

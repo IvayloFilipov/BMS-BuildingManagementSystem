@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNetCore.Mvc;
 
-    public class RegisterController : BaseController
+    public class RegistrationsController : BaseController
     {
         public IActionResult Index()
         {

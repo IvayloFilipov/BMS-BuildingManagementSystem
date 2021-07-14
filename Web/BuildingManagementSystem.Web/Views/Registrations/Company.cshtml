@@ -1,2 +1,65 @@
 ﻿@page
+@model BuildingManagementSystem.Web.ViewModels.Registrations.CompanyViewModel
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
+        <h2>Регистрация за Домовата книга - Стъпка 2</h2>
+        <p>Вие се намирате на Стъпка 2 от попълване на данните за електронната Домова книга.</p>
+        <hr />
+
+        <p>Моля попълнете всички полета от формата. След като го направите натиснете бутона 'ПРОДЪЛЖИ' за да завършите подаването на данните.</p>
+        <p>Бележка: Ако в предишната Стъпка сте направили неправилен избор може да се върнете назад, като натиснете бутона 'НАЗАД' и да коригирате Вашия избор.</p>
+    </div>
+
+    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
+        <form method="post">
+            @*<div asp-validation-summary="All" class="text-danger"></div>*@
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <label asp-for="@Model.CompanyName"></label>
+                <input asp-for="@Model.CompanyName" class="form-control" />
+                <span asp-validation-for="@Model.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <label asp-for="@Model.UIC"></label>
+                <input asp-for="@Model.UIC" class="form-control" />
+                <span asp-validation-for="@Model.UIC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <label asp-for="@Model.CompanyOwnerFirstName"></label>
+                <input asp-for="@Model.CompanyOwnerFirstName" class="form-control" />
+                <span asp-validation-for="@Model.CompanyOwnerFirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <label asp-for="@Model.CompanyOwnerLastName"></label>
+                <input asp-for="@Model.CompanyOwnerLastName" class="form-control" />
+                <span asp-validation-for="@Model.CompanyOwnerLastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <label asp-for="@Model.Email"></label>
+                <input asp-for="@Model.Email" class="form-control" value="@this.User.Identity.Name" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-mobile-alt"></i>
+                <label asp-for="@Model.Phone"></label>
+                <input asp-for="@Model.Phone" class="form-control" />
+                <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+            </div>
+
+            <p>
+                Направете своят избор!
+                @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Общите условия и Политиката за поверителност</a>*@
+            </p>
+
+            <button type="submit" class="btn btn-primary text-uppercase">Назад</button>
+            <button type="submit" class="btn btn-primary text-uppercase">Продължи</button>
+        </form>
+        <br />
+    </div>
+</div>
 

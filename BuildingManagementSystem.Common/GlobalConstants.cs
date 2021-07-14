@@ -103,5 +103,8 @@
         public const string PhoneNumberErrorMessage = "В полето '{0}' е въведен невалиден телефонен номер. Модела за въвеждане на коректен телефонен номер е '+359ххххххххх'. Празни пространства не са разрешени.";
         public const string PasswordErrorMessage = "Полето '{0}' трябва да съдържа минимум {2} и максимум {1} символа.";
         public const string ConfirmPasswordErrorMessage = "Въведените данни в полето 'Парола' и 'Повторете паролата' не съвпадат.";
+
+        // Register Building book Error messages
+        public const string CompanyNameErrorMessage = "Полето '{0}' трябва да съдържа минимум {2} и максимум {1} символа.";
     }
 }

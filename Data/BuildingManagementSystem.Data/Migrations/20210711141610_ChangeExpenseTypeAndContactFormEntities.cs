@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace BuildingManagementSystem.Data.Migrations
+﻿namespace BuildingManagementSystem.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class ChangeExpenseTypeAndContactFormEntities : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
