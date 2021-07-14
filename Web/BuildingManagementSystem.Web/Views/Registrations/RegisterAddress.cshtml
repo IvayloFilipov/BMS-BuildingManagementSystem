@@ -1,0 +1,86 @@
+﻿@page
+@model BuildingManagementSystem.Web.ViewModels.Registrations.RegisterAddressViewModel
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
+        <h2>Регистрация за Домовата книга - Стъпка 3</h2>
+        <p>Вие се намирате на <b>Стъпка 3</b> от попълване на данните за електронната Домова книга.</p>
+        <hr />
+
+        <p>Моля попълнете полета от формата, валидни за <b class="text-danger">Вашият постоянен адрес</b>. След като го направите натиснете бутона 'ПРОДЪЛЖИ' за да завършите подаването на данните.</p>
+        <p><b>Бележка:</b> Ако в предишната Стъпка сте пропуснали нещо, може да се върнете назад, като натиснете бутона 'НАЗАД' и да коригирате данните.</p>
+    </div>
+
+    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
+        <form method="post">
+            @*<div asp-validation-summary="All" class="text-danger"></div>*@
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <label asp-for="@Model.City"></label>
+                <input asp-for="@Model.City" class="form-control" />
+                <span asp-validation-for="@Model.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <label asp-for="@Model.District"></label>
+                <input asp-for="@Model.District" class="form-control" />
+                <span asp-validation-for="@Model.District" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <label asp-for="@Model.ZipCode"></label>
+                <input asp-for="@Model.ZipCode" class="form-control" />
+                <span asp-validation-for="@Model.ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <label asp-for="@Model.Street"></label>
+                <input asp-for="@Model.Street" class="form-control" />
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-mobile-alt"></i>
+                <label asp-for="@Model.StreetNumber"></label>
+                <input asp-for="@Model.StreetNumber" class="form-control" />
+                <span asp-validation-for="@Model.StreetNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-mobile-alt"></i>
+                <label asp-for="@Model.BlockNumber"></label>
+                <input asp-for="@Model.BlockNumber" class="form-control" />
+                <span asp-validation-for="@Model.BlockNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-mobile-alt"></i>
+                <label asp-for="@Model.EntranceNumber"></label>
+                <input asp-for="@Model.EntranceNumber" class="form-control" />
+                <span asp-validation-for="@Model.EntranceNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-mobile-alt"></i>
+                <label asp-for="@Model.Floor"></label>
+                <input asp-for="@Model.Floor" class="form-control" />
+                <span asp-validation-for="@Model.Floor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-mobile-alt"></i>
+                <label asp-for="@Model.AppartNumber"></label>
+                <input asp-for="@Model.AppartNumber" class="form-control" />
+                <span asp-validation-for="@Model.AppartNumber" class="text-danger"></span>
+            </div>
+
+            <p class="text-primary mb-3">
+                Моля направете своят избор!
+                @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Общите условия и Политиката за поверителност</a>*@
+            </p>
+
+            <button type="submit" class="btn btn-primary text-uppercase">Назад</button>
+
+            <button type="submit" class="btn btn-primary text-uppercase">Продължи</button> 
+        </form>
+        <br />
+    </div>
+</div>
+
+
+

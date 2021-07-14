@@ -4,7 +4,7 @@
 
     using static BuildingManagementSystem.Common.GlobalConstants;
 
-    public class CompanyViewModel
+    public class RegisterCompanyViewModel
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете името на фирмата")]
         [StringLength(CompanyNameMaxLength, ErrorMessage = CompanyNameErrorMessage, MinimumLength = 5)]

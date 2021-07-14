@@ -9,12 +9,22 @@
             return this.View();
         }
 
-        public IActionResult Person()
+        public IActionResult RegisterPerson()
         {
             return this.View();
         }
 
-        public IActionResult Company()
+        public IActionResult RegisterCompany()
+        {
+            return this.View();
+        }
+
+        public IActionResult RegisterAddress()
+        {
+            return this.View();
+        }
+
+        public IActionResult RegisterTenant()
         {
             return this.View();
         }

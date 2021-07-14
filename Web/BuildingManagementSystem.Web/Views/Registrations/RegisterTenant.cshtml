@@ -1,14 +1,13 @@
 ﻿@page
-@model BuildingManagementSystem.Web.ViewModels.Registrations.PersonViewModel
+@model BuildingManagementSystem.Web.ViewModels.Registrations.RegisterTenantViewModel
 
 <div class="row">
     <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
-        <h2>Регистрация за Домовата книга - Стъпка 2</h2>
-        <p>Вие се намирате на Стъпка 2 от попълване на данните за електронната Домова книга.</p>
+        <h2>Регистрация за Домовата книга - Стъпка Регистриране на наемател!</h2>
+        <p>Вие се намирате на <b>Стъпка Регистриране на наемател!</b> от попълване на данните за електронната Домова книга.</p>
         <hr />
 
-        <p>Моля попълнете всички полета от формата. След като го направите натиснете бутона 'ПРОДЪЛЖИ' за да завършите подаването на данните.</p>
-        <p>Бележка: Ако в предишната Стъпка сте направили неправилен избор може да се върнете назад, като натиснете бутона 'НАЗАД' и да коригирате Вашия избор.</p>
+        <p>Моля попълнете всички полета от формата. За да регистрирате наемате и да завършите подаването на данни натиснете бутона 'ЗАПИШИ'.</p>
     </div>
 
     <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
@@ -16,19 +15,19 @@
             @*<div asp-validation-summary="All" class="text-danger"></div>*@
             <div class="form-group">
                 <i class="fas fa-user"></i>
-                <label asp-for="@Model.FirstName\"></label>
+                <label asp-for="@Model.FirstName"></label>
                 <input asp-for="@Model.FirstName" class="form-control" />
                 <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <i class="fas fa-user"></i>
-                <label asp-for="@Model.MiddleName\"></label>
+                <label asp-for="@Model.MiddleName"></label>
                 <input asp-for="@Model.MiddleName" class="form-control" />
                 <span asp-validation-for="@Model.MiddleName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <i class="fas fa-user"></i>
-                <label asp-for="@Model.LastName\"></label>
+                <label asp-for="@Model.LastName"></label>
                 <input asp-for="@Model.LastName" class="form-control" />
                 <span asp-validation-for="@Model.LastName" class="text-danger"></span>
             </div>
@@ -45,13 +44,7 @@
                 <span asp-validation-for="@Model.Phone" class="text-danger"></span>
             </div>
 
-            <p>
-                Направете своят избор!
-                @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Общите условия и Политиката за поверителност</a>*@
-            </p>
-
-            <button type="submit" class="btn btn-primary text-uppercase">Назад</button>
-            <button type="submit" class="btn btn-primary text-uppercase">Продължи</button>
+            <button type="submit" class="btn btn-primary text-uppercase">Запиши</button>
         </form>
         <br />
     </div>

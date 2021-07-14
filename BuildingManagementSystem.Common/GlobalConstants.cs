@@ -24,6 +24,8 @@
         public const int StreetNumberMaxLength = 5;
         public const int BlockNumberMaxLength = 5;
         public const int EntranceNumberMaxLength = 5;
+        public const int FloorNumberMaxLength = 2;
+        public const int ApprtmentNumberMaxLength = 3;
 
         // Entity City
         public const int CityNameMaxLength = 80;
@@ -106,5 +108,8 @@
 
         // Register Building book Error messages
         public const string CompanyNameErrorMessage = "Полето '{0}' трябва да съдържа минимум {2} и максимум {1} символа.";
+        public const string CityNameErrorMessage = "Полето '{0}' трябва да съдържа минимум {2} и максимум {1} символа.";
+        public const string DistrictNameErrorMessage = "Полето '{0}' трябва да съдържа минимум {2} и максимум {1} символа.";
+        public const string ZipCodeErrorMessage = "Полето '{0}' трябва да съдържа точно {2} цифри.";
     }
 }

@@ -4,7 +4,7 @@
 
     using static BuildingManagementSystem.Common.GlobalConstants;
 
-    public class PersonViewModel
+    public class RegisterPersonViewModel
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете Вашето името")]
         [StringLength(OwnerFirstNameMaxLength, ErrorMessage = FirstNameErrorMessage, MinimumLength = 3)]
