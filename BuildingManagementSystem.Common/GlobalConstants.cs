@@ -48,6 +48,9 @@
 
         // Entity Property type
         public const int PropertyTypeMaxLength = 50;
+        public const string ShopPropertyType = "Магазин";
+        public const string AppartmentPropertyType = "Апартамент";
+        public const string StudioPropertyType = "Студио";
 
         // Entity Tenant
         public const int TenantFirstNameMaxLength = 50;

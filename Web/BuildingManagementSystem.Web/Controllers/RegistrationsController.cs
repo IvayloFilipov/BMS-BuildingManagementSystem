@@ -11,17 +11,14 @@
         }
 
         [HttpPost]
-        public IActionResult Index(IndexViewModel checkIsPerson)
+        public IActionResult Index(IndexViewModel index)
         {
-            // if (this.ModelState.IsValid)
-            // {
-            //     return this.View("~Views/Registrations/RegisterPerson", checkIsPerson);
-            // }
-            // else
-            // {
-            //     return this.View("~Views/Registrations/RegisterCompany", checkIsPerson);
-            // }
-            return this.RedirectToAction("~/Registrations/RegisterCompany");
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(index);
+            }
+
+            return this.RedirectToAction("Index");
         }
 
         public IActionResult RegisterPerson()

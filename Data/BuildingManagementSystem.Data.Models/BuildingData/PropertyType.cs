@@ -9,6 +9,10 @@
     {
         public PropertyType()
         {
+        }
+
+        public PropertyType(string name)
+        {
             this.Property = new HashSet<Property>();
         }
 

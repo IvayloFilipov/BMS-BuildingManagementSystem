@@ -1,1 +1,18 @@
-﻿
+﻿@model IndexViewModel
+
+<div class="container mt-3">
+    <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <h2 class="text-center">Модули</h2>
+        <h5 class="text-center text-info">
+            Уважаеми <b class="text-primary">@(this.User.Identity.Name == null ? "Съкооператор" : this.User.Identity.Name)</b>.
+            Страницата е в процес на разработка.
+        </h5>
+        <hr />
+
+        <p>Тук трябва да се визуализират модулите: <b>'Административен'</b> или <b>'Публичен'</b>. Административния ще е достъпен за Админиа/Домоуправителя а Публичния за регистрираните собственици и наематели.</p>
+        <hr />
+
+        @*<input type="button" class="addYourCSSClassHere" value="WordsOnButton" onclick="window.location= '@Url.Action( "ActionInControllerHere", "ControllerNameHere")'" />*@
+        <input type="button" class="btn btn-primary text-uppercase" value="Неизяснен бутон" onclick="window.location= '@Url.Action( "Index", "Home")'" />
+    </div>
+</div>

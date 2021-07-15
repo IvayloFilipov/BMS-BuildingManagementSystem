@@ -5,30 +5,58 @@
         <h2 class="text-center">Домова книга</h2>
         <h5 class="text-center">
             Уважаеми <b class="text-primary">@(this.User.Identity.Name == null ? "Съкооператор" : this.User.Identity.Name)</b>.
-            Вие сте във фунционалността от Приложението свързана с попълване на необходимите данни за регистрация в електронната Домова книга на Етажната собственост.
+            За регистрация в Приложението моля попълнете електронната Домова книга на Етажната собственост.
         </h5>
         <hr />
 
         <h3 class="text-center text-info">Стъпка 1 - Посочване на типа собственост</h3>
         <hr />
-
-        <p>Тук трябва да посочите какъв собствник се явявате. Двата възможни варианта са: <b>'Физическо лице'</b> или <b>'Юридическо лице'</b>. След това натиснете бутона <b>'ПРОДЪЛЖИ'</b> за да преминете на следващата страница и да продължите с попълване на електронната Домова книга.</p>
-        <br />
-
-        <p class="text-primary mb-3"><b>Моля направете своят избор!</b></p>
-
-        <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="radio" id="person">
-            <label class="form-check-label" for="person"><b>Собственик - физическо лице</b></label>
-        </div>
-        <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="radio" id="company">
-            <label class="form-check-label" for="company"><b>Собственик - юридическо лице</b></label>
-        </div>
         <hr />
 
-        @*<input type="button" class="addYourCSSClassHere" value="WordsOnButton" onclick="window.location= '@Url.Action( "ActionInControllerHere", "ControllerNameHere")'" />*@
-        <input type="button" class="btn btn-primary text-uppercase" value="Продължи" onclick="window.location= '@Url.Action( "RegisterPerson", "Registrations")'" />
+        <p class="mb-4">Тук трябва да посочите какъв собственик на имот се явявате. Двата възможни варианта са: <b>'Физическо лице'</b> или <b>'Юридическо лице'</b>. След това натиснете бутона <b>'ИЗБЕРИ'</b> за да преминете на следващата страница и да продължите с попълване на електронната Домова книга.</p>
+        
+        <h5 class="text-info mb-3 text-center"><b>Моля направете своят избор!</b></h5>
+
+        @*<div class="form-check mb-3">
+                <input asp-for="IsPerson" type="radio" name="radio" value="IsPerson">
+                <label asp-for="IsPerson"><b>Собственик - ФИЗИЧЕСКО ЛИЦЕ</b></label>
+                <span asp-validation-for="IsPerson"></span>
+            </div>
+            <div class="form-check mb-4">
+                <input asp-for="IsCompany" type="radio" name="radio" value="IsPerson">
+                <label asp-for="IsCompany"><b>Собственик - ЮРИДИЧЕСКО ЛИЦЕ</b></label>
+                <span asp-validation-for="IsCompany"></span>
+            </div>
+
+            @{
+                var action = string.Empty;
+                if (Model.IsPerson == true)
+                {
+                    action = "RegisterPerson";
+                }
+                else
+                {
+                    action = "RegisterCompany";
+                }
+            }
+
+            <input type="button" class="btn btn-primary text-uppercase" value="Продължи" onclick="window.location= '@Url.Action( "action", "Registrations")'" />
+            <hr />*@
+        <div class="border card border-success mb-4">
+            <div class="form-text mb-3 text-center">
+                <label><b>Собственик - ФИЗИЧЕСКО ЛИЦЕ</b></label>
+                <br />
+                <input type="button" class="btn btn-primary text-uppercase" value="Избери" onclick="window.location= '@Url.Action( "RegisterPerson", "Registrations")'" />
+            </div>
+        </div>
+
+        <div class="border card border-success mb-4">
+            <div class="form-text mb-3 text-center">
+                <label><b>Собственик - ЮРИДИЧЕСКО ЛИЦЕ</b></label>
+                <br />
+                <input type="button" class="btn btn-primary text-uppercase" value="Избери" onclick="window.location= '@Url.Action( "RegisterCompany", "Registrations")'" />
+            </div>
+        </div>
     </div>
 </div>
 

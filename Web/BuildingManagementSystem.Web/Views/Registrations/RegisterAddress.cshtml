@@ -5,9 +5,10 @@
         <h2 class="text-center">Домова книга</h2>
         <h3 class="text-center text-info">Стъпка 3 - Попълване на данните за постоянният Ви адрес</h3>
         <hr />
+        <hr />
 
         <p>Моля попълнете полета от формата, валидни за <b class="text-danger">Вашият постоянен адрес</b>. След като го направите натиснете бутона 'ЗАПИШИ' за да завършите попълването на електронната Домова книга.</p>
-        <p><b>Бележка:</b> Ако в предишната Стъпка - "Попълване на данните на физическото/юридическото лице" сте пропуснали нещо или сте въвели некоректни данни може да се върнете назад, като натиснете бутона 'НАЗАД' и да направите корекция.</p>
+        <p class="mb-4"><b>Бележка:</b> Ако в предишната Стъпка - "Попълване на данните на физическото/юридическото лице" сте пропуснали нещо или сте въвели некоректни данни може да се върнете назад, като натиснете бутона 'НАЗАД' и да направите корекция.</p>
     </div>
 
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
@@ -70,7 +71,7 @@
             <p class="text-primary mb-3">Моля направете своят избор!</p>
 
             <input type="button" class="btn btn-primary text-uppercase" value="Назад" onclick="window.location= '@Url.Action( "RegisterCompany", "Registrations")'" />
-            <input type="button" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "RegisterCompany", "Registrations")'" />
+            <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "Index", "Modules")'" />
         </form>
         <br />
     </div>
