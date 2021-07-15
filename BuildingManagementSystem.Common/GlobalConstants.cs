@@ -26,6 +26,7 @@
         public const int EntranceNumberMaxLength = 5;
         public const int FloorNumberMaxLength = 2;
         public const int ApprtmentNumberMaxLength = 3;
+        public const int ZipCodeNumberMaxLength = 4;
 
         // Entity City
         public const int CityNameMaxLength = 80;

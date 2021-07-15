@@ -1,19 +1,17 @@
-﻿@page
-@model BuildingManagementSystem.Web.ViewModels.Registrations.RegisterPersonViewModel
+﻿@model RegisterPersonViewModel
 
 <div class="row">
-    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
-        <h2>Регистрация за Домовата книга - Стъпка 2</h2>
-        <p>Вие се намирате на <b>Стъпка 2</b> от попълване на данните за електронната Домова книга.</p>
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <h2 class="text-center">Домова книга</h2>
+        <h3 class="text-center text-info">Стъпка 2 - Попълване на данните на физическото лице</h3>
         <hr />
 
-        <p>Моля попълнете всички полета от формата. След като го направите натиснете бутона 'ПРОДЪЛЖИ' за да завършите подаването на данните.</p>
-        <p><b>Бележка:</b> Ако в предишната Стъпка сте направили неправилен избор може да се върнете назад, като натиснете бутона 'НАЗАД' и да коригирате Вашия избор.</p>
+        <p>Моля попълнете всички полета от формата. След като го направите натиснете бутона 'ПРОДЪЛЖИ' за да продължите попълването на електронната Домова книга.</p>
+        <p><b>Бележка:</b> Ако в предишната Стъпка - "Посочване на типа собственост" сте направили неправилен избор може да се върнете назад, като натиснете бутона 'НАЗАД' и да направите корекция.</p>
     </div>
 
-    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
-        <form method="post">
-            @*<div asp-validation-summary="All" class="text-danger"></div>*@
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <form method="post" asp-action="RegisterPerson">
             <div class="form-group">
                 <i class="fas fa-user"></i>
                 <label asp-for="@Model.FirstName"></label>
@@ -45,13 +43,10 @@
                 <span asp-validation-for="@Model.Phone" class="text-danger"></span>
             </div>
 
-            <p class="text-primary mb-3">
-                Моля направете своят избор!
-                @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Общите условия и Политиката за поверителност</a>*@
-            </p>
+            <p class="text-primary mb-3">Моля направете своят избор!</p>
 
-            <button type="submit" class="btn btn-primary text-uppercase">Назад</button>
-            <button type="submit" class="btn btn-primary text-uppercase">Продължи</button>
+            <input type="button" class="btn btn-primary text-uppercase" value="Назад" onclick="window.location= '@Url.Action( "Index", "Registrations")'" />
+            <input type="button" class="btn btn-primary text-uppercase" value="Продължи" onclick="window.location= '@Url.Action( "RegisterAddress", "Registrations")'" />
         </form>
         <br />
     </div>

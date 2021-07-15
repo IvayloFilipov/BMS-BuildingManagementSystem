@@ -1,9 +1,15 @@
-﻿@page
+﻿@model IndexViewModel
 
 <div class="container mt-3">
     <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-        <h2>Регистрация за Домовата книга - Стъпка 1</h2>
-        <h5>Уважаеми <b class="text-primary">@this.User.Identity.Name</b>. Вие сте на <b>Стъпка 1</b> от попълване на необходимите данни за електронната Домова книга на Етажната собственост.</h5>
+        <h2 class="text-center">Домова книга</h2>
+        <h5 class="text-center">
+            Уважаеми <b class="text-primary">@(this.User.Identity.Name == null ? "Съкооператор" : this.User.Identity.Name)</b>.
+            Вие сте във фунционалността от Приложението свързана с попълване на необходимите данни за регистрация в електронната Домова книга на Етажната собственост.
+        </h5>
+        <hr />
+
+        <h3 class="text-center text-info">Стъпка 1 - Посочване на типа собственост</h3>
         <hr />
 
         <p>Тук трябва да посочите какъв собствник се явявате. Двата възможни варианта са: <b>'Физическо лице'</b> или <b>'Юридическо лице'</b>. След това натиснете бутона <b>'ПРОДЪЛЖИ'</b> за да преминете на следващата страница и да продължите с попълване на електронната Домова книга.</p>
@@ -21,7 +27,8 @@
         </div>
         <hr />
 
-        <button type="submit" class="btn btn-primary text-uppercase">Продължи</button>
+        @*<input type="button" class="addYourCSSClassHere" value="WordsOnButton" onclick="window.location= '@Url.Action( "ActionInControllerHere", "ControllerNameHere")'" />*@
+        <input type="button" class="btn btn-primary text-uppercase" value="Продължи" onclick="window.location= '@Url.Action( "RegisterPerson", "Registrations")'" />
     </div>
 </div>
 

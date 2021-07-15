@@ -3,7 +3,5 @@
     public class IndexViewModel
     {
         public bool IsPerson { get; set; }
-
-        public bool IsCompany { get; set; }
     }
 }

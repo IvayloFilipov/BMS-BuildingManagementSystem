@@ -1,17 +1,19 @@
-﻿@page
-@model BuildingManagementSystem.Web.ViewModels.Registrations.RegisterTenantViewModel
+﻿@model RegisterTenantViewModel
 
 <div class="row">
-    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
-        <h2>Регистрация за Домовата книга - Стъпка Регистриране на наемател!</h2>
-        <p>Вие се намирате на <b>Стъпка Регистриране на наемател!</b> от попълване на данните за електронната Домова книга.</p>
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <h2 class="text-center">Домова книга</h2>
+        <h3 class="text-center text-info">Регистриране на наемател</h3>
         <hr />
 
-        <p>Моля попълнете всички полета от формата. За да регистрирате наемате и да завършите подаването на данни натиснете бутона 'ЗАПИШИ'.</p>
+        <p>Вие се намирате на страницата за <b>Регистриране на наемател</b> от функционалността по попълване на данни за електронната Домова книга.</p>
+        <hr />
+
+        <p>Моля попълнете всички полета от формата. За да регистрирате наемател и да завършите подаването на данни натиснете бутона 'ЗАПИШИ'.</p>
     </div>
 
-    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
-        <form method="post">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <form method="post" asp-action="RegisterTenant">
             @*<div asp-validation-summary="All" class="text-danger"></div>*@
             <div class="form-group">
                 <i class="fas fa-user"></i>
@@ -43,8 +45,10 @@
                 <input asp-for="@Model.Phone" class="form-control" />
                 <span asp-validation-for="@Model.Phone" class="text-danger"></span>
             </div>
+            <br />
 
-            <button type="submit" class="btn btn-primary text-uppercase">Запиши</button>
+            <input type="button" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "RegisterCompany", "Registrations")'" />
+            <input type="button" class="btn btn-primary text-uppercase" value="Отказ" onclick="window.location= '@Url.Action( "RegisterCompany", "Registrations")'" />
         </form>
         <br />
     </div>

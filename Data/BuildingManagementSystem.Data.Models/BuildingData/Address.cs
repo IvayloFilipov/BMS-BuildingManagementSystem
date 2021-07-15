@@ -16,7 +16,8 @@
         [MaxLength(DistrictMaxLength)]
         public string District { get; set; }
 
-        public byte ZipCode { get; set; }
+        [MaxLength(ZipCodeNumberMaxLength)]
+        public int ZipCode { get; set; }
 
         [MaxLength(StreetMaxLength)]
         public string Street { get; set; }
