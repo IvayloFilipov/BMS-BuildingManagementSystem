@@ -26,8 +26,8 @@
             var seeders = new List<ISeeder>
                           {
                               new RolesSeeder(),
-
-                              // new PropertyTypeSeeder(),
+                              new PropertyFloorSeeder(),
+                              new PropertyTypeSeeder(),
                           };
 
             foreach (var seeder in seeders)

@@ -15,7 +15,8 @@
 
         // (Подземни гаражи, Партер, 1, 2 ...)
         [Required]
-        public byte Floor { get; set; }
+        [MaxLength(50)]
+        public string Floor { get; set; }
 
         // many-to-one with Property -> many Properties can lay on a Floor
         public virtual ICollection<Property> Property { get; set; }

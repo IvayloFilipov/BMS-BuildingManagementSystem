@@ -1,4 +1,4 @@
-﻿@model IndexViewModel
+﻿@model BuildingManagementSystem.Web.ViewModels.Modules.IndexViewModel
 
 <div class="container mt-3">
     <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
@@ -12,7 +12,14 @@
         <p>Тук трябва да се визуализират модулите: <b>'Административен'</b> или <b>'Публичен'</b>. Административния ще е достъпен за Админиа/Домоуправителя а Публичния за регистрираните собственици и наематели.</p>
         <hr />
 
+        <div class="form-group">
+            <i class="fas fa-info-circle"></i>
+            <label asp-for="IdentityRole"></label>
+            <select asp-for="IdentityRole" asp-items="Html.GetEnumSelectList<IdentityRole>()" class="form-control" />
+            <span asp-validation-for="IdentityRole" class="text-danger"></span>
+        </div>
+        <br />
         @*<input type="button" class="addYourCSSClassHere" value="WordsOnButton" onclick="window.location= '@Url.Action( "ActionInControllerHere", "ControllerNameHere")'" />*@
-        <input type="button" class="btn btn-primary text-uppercase" value="Неизяснен бутон" onclick="window.location= '@Url.Action( "Index", "Home")'" />
+        <input type="button" class="btn btn-primary text-uppercase mt-5" value="Неизяснен бутон" onclick="window.location= '@Url.Action( "Index", "Home")'" />
     </div>
 </div>
