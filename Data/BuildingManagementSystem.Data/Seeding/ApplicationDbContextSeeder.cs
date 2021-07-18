@@ -25,9 +25,15 @@
 
             var seeders = new List<ISeeder>
                           {
-                              new RolesSeeder(),
+                              new BuildingAccountsSeeder(),
+                              new CitiySeeder(),
+                              new ExpenseTypeSeeder(),
+                              new MonthlyFeesSeeder(),
+                              new PaymentTypeSeeder(),
                               new PropertyFloorSeeder(),
+                              new PropertyStatusSeeder(),
                               new PropertyTypeSeeder(),
+                              new RolesSeeder(),
                           };
 
             foreach (var seeder in seeders)

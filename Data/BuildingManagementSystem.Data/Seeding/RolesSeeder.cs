@@ -4,11 +4,12 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using BuildingManagementSystem.Common;
     using BuildingManagementSystem.Data.Models;
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+
+    using static BuildingManagementSystem.Common.GlobalConstants;
 
     internal class RolesSeeder : ISeeder
     {
@@ -16,11 +17,11 @@
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
 
-            await SeedRoleAsync(roleManager, GlobalConstants.AdministratorRoleName);
-            await SeedRoleAsync(roleManager, GlobalConstants.UserRoleName);
-            await SeedRoleAsync(roleManager, GlobalConstants.ControllerRoleName);
-            await SeedRoleAsync(roleManager, GlobalConstants.TenantRoleName);
-            await SeedRoleAsync(roleManager, GlobalConstants.GuestRoleName);
+            await SeedRoleAsync(roleManager, AdministratorRoleName);
+            await SeedRoleAsync(roleManager, UserRoleName);
+            await SeedRoleAsync(roleManager, ControllerRoleName);
+            await SeedRoleAsync(roleManager, TenantRoleName);
+            await SeedRoleAsync(roleManager, GuestRoleName);
         }
 
         private static async Task SeedRoleAsync(RoleManager<ApplicationRole> roleManager, string roleName)

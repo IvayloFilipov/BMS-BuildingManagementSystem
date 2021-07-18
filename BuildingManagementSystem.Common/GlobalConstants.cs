@@ -51,6 +51,7 @@
         public const string ShopPropertyType = "Магазин";
         public const string AppartmentPropertyType = "Апартамент";
         public const string StudioPropertyType = "Студио";
+        public const string GaragePropertyType = "Гараж";
 
         // Entity Tenant
         public const int TenantFirstNameMaxLength = 50;
@@ -62,6 +63,13 @@
         // Folder - Building Expenses
         // Entity Expense type
         public const int ExpenseTypeMaxLength = 50;
+        public const string ElectriciyElevatorExpenseType = "Ел. енергия - асансьор";
+        public const string StairsElectriciyStairsExpenseType = "Ел. енергия - общи части";
+        public const string MaintenanceElevatorFeeExpenseType = "Такса - асансьор";
+        public const string ManagementFeeExpenseType = "Такса управление";
+        public const string CleaningFeeExpenseType = "Такса почистване";
+        public const string BankFeeExpenseType = "Такса банк. сметка";
+        public const string OthersExpenseType = "Други";
 
         // Entity Transaction
         public const int TransactionDescriptionMaxLength = 250;
@@ -70,10 +78,14 @@
         // Entity Account
         public const int AccountTypeMaxLength = 20;
         public const int AccountDescriptionMaxLength = 250;
+        public const string CashAccounType = "Каса";
+        public const string UbbBankAccountType = "Банкова сметка - ОББ";
 
         // Folder - Building Incomes
         // Entity Payment
         public const int PaymentPeriodMaxLength = 250;
+        public const string CashPaymentType = "В брой";
+        public const string BankPaymentType = "Банков превод";
 
         // Enatity Payment type
         public const int PaymentTypeMaxLength = 20;
@@ -95,12 +107,22 @@
         // Entity Fee
         public const int FeeTypeMaxLength = 100;
         public const int FeeDescriptionMaxLength = 250;
+        public const int ReducedMonthlyFeeAmount = 10;
+        public const int RegularMonthlyAmount = 20;
+        public const int IncreasedMonthlyAmount = 80;
+        public const string ReducedMonthlyFee = "Намалена такса";
+        public const string RegularMonthlyFee = "Нормална такса";
+        public const string IncreasedMonthlyFee = "Увеличена такса";
 
         // Entity Property debt
         public const int PropertyDebtDescriptionMaxLength = 250;
 
         // Entity Property status
         public const int PropertyStatusMaxLength = 50;
+        public const string OccupiedPropertyStatus = "Обитаем";
+        public const string UnoccupiedPropertyStatus = "Необитаем";
+        public const string TemporariliFreePropertyStatus = "Временно необитаем";
+        public const string CommertialPropertyStatus = "С търговска дейност";
 
         // Register Error messages
         public const string FirstNameErrorMessage = "Полето '{0}' трябва да съдържа само букви и да има минимум {2} и максимум {1} символа.";

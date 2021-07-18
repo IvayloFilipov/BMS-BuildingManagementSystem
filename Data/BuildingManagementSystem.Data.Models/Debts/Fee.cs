@@ -21,7 +21,6 @@
         [MaxLength(FeeTypeMaxLength)]
         public string Type { get; set; }
 
-        [Required]
         [MaxLength(FeeDescriptionMaxLength)]
         public string Description { get; set; }
 

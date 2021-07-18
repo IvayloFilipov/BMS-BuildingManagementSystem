@@ -26,12 +26,11 @@
         // total curr amount in cash & total curr amount in bank
         public decimal TotalAmount { get; set; }
 
-        // one-to-many with Building
-        public int BuildingId { get; set; }
+        // one-to-many with Building // was public int -> (not null)
+        public int? BuildingId { get; set; }
 
         public virtual Building Buildings { get; set; }
 
-        [Required]
         [MaxLength(AccountDescriptionMaxLength)]
         public string Description { get; set; }
 

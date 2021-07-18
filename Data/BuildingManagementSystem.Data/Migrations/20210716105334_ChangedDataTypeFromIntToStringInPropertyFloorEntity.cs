@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace BuildingManagementSystem.Data.Migrations
+﻿namespace BuildingManagementSystem.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class ChangedDataTypeFromIntToStringInPropertyFloorEntity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

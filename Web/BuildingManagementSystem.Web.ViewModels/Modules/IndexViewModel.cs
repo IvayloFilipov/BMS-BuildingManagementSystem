@@ -4,6 +4,7 @@
 
     public class IndexViewModel
     {
+        public int IdentityID { get; set; }
         public IdentityRole IdentityRole { get; set; }
     }
 }

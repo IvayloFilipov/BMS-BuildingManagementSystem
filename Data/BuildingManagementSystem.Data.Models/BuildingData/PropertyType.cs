@@ -19,7 +19,7 @@
         [Key]
         public int Id { get; set; }
 
-        // магазин, апартамент, ателие...
+        // магазин, апартамент, ателие, гараж
         [Required]
         [MaxLength(PropertyTypeMaxLength)]
         public string Type { get; set; }

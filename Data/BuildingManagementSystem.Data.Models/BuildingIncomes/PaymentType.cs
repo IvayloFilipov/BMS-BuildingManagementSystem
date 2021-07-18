@@ -18,7 +18,7 @@
         [Key]
         public int Id { get; set; }
 
-        // cash, bank
+        // cash(в брой), bank(банков превод), easyPay,...
         [Required]
         [MaxLength(PaymentTypeMaxLength)]
         public string Type { get; set; }
