@@ -19,7 +19,7 @@
         public int Id { get; set; }
 
         // one-to-many with Building -
-        public int BuildingId { get; set; }
+        public int? BuildingId { get; set; }
 
         public virtual Building Building { get; set; }
 

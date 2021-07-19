@@ -1,22 +1,53 @@
 ﻿namespace BuildingManagementSystem.Web.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using BuildingManagementSystem.Data;
+    using BuildingManagementSystem.Web.ViewModels.Properties;
     using Microsoft.AspNetCore.Mvc;
 
     public class PropertiesController : BaseController
     {
-        public IActionResult Type()
+        private readonly ApplicationDbContext dbContext;
+
+        public PropertiesController(ApplicationDbContext dbContext)
         {
-            return this.View();
+            this.dbContext = dbContext;
         }
 
-        public IActionResult Floor()
+        public IActionResult Index()
         {
-            return this.View();
+            return this.View(new IndexViewModel
+            {
+                Types = this.GetPropertyTypes(),
+            });
         }
 
-        public IActionResult AddProperty()
+        // Needed db in order to get Property types values
+        [HttpPost]
+        public IActionResult Index(IndexViewModel type)
         {
-            return this.View();
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(type);
+            }
+
+            return this.RedirectToAction("Index", "Modules");
+        }
+
+        private IEnumerable<PropertyTypeViewModel> GetPropertyTypes()
+        {
+            var types = this.dbContext
+                .PropertyTypes
+                .Select(x => new PropertyTypeViewModel
+                {
+                    Id = x.Id,
+                    TypeName = x.Type,
+                })
+                .ToList();
+
+            return types;
         }
     }
 }

@@ -26,6 +26,8 @@
             var seeders = new List<ISeeder>
                           {
                               new BuildingAccountsSeeder(),
+                              new BuildingNameSeeder(),
+                              new BuildingAddressSeeder(),
                               new CitiySeeder(),
                               new ExpenseTypeSeeder(),
                               new MonthlyFeesSeeder(),

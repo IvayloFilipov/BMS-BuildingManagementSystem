@@ -36,7 +36,7 @@
         public int? AppartNumber { get; set; }
 
         // one-to-one with Building
-        public int BuildingId { get; set; } // <- or to put [ForeignKey("Building")] above public int Id { get; set; }
+        public int? BuildingId { get; set; } // <- or to put [ForeignKey("Building")] above public int Id { get; set; }
 
         public virtual Building Building { get; set; }
 

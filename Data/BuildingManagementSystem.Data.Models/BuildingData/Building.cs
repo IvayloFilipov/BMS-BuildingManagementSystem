@@ -16,6 +16,9 @@
         [Key]
         public int Id { get; set; }
 
+        [MaxLength(35)]
+        public string Name { get; set; }
+
         // one-to-one with Address - one building has only one address
         public virtual Address Address { get; set; }
 

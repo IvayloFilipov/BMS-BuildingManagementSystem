@@ -66,7 +66,7 @@
                 return this.View(address);
             }
 
-            return this.RedirectToAction("string actionName", "string controllerName"); // figured it out
+            return this.RedirectToAction("Index", "Properties");
         }
 
         public IActionResult RegisterTenant()
