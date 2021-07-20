@@ -25,10 +25,20 @@
             </div>
             <div class="form-group">
                 <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.PtropertyFloorId"></label>
+                <select asp-for="@Model.PtropertyFloorId" class="form-control">
+                    @foreach (var floor in Model.Floors)
+                    {
+                        <option value="@floor.Id"> @floor.FloorName</option>
+                    }
+                </select>
+            </div>
+            @*<div class="form-group">
+                <i class="fas fa-info-circle"></i>
                 <label asp-for="@Model.PtropertyFloor"></label>
                 <input asp-for="@Model.PtropertyFloor" class="form-control" />
                 <span asp-validation-for="@Model.PtropertyFloor" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <i class="fas fa-info-circle"></i>
                 <label asp-for="@Model.AppartNumber"></label>

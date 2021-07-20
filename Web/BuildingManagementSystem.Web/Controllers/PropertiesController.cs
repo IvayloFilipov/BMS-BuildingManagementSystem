@@ -22,6 +22,7 @@
             return this.View(new IndexViewModel
             {
                 Types = this.GetPropertyTypes(),
+                Floors = this.GetPropertyFloors(),
             });
         }
 
@@ -29,15 +30,10 @@
         [HttpPost]
         public IActionResult Index(IndexViewModel type)
         {
-            // Custom validation
-            // if (!this.dbContext.PropertyTypes.Any(t => t.Id == type.PropertyTypeId))
-            // {
-            //     this.ModelState.AddModelError(type.PropertyTypeId.ToString(), "Невалиден тип на имота.");
-            // }
-
             if (!this.ModelState.IsValid)
             {
                 type.Types = this.GetPropertyTypes();
+                type.Floors = this.GetPropertyFloors();
 
                 return this.View(type);
             }
@@ -57,6 +53,20 @@
                 .ToList();
 
             return types;
+        }
+
+        private IEnumerable<PropertyFloorViewModel> GetPropertyFloors()
+        {
+            var floors = this.dbContext
+                .PropertyFloors
+                .Select(x => new PropertyFloorViewModel
+                {
+                    Id = x.Id,
+                    FloorName = x.Floor,
+                })
+                .ToList();
+
+            return floors;
         }
     }
 }

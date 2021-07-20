@@ -49,5 +49,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Administration\Views\Dashboard\" />
+    <Folder Include="Views\PublicModules\" />
   </ItemGroup>
 </Project>

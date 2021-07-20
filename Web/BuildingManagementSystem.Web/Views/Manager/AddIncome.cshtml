@@ -1,0 +1,85 @@
+﻿@model BuildingManagementSystem.Web.ViewModels.ManagerModules.AddIncomeViewModel
+
+<div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <h2 class="text-center">Добавяне на приход</h2>
+        <hr />
+        <hr />
+
+        <p class="mb-4 text-info"><b>Бележка:</b> Всеки получен приход в брой или по банковата сметка на Етажната собственост трябва да се въведе във формата</p>
+    </div>
+
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2 mt-4">
+        <form method="post" asp-action="AddIncome" asp-controller="ManagerController">
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.PaymentDescription"></label>
+                <input asp-for="@Model.PaymentDescription" class="form-control" />
+                <span asp-validation-for="@Model.PaymentDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.PaymentTypeId"></label>
+                <select asp-for="@Model.PaymentTypeId" class="form-control">
+                    @foreach (var payment in Model.Payments)
+                    {
+                        <option value="@payment.Id"> @payment.PaymentType</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.Amount"></label>
+                <input asp-for="@Model.Amount" class="form-control" />
+                <span asp-validation-for="@Model.Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.PaymentPeriod"></label>
+                <textarea asp-for="@Model.PaymentPeriod" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="@Model.PaymentPeriod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.PropertyId"></label>
+                <select asp-for="@Model.PropertyId" class="form-control">
+                    @foreach (var property in Model.Properties)
+                    {
+                        <option value="@property.Id"> @property.PropertyNumber</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.PropertyId"></label>
+                <select asp-for="@Model.PropertyId" class="form-control">
+                    @foreach (var property in Model.Properties)
+                    {
+                        <option value="@property.Id"> @property.PropertyType</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.PropertyId"></label>
+                <select asp-for="@Model.PropertyId" class="form-control">
+                    @foreach (var property in Model.Properties)
+                    {
+                        <option value="@property.Id"> @property.PropertyFloor</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group mb-4">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.PayerName"></label>
+                <input asp-for="@Model.PayerName" class="form-control" />
+                <span asp-validation-for="PayerName" class="text-danger"></span>
+            </div>
+
+            <p class="text-primary mb-3">Моля след като добавите приход натиснете бутона <b>'ЗАПИШИ'</b>!</p>
+
+            <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "Info", "Home")'" />
+        </form>
+        <br />
+    </div>
+</div>

@@ -13,7 +13,9 @@
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете етажа")]
         [Display(Name = "Етаж")]
-        public int PtropertyFloor { get; set; }
+        public int PtropertyFloorId { get; set; }
+
+        public IEnumerable<PropertyFloorViewModel> Floors { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете номера на апартамента/магазина")]
         [Range(1, 15, ErrorMessage = "Въведеният {0} трябва да е между {1} и {2}.")]

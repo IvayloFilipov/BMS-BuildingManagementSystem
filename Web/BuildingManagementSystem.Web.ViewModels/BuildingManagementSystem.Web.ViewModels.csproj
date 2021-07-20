@@ -24,4 +24,8 @@
     <ProjectReference Include="..\BuildingManagementSystem.Web.Infrastructure\BuildingManagementSystem.Web.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="PublicModules\" />
+  </ItemGroup>
+
 </Project>
