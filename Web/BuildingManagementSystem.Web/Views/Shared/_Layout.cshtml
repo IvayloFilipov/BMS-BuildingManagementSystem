@@ -36,7 +36,15 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Faq">Въпроси</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Modules" asp-action="Index">Модули</a>
+                            <div class="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Модули
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-controller="Modules" asp-action="Index">Административен модул</a>
+                                    <a class="dropdown-item" asp-controller="Public" asp-action="General">Публичен модул</a>
+                                </div>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Contacts" asp-action="Index">Контакти</a>

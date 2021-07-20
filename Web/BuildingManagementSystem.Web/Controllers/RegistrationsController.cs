@@ -82,7 +82,7 @@
                 return this.View(tenant);
             }
 
-            return this.RedirectToAction("string actionName", "string controllerName"); // figured it out
+            return this.RedirectToAction("Info", "Home");
         }
     }
 }

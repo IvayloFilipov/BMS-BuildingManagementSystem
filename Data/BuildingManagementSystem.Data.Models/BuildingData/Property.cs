@@ -33,7 +33,7 @@
 
         public virtual PropertyFloor PropertyFloor { get; set; }
 
-        public int AppartNumber { get; set; }
+        public int Number { get; set; }
 
         public double PropertyPart { get; set; }
 

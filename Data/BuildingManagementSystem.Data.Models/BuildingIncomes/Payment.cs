@@ -12,6 +12,10 @@
     {
         public decimal Amount { get; set; }
 
+        [Required]
+        [MaxLength(50)]
+        public string PayerName { get; set; }
+
         [MaxLength(PaymentPeriodMaxLength)]
         public string PaymentPeriod { get; set; }
 

@@ -24,6 +24,11 @@
                 BuildingId = buildingId,
             };
 
+            if (dbContext.Building.Any(x => x.Id == buildingId))
+            {
+                return;
+            }
+
             await dbContext.Addresses.AddAsync(buildingAddress);
 
             await dbContext.SaveChangesAsync();

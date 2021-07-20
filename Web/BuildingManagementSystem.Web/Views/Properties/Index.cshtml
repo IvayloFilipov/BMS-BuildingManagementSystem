@@ -15,19 +15,13 @@
         <form method="post" asp-action="Index" asp-controller="Properties">
             <div class="form-group">
                 <i class="fas fa-info-circle"></i>
-                <label asp-for="@Model.PropertyType"></label>
+                <label asp-for="@Model.PropertyTypeId"></label>
                 <select asp-for="@Model.PropertyTypeId" class="form-control">
-                    @foreach (var type in Model.PropertyType)
+                    @foreach (var type in Model.Types)
                     {
-                        <option value="@type"> @type</option>
+                        <option value="@type.Id"> @type.TypeName</option>
                     }
                 </select>
-            </div>
-            <div class="form-group mb-4">
-                <i class="fas fa-info-circle"></i>
-                <label asp-for="@Model.PropertyType"></label>
-                <input asp-for="@Model.PropertyType" class="form-control" />
-                <span asp-validation-for="@Model.PropertyType" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <i class="fas fa-info-circle"></i>
@@ -69,7 +63,7 @@
             <p class="text-primary mb-3">Моля направете своят избор!</p>
 
             <input type="button" class="btn btn-primary text-uppercase" value="Назад" onclick="window.location= '@Url.Action( "RegisterAddress", "Registrations")'" />
-            <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "Index", "Modules")'" />
+            <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "Info", "Home")'" />
         </form>
         <br />
     </div>

@@ -5,14 +5,11 @@
 
     public class IndexViewModel
     {
-        [Display(Name = "Тип на имота - Dropdown")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете типа на имота")]
+        [Display(Name = "Тип на имота")]
         public int PropertyTypeId { get; set; }
 
         public IEnumerable<PropertyTypeViewModel> Types { get; set; }
-
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете типа на имота")]
-        [Display(Name = "Тип на имота")]
-        public string PropertyType { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете етажа")]
         [Display(Name = "Етаж")]
@@ -36,7 +33,7 @@
         [Display(Name = "Съсобственост (отбележете само ако сте в съсобственост)")]
         public bool HasSecondOwner { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете броя на кучетата (ако имате такива)")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Моля отбележете за наемател/и (ако имате такива)")]
         [Display(Name = "Наемател (отбележете само ако имате наемател/и)")]
         public bool HasTenant { get; set; }
     }

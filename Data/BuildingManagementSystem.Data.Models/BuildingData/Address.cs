@@ -31,9 +31,9 @@
         [MaxLength(EntranceNumberMaxLength)]
         public string EntranceNumber { get; set; }
 
-        public int? Floor { get; set; }
+        public string Floor { get; set; }
 
-        public int? AppartNumber { get; set; }
+        public string AppartNumber { get; set; }
 
         // one-to-one with Building
         public int? BuildingId { get; set; } // <- or to put [ForeignKey("Building")] above public int Id { get; set; }

@@ -40,10 +40,10 @@
 
         [StringLength(FloorNumberMaxLength, MinimumLength = 1)]
         [Display(Name = "Номер на етажа")]
-        public int? Floor { get; set; }
+        public string Floor { get; set; }
 
         [StringLength(ApprtmentNumberMaxLength, MinimumLength = 1)]
         [Display(Name = "Номер на апартамента")]
-        public int? AppartNumber { get; set; }
+        public string AppartNumber { get; set; }
     }
 }
