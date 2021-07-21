@@ -13,11 +13,13 @@
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
-            var fees = new List<(double Amount, string FeeType)>()
+            var description = "По решение на ОС от 15,10,2020 год.";
+
+            var fees = new List<(double Amount, string FeeType, string Description)>()
             {
-                (ReducedMonthlyFeeAmount, ReducedMonthlyFee),
-                (RegularMonthlyAmount, RegularMonthlyFee),
-                (IncreasedMonthlyAmount, IncreasedMonthlyFee),
+                (ReducedMonthlyFeeAmount, ReducedMonthlyFee, description),
+                (RegularMonthlyAmount, RegularMonthlyFee, description),
+                (IncreasedMonthlyAmount, IncreasedMonthlyFee, description),
             };
 
             var newFeesList = new List<Fee>();
@@ -30,6 +32,7 @@
                     {
                         Type = currFee.FeeType,
                         Amount = currFee.Amount,
+                        Description = description,
                     };
 
                     newFeesList.Add(newFee);

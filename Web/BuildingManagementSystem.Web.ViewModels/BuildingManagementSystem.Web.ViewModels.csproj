@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ManagerModules\Reports\" />
     <Folder Include="PublicModules\" />
   </ItemGroup>
 
