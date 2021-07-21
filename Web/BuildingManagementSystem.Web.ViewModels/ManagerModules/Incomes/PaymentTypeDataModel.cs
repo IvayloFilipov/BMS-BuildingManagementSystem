@@ -1,4 +1,4 @@
-﻿namespace BuildingManagementSystem.Web.ViewModels.ManagerModules
+﻿namespace BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules
 {
     public class PaymentTypeDataModel
     {
