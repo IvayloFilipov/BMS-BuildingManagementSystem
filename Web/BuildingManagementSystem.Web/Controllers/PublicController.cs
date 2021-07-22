@@ -4,6 +4,10 @@
 
     public class PublicController : BaseController
     {
+        public PublicController()
+        {
+        }
+
         public IActionResult General()
         {
             return this.View();

@@ -3,6 +3,9 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using BuildingManagementSystem.Data.Models.BuildingIncomes;
+    using BuildingManagementSystem.Services.Mapping;
+
     public class AddIncomeViewModel
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете наименование на прихода")]
@@ -41,6 +44,10 @@
         [Range(1, 15, ErrorMessage = "Номерата в полето '{0}' трябва да са между {1} и {2}.")]
         [Display(Name = "Задължен обект/номер")]
         public int PropertyNumber { get; set; }
+
+        // Дали може да се направи поле, което да показва етаж и номер и като се избере да отразява приход???
+        [Display(Name = "Задължен обект")]
+        public string PropertyHasDebt => "Имот: ет. " + this.PropertyFloorId + ", " + "№ " + this.PropertyNumber;
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете имената на платеца")]
         [StringLength(50, ErrorMessage = "олето '{0}' трябва да съдържа минимум {2} и максимум {1} символа.", MinimumLength = 8)]

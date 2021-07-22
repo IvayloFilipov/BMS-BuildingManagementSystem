@@ -5,6 +5,10 @@
 
     public class RegistrationsController : BaseController
     {
+        public RegistrationsController()
+        {
+        }
+
         public IActionResult Index()
         {
             return this.View();

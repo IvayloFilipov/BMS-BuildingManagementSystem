@@ -4,6 +4,7 @@
     using System.Linq;
 
     using BuildingManagementSystem.Data;
+    using BuildingManagementSystem.Services.Mapping;
     using BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
     using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,7 @@
             {
                 Payments = this.GetPaymentType(),
                 Properties = this.GetPropertyType(),
-                Floors = this.GetPropertyTypeFloor(),
+                Floors = this.GetPropertyFloor(),
             });
         }
 
@@ -34,7 +35,7 @@
             {
                 income.Payments = this.GetPaymentType();
                 income.Properties = this.GetPropertyType();
-                income.Floors = this.GetPropertyTypeFloor();
+                income.Floors = this.GetPropertyFloor();
 
                 return this.View(income);
             }
@@ -52,7 +53,6 @@
                     PaymentType = x.Type,
                 })
                 .ToList();
-
             return payments;
         }
 
@@ -70,7 +70,7 @@
             return properties;
         }
 
-        public IEnumerable<PropertyFloorDataModel> GetPropertyTypeFloor()
+        public IEnumerable<PropertyFloorDataModel> GetPropertyFloor()
         {
             var floors = this.dbContext
                 .PropertyFloors
