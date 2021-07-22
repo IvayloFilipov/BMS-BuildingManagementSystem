@@ -14,17 +14,6 @@
             return this.View();
         }
 
-        [HttpPost]
-        public IActionResult Index(IndexViewModel index)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(index);
-            }
-
-            return this.RedirectToAction("Index");
-        }
-
         public IActionResult RegisterPerson()
         {
             return this.View();

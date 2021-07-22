@@ -8,7 +8,7 @@
         <hr />
 
         <p>Моля попълнете полета от формата, валидни за <b class="text-danger">Вашият постоянен адрес</b>. След като го направите натиснете бутона <b>'ПРОДЪЛЖИ'</b> за да продължите попълването на електронната Домова книга.</p>
-        <p class="mb-4"><b>Бележка:</b> Ако в предишната Стъпка - <b class="text-info">"Попълване на данните на физическото/юридическото лице"</b> сте пропуснали нещо или сте въвели некоректни данни може да се върнете назад, като натиснете бутона <b>'НАЗАД'</b> и да направите корекция.</p>
+        <p class="mb-4"><b>Бележка:</b> Ако в предишната Стъпка - <b class="text-info">"Попълване на данните на физическото/юридическото лице"</b> сте пропуснали нещо или сте въвели некоректни данни може да се върнете назад, като натиснете един от двата бутона <b>'НАЗАД ЗА ФИЗИЧЕСКО / ЮРИДИЧЕСКО ЛИЦЕ'</b> и да направите корекция.</p>
     </div>
 
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
@@ -70,7 +70,10 @@
 
             <p class="text-primary mb-3">Моля направете своят избор!</p>
 
-            <input type="button" class="btn btn-primary text-uppercase" value="Назад" onclick="window.location= '@Url.Action( "RegisterCompany", "Registrations")'" />
+            <input type="button" class="btn btn-primary text-uppercase" value="Назад за физическо лице" onclick="window.location= '@Url.Action( "RegisterPerson", "Registrations")'" />
+
+            <input type="button" class="btn btn-primary text-uppercase" value="Назад за юридическо лице" onclick="window.location= '@Url.Action( "RegisterCompany", "Registrations")'" />
+
             <input type="submit" class="btn btn-primary text-uppercase" value="Продължи" onclick="window.location= '@Url.Action( "Index", "Properties")'" />
         </form>
         <br />

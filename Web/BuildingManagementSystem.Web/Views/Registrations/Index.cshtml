@@ -1,8 +1,11 @@
-﻿@model BuildingManagementSystem.Web.ViewModels.Registrations.IndexViewModel
+﻿@{ 
+    this.ViewData["Title"] = "Домова книга";
+}
 
 <div class="container mt-3">
     <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-        <h2 class="text-center">Домова книга</h2>
+        @*<h2 class="text-center">Домова книга</h2>*@
+        <h2 class="text-center">@this.ViewData["Title"]</h2>
         <h5 class="text-center">
             Уважаеми <b class="text-info">@(this.User.Identity.Name == null ? "Съкооператор" : this.User.Identity.Name)</b>.
             За регистрация в Приложението моля попълнете електронната Домова книга на Етажната собственост.
@@ -14,7 +17,7 @@
         <hr />
 
         <p class="mb-4">Тук трябва да посочите какъв собственик на имот се явявате. Двата възможни варианта са: <b>'Физическо лице'</b> или <b>'Юридическо лице'</b>. След това натиснете бутона <b>'ИЗБЕРИ'</b> за да преминете на следващата страница и да продължите с попълване на електронната Домова книга.</p>
-        
+
         <h5 class="text-info mb-3 text-center"><b>Моля направете своят избор!</b></h5>
 
         <div class="border card border-success mb-4">
