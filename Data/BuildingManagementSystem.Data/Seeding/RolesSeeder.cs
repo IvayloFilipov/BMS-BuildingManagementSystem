@@ -19,7 +19,6 @@
 
             await SeedRoleAsync(roleManager, AdministratorRoleName);
             await SeedRoleAsync(roleManager, UserRoleName);
-            await SeedRoleAsync(roleManager, ControllerRoleName);
             await SeedRoleAsync(roleManager, TenantRoleName);
             await SeedRoleAsync(roleManager, GuestRoleName);
         }

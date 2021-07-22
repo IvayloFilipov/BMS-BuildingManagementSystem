@@ -6,14 +6,15 @@
 }
 
 <div class="row">
-    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
-        <h2>@ViewData["Title"]</h2>
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <h2 class="text-center">@ViewData["Title"]</h2>
     </div>
-    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
         <form id="account" method="post">
-            <p>Регистрирайте се в <b class="text-info">@GlobalConstants.ShortSystemName</b> платформата за да получите достъп до всички съобщения, събития, плащания и отчети, касаещи Етажната Собственост.</p>
+            <p class="text-center">Регистрирайте се в <b class="text-info text-center">@GlobalConstants.ShortSystemName</b> платформата за да получите достъп до всички съобщения, събития, плащания и отчети, касаещи Етажната Собственост.</p>
             <hr />
-            <div class="form-group mt-4">
+            <hr />
+            <div class="form-group mt-5">
                 <i class="fas fa-envelope"></i>
                 <label asp-for="Input.Email"></label>
                 <input asp-for="Input.Email" class="form-control" />

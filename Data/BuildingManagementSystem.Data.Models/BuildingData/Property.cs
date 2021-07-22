@@ -37,6 +37,9 @@
 
         public double PropertyPart { get; set; }
 
+        [MaxLength(100)]
+        public string CoOwner { get; set; }
+
         public int? DogCount { get; set; }
 
         // one-to-many with Tenant - one Tenant can hire many Properties

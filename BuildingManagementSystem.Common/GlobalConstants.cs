@@ -12,7 +12,6 @@
         // Roles constants
         public const string AdministratorRoleName = "Admin";
         public const string UserRoleName = "User";
-        public const string ControllerRoleName = "Controller";
         public const string TenantRoleName = "Tenant";
         public const string GuestRoleName = "Guest";
 

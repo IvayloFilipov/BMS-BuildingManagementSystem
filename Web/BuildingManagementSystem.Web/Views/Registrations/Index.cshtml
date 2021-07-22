@@ -17,31 +17,6 @@
         
         <h5 class="text-info mb-3 text-center"><b>Моля направете своят избор!</b></h5>
 
-        @*<div class="form-check mb-3">
-                <input asp-for="IsPerson" type="radio" name="radio" value="IsPerson">
-                <label asp-for="IsPerson"><b>Собственик - ФИЗИЧЕСКО ЛИЦЕ</b></label>
-                <span asp-validation-for="IsPerson"></span>
-            </div>
-            <div class="form-check mb-4">
-                <input asp-for="IsCompany" type="radio" name="radio" value="IsPerson">
-                <label asp-for="IsCompany"><b>Собственик - ЮРИДИЧЕСКО ЛИЦЕ</b></label>
-                <span asp-validation-for="IsCompany"></span>
-            </div>
-
-            @{
-                var action = string.Empty;
-                if (Model.IsPerson == true)
-                {
-                    action = "RegisterPerson";
-                }
-                else
-                {
-                    action = "RegisterCompany";
-                }
-            }
-
-            <input type="button" class="btn btn-primary text-uppercase" value="Продължи" onclick="window.location= '@Url.Action( "action", "Registrations")'" />
-            <hr />*@
         <div class="border card border-success mb-4">
             <div class="form-text mb-3 text-center">
                 <label><b>Собственик - ФИЗИЧЕСКО ЛИЦЕ</b></label>

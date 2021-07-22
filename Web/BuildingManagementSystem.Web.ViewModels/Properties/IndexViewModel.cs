@@ -31,12 +31,9 @@
         [Display(Name = "Брой на притежаваните домашни любимци (кучета)")]
         public int? DogCount { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Моля отбележете съсобственост")]
-        [Display(Name = "Съсобственост (отбележете само ако сте в съсобственост)")]
-        public bool HasSecondOwner { get; set; }
-
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Моля отбележете за наемател/и (ако имате такива)")]
-        [Display(Name = "Наемател (отбележете само ако имате наемател/и)")]
-        public bool HasTenant { get; set; }
+        [Required(AllowEmptyStrings = true, ErrorMessage = "Моля отбележете съсобственост")]
+        [StringLength(100, ErrorMessage = "Въведените данни не могат да бъдат по-малко от {1} и повече от {2} символа.", MinimumLength = 8)]
+        [Display(Name = "Име и фамилия на съсобственика (отбележете само ако сте в съсобственост)")]
+        public string CoOwner { get; set; }
     }
 }

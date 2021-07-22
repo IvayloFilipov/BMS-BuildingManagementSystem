@@ -5,14 +5,15 @@
 }
 
 <div class="row">
-    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2 text-center">
         <h2>@ViewData["Title"]</h2>
     </div>
-    <div class="col-sm-12 col-md-6 offset-md-2 col-ld-6 offset-ld-2">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <p>Моля попълнете всички полета във формата за регистрация.</p>
+            <p class=" text-center">Моля попълнете всички полета във формата за регистрация.</p>
             <hr />
-            <div class="form-group mt-4">
+            <hr />
+            <div class="form-group mt-5">
                 <i class="fas fa-user"></i>
                 <label asp-for="Input.FirstName"></label>
                 <input asp-for="Input.FirstName" class="form-control" />

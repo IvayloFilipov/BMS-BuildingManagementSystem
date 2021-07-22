@@ -4,7 +4,6 @@
     {
         User = 10,
         Tenant = 20,
-        Controller = 30,
-        Admin = 40,
+        Admin = 30,
     }
 }
