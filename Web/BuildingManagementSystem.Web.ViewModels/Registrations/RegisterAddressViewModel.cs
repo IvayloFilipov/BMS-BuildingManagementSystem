@@ -1,15 +1,18 @@
 ﻿namespace BuildingManagementSystem.Web.ViewModels.Registrations
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using static BuildingManagementSystem.Common.GlobalConstants;
 
     public class RegisterAddressViewModel
     {
+        // [StringLength(30, ErrorMessage = CityNameErrorMessage, MinimumLength = 3)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете името на града")]
-        [StringLength(30, ErrorMessage = CityNameErrorMessage, MinimumLength = 3)]
-        [Display(Name = "Град")]
-        public string City { get; set; }
+        [Display(Name = "Населено място")]
+        public string CityId { get; set; }
+
+        public IEnumerable<AllCitiesDataModel> AllCities { get; set; }
 
         // [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете името на квартала")]
         [StringLength(DistrictMaxLength, ErrorMessage = DistrictNameErrorMessage, MinimumLength = 3)]

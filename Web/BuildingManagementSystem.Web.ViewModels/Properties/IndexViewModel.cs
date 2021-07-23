@@ -18,11 +18,12 @@
         public IEnumerable<PropertyFloorViewModel> Floors { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете номера на апартамента/магазина")]
-        [Range(1, 15, ErrorMessage = "Въведеният {0} трябва да е между {1} и {2}.")]
+        [Range(1, 15, ErrorMessage = "Въведеният '{0}' трябва да е между {1} и {2}.")]
         [Display(Name = "Номер на апартамента/магазина")]
         public int AppartNumber { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете % идеални части")]
+        [RegularExpression(@"^[0-9]{1,2}[,][0-9]{3}$", ErrorMessage = "Въведената стойност трябва да започва с ДО две цифри и е с точност до третият знак след десетичната запетая")]
         [Display(Name = "% идеални части (запишете до третият знак след десетичната запетая)")]
         public double PropertyPart { get; set; }
 

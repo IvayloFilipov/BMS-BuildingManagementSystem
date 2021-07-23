@@ -1,12 +1,18 @@
 ﻿namespace BuildingManagementSystem.Web.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Web.ViewModels.Registrations;
     using Microsoft.AspNetCore.Mvc;
 
     public class RegistrationsController : BaseController
     {
-        public RegistrationsController()
+        private readonly ApplicationDbContext dbContext;
+
+        public RegistrationsController(ApplicationDbContext dbContext)
         {
+            this.dbContext = dbContext;
         }
 
         public IActionResult Index()
@@ -48,7 +54,10 @@
 
         public IActionResult RegisterAddress()
         {
-            return this.View();
+            return this.View(new RegisterAddressViewModel
+            {
+                AllCities = this.GetAllCities(),
+            });
         }
 
         [HttpPost]
@@ -56,10 +65,26 @@
         {
             if (!this.ModelState.IsValid)
             {
+                address.AllCities = this.GetAllCities();
+
                 return this.View(address);
             }
 
             return this.RedirectToAction("Index", "Properties");
+        }
+
+        public IEnumerable<AllCitiesDataModel> GetAllCities()
+        {
+            var cities = this.dbContext
+                .Cities
+                .Select(x => new AllCitiesDataModel
+                {
+                    Id = x.Id,
+                    City = x.Name,
+                })
+                .ToList();
+
+            return cities;
         }
 
         public IActionResult RegisterTenant()
