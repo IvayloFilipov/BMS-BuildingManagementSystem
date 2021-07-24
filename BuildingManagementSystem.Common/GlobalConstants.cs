@@ -83,6 +83,7 @@
         // Folder - Building Incomes
         // Entity Payment
         public const int PaymentPeriodMaxLength = 250;
+        public const int IncomeDescriptionMaxLength = 100;
         public const string CashPaymentType = "В брой";
         public const string BankPaymentType = "Банков превод";
 

@@ -13,9 +13,14 @@
         public decimal Amount { get; set; }
 
         [Required]
+        [MaxLength(IncomeDescriptionMaxLength)]
+        public string IncomeDescription { get; set; }
+
+        [Required]
         [MaxLength(50)]
         public string PayerName { get; set; }
 
+        [Required]
         [MaxLength(PaymentPeriodMaxLength)]
         public string PaymentPeriod { get; set; }
 
