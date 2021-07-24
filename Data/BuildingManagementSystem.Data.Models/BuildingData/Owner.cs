@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using BuildingManagementSystem.Data.Common.Models;
+    using Microsoft.AspNetCore.Identity;
 
     using static BuildingManagementSystem.Common.GlobalConstants;
 
@@ -39,5 +40,10 @@
         public int AddressId { get; set; }
 
         public virtual Address Address { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
     }
 }

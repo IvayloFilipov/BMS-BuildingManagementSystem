@@ -14,7 +14,7 @@
             <div class="form-group">
                 <i class="fas fa-info-circle"></i>
                 <label asp-for="@Model.PaymentDescription"></label>
-                <input asp-for="@Model.PaymentDescription" class="form-control" />
+                <textarea asp-for="@Model.PaymentDescription" class="form-control" rows="1"></textarea>
                 <span asp-validation-for="@Model.PaymentDescription" class="text-danger"></span>
             </div>
 
@@ -39,7 +39,7 @@
             <div class="form-group">
                 <i class="fas fa-calendar"></i>
                 <label asp-for="@Model.PaymentPeriod"></label>
-                <textarea asp-for="@Model.PaymentPeriod" class="form-control" rows="3"></textarea>
+                <textarea asp-for="@Model.PaymentPeriod" class="form-control" rows="2"></textarea>
                 <span asp-validation-for="@Model.PaymentPeriod" class="text-danger"></span>
             </div>
 

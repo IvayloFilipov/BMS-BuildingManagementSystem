@@ -1,4 +1,4 @@
-﻿@model BuildingManagementSystem.Web.ViewModels.Registrations.RegisterTenantViewModel
+﻿@model BuildingManagementSystem.Web.ViewModels.Tenants.RegisterTenantViewModel
 
 <div class="row">
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
@@ -13,7 +13,7 @@
     </div>
 
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
-        <form method="post" asp-action="RegisterTenant">
+        <form method="post" asp-action="RegisterTenant" asp-controller="Registrations">
             @*<div asp-validation-summary="All" class="text-danger"></div>*@
             <div class="form-group">
                 <i class="fas fa-user"></i>
@@ -47,7 +47,8 @@
             </div>
 
             <input type="button" class="btn btn-primary text-uppercase" value="Отказ" onclick="window.location= '@Url.Action( "RegisterCompany", "Registrations")'" />
-            <input type="button" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "RegisterCompany", "Registrations")'" />
+            @*<input type="submit" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "RegisterCompany", "Registrations")'" />*@
+            <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" />
         </form>
         <br />
     </div>

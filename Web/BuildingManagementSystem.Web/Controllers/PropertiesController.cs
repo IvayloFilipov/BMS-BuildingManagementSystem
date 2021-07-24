@@ -4,7 +4,6 @@
     using System.Linq;
 
     using BuildingManagementSystem.Data;
-    using BuildingManagementSystem.Data.Models.BuildingData;
     using BuildingManagementSystem.Web.ViewModels.Properties;
     using Microsoft.AspNetCore.Mvc;
 

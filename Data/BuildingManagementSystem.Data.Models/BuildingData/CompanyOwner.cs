@@ -44,5 +44,10 @@
 
         // many-to-one with Property - one Company can have/owne many Properties
         public virtual ICollection<Property> CompanyProperties { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
     }
 }

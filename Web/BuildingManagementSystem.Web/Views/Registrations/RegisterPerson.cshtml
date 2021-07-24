@@ -12,7 +12,7 @@
     </div>
 
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
-        <form method="post" asp-action="RegisterPerson">
+        <form method="post" asp-action="RegisterPerson" asp-controller="Registrations">
             <div class="form-group">
                 <i class="fas fa-user"></i>
                 <label asp-for="@Model.FirstName"></label>
@@ -47,7 +47,8 @@
             <p class="text-primary mb-3">Моля направете своят избор!</p>
 
             <input type="button" class="btn btn-primary text-uppercase" value="Назад" onclick="window.location= '@Url.Action( "Index", "Registrations")'" />
-            <input type="button" class="btn btn-primary text-uppercase" value="Продължи" onclick="window.location= '@Url.Action( "RegisterAddress", "Registrations")'" />
+            @*<input type="submit" class="btn btn-primary text-uppercase" value="Продължи" onclick="window.location= '@Url.Action( "RegisterAddress", "Registrations")'" />*@
+            <input type="submit" class="btn btn-primary text-uppercase" value="Продължи" />
         </form>
         <br />
     </div>

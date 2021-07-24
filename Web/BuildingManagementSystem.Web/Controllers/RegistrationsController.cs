@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Web.ViewModels.Registrations;
     using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@
             this.dbContext = dbContext;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return this.View();
@@ -42,14 +44,14 @@
         }
 
         [HttpPost]
-        public IActionResult RegisterCompany(RegisterCompanyViewModel companyModel)
+        public IActionResult RegisterCompany(RegisterCompanyViewModel company)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View(companyModel);
+                return this.View(company);
             }
 
-            return this.RedirectToAction("RegisterAddress");
+            return this.RedirectToAction("RegisterAddress", company);
         }
 
         public IActionResult RegisterAddress()
@@ -85,22 +87,6 @@
                 .ToList();
 
             return cities;
-        }
-
-        public IActionResult RegisterTenant()
-        {
-            return this.View();
-        }
-
-        [HttpPost]
-        public IActionResult RegisterTenant(RegisterTenantViewModel tenant)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(tenant);
-            }
-
-            return this.RedirectToAction("Info", "Home");
         }
     }
 }

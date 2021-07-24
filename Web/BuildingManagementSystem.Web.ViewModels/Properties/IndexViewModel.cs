@@ -23,7 +23,7 @@
         public int AppartNumber { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете % идеални части")]
-        [RegularExpression(@"^[0-9]{1,2}[,][0-9]{3}$", ErrorMessage = "Въведената стойност трябва да започва с ДО две цифри и е с точност до третият знак след десетичната запетая")]
+        [RegularExpression(@"^[0-9]{1,3},[0-9]{3}$", ErrorMessage = "Въведената стойност трябва да е с точност до третият знак след десетичната запетая")]
         [Display(Name = "% идеални части (запишете до третият знак след десетичната запетая)")]
         public double PropertyPart { get; set; }
 

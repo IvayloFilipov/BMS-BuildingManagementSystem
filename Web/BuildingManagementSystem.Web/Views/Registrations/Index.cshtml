@@ -4,7 +4,6 @@
 
 <div class="container mt-3">
     <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-        @*<h2 class="text-center">Домова книга</h2>*@
         <h2 class="text-center">@this.ViewData["Title"]</h2>
         <h5 class="text-center">
             Уважаеми <b class="text-info">@(this.User.Identity.Name == null ? "Съкооператор" : this.User.Identity.Name)</b>.
@@ -37,4 +36,5 @@
         </div>
     </div>
 </div>
+
 

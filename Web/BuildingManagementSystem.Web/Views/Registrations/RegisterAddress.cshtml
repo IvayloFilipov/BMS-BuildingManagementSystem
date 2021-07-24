@@ -12,7 +12,7 @@
     </div>
 
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
-        <form method="post" asp-action="RegisterAddress">
+        <form method="post" asp-action="RegisterAddress" asp-controller="Registrations">
             <div class="form-group">
                 <i class="fas fa-info-circle"></i>
                 <label asp-for="@Model.CityId"></label>
@@ -75,18 +75,18 @@
             <p class="text-primary mb-3">Моля направете своят избор!</p>
 
             <div class="mb-3">
-                <input type="submit" class="btn btn-primary text-uppercase" value="Продължи" onclick="window.location= '@Url.Action( "Index", "Properties")'" />
+                @*<input type="submit" class="btn btn-primary text-uppercase" value="Продължи" onclick="window.location= '@Url.Action( "Index", "Properties")'" />*@
+                <input type="submit" class="btn btn-primary text-uppercase" value="Продължи" />
             </div>
 
-            <input type="button" class="btn btn-primary text-uppercase" value="Назад за физическо лице" onclick="window.location= '@Url.Action( "RegisterPerson", "Registrations")'" />
+            <input type="button" class="btn btn-primary text-uppercase" value="Назад за физическо лице" onclick="window.location= '@Url.Action( "RegisterPerson", "Registrations")'"/>
 
-            <input type="button" class="btn btn-primary text-uppercase ml-2" value="Назад за юридическо лице" onclick="window.location= '@Url.Action( "RegisterCompany", "Registrations")'" />
+            <input type="button" class="btn btn-primary text-uppercase ml-2" value="Назад за юридическо лице" onclick="window.location= '@Url.Action( "RegisterCompany", "Registrations")'"/>
+
+            @*<input type="button" class="btn btn-primary text-uppercase ml-2" value="Назад" onclick="window.location= '@Url.Action( "RegisterCompany", "Registrations")'" />*@
 
 
         </form>
         <br />
     </div>
 </div>
-
-
-

@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using BuildingManagementSystem.Data.Common.Models;
+    using Microsoft.AspNetCore.Identity;
 
     using static BuildingManagementSystem.Common.GlobalConstants;
 
@@ -35,5 +36,10 @@
 
         // many-to-one with Property - many Properties can be hired by one Tenant
         public virtual ICollection<Property> TenantProperties { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
     }
 }

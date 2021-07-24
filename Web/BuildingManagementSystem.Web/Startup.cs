@@ -8,6 +8,7 @@
     using BuildingManagementSystem.Data.Models;
     using BuildingManagementSystem.Data.Repositories;
     using BuildingManagementSystem.Data.Seeding;
+    using BuildingManagementSystem.Services.Data.Registrations.RegisterTenant;
     using BuildingManagementSystem.Services.Mapping;
     using BuildingManagementSystem.Services.Messaging;
     using BuildingManagementSystem.Web.ViewModels;
@@ -65,6 +66,7 @@
             // Application services
             // services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IEmailSender>(x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
+            services.AddTransient<IRegisterTenantService, RegisterTenantService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
