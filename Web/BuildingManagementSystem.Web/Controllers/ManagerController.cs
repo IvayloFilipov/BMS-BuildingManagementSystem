@@ -2,20 +2,25 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
-    using BuildingManagementSystem.Services.Mapping;
+    using BuildingManagementSystem.Data.Models;
     using BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class ManagerController : BaseController
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public ManagerController(ApplicationDbContext dbContext)
+        public ManagerController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager)
         {
             this.dbContext = dbContext;
+            this.userManager = userManager; // UserManager MUST be added here in the controller in order POST method to have access to User data (Id). DO NOT insert UserManager into services!!!
         }
 
         public IActionResult AddIncome()
@@ -28,8 +33,10 @@
             });
         }
 
+        // Example how to get User Id
         [HttpPost]
-        public IActionResult AddIncome(AddIncomeViewModel income)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AddIncome(AddIncomeViewModel income)
         {
             if (!this.ModelState.IsValid)
             {
@@ -40,7 +47,10 @@
                 return this.View(income);
             }
 
-            return this.RedirectToAction("Index", "Home");
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            // UserId = user.Id...
+            return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         public IEnumerable<PaymentTypeDataModel> GetPaymentType()
@@ -94,6 +104,7 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult PayExpense(PayExpenseViewModel expenseType)
         {
             if (!this.ModelState.IsValid)
@@ -104,7 +115,8 @@
                 return this.View(expenseType);
             }
 
-            return this.RedirectToAction("Index", "Home");
+            // return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         public IEnumerable<ExpenseTypeDataModel> GetExpenseType()
@@ -138,6 +150,18 @@
         public IActionResult ChangeFee()
         {
             return this.View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult ChangeFee(string fee) // <- Add view model
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }

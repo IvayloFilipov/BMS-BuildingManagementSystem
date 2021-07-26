@@ -5,6 +5,7 @@
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Web.ViewModels.Registrations;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class RegistrationsController : BaseController
@@ -27,6 +28,7 @@
             return this.View();
         }
 
+        // [Authorize(Roles = "Owner")]
         [HttpPost]
         public IActionResult RegisterPerson(RegisterPersonViewModel person)
         {
@@ -43,6 +45,7 @@
             return this.View();
         }
 
+        // [Authorize(Roles = "Owner")]
         [HttpPost]
         public IActionResult RegisterCompany(RegisterCompanyViewModel company)
         {
@@ -51,7 +54,7 @@
                 return this.View(company);
             }
 
-            return this.RedirectToAction("RegisterAddress", company);
+            return this.RedirectToAction("RegisterAddress");
         }
 
         public IActionResult RegisterAddress()
@@ -62,6 +65,7 @@
             });
         }
 
+        // [Authorize(Roles = "Owner")]
         [HttpPost]
         public IActionResult RegisterAddress(RegisterAddressViewModel address)
         {
@@ -72,7 +76,7 @@
                 return this.View(address);
             }
 
-            return this.RedirectToAction("Index", "Properties");
+            return this.RedirectToAction(nameof(PropertiesController.Index), "Properties");
         }
 
         public IEnumerable<AllCitiesDataModel> GetAllCities()

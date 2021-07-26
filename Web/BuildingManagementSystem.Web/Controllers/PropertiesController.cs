@@ -5,6 +5,7 @@
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Web.ViewModels.Properties;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class PropertiesController : BaseController
@@ -27,6 +28,7 @@
 
         // Needed db in order to get Property types values
         [HttpPost]
+        [Authorize(Roles = "Admin, Owner")]
         public IActionResult Index(IndexViewModel type)
         {
             if (!this.ModelState.IsValid)
@@ -37,7 +39,7 @@
                 return this.View(type);
             }
 
-            return this.RedirectToAction("Index", "Modules");
+            return this.RedirectToAction(nameof(ModulesController.Index), "Modules");
         }
 
         private IEnumerable<PropertyTypeViewModel> GetPropertyTypes()

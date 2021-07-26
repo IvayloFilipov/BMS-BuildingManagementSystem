@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace BuildingManagementSystem.Data.Migrations
+﻿namespace BuildingManagementSystem.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddedNewPropertyInPaymentEntity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -12,7 +12,7 @@ namespace BuildingManagementSystem.Data.Migrations
                 type: "nvarchar(250)",
                 maxLength: 250,
                 nullable: false,
-                defaultValue: "",
+                defaultValue: string.Empty,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(250)",
                 oldMaxLength: 250,
@@ -24,7 +24,7 @@ namespace BuildingManagementSystem.Data.Migrations
                 type: "nvarchar(100)",
                 maxLength: 100,
                 nullable: false,
-                defaultValue: "");
+                defaultValue: string.Empty);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

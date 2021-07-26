@@ -11,7 +11,7 @@
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете наименование на прихода")]
         [StringLength(50, ErrorMessage = "Полето '{0}' трябва да съдържа минимум {2} и максимум {1} символа.", MinimumLength = 5)]
         [Display(Name = "Наименование на прихода")]
-        public string PaymentDescription { get; set; }
+        public string IncomeDescription { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете изберете начина на плащне")]
         [Display(Name = "Начин на плащане")]
@@ -44,6 +44,8 @@
         [Range(1, 15, ErrorMessage = "Номерата в полето '{0}' трябва да са между {1} и {2}.")]
         [Display(Name = "Задължен обект/номер")]
         public int PropertyNumber { get; set; }
+
+        public string PropertyWithDebt => $"Етаж: , №";
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете имената на платеца")]
         [StringLength(50, ErrorMessage = "олето '{0}' трябва да съдържа минимум {2} и максимум {1} символа.", MinimumLength = 8)]

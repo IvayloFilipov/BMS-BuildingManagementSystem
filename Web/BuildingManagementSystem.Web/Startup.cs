@@ -40,6 +40,8 @@
             services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
                 .AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
+            // Confirm account by e-meil when register, code below
+            // services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false);
             services.Configure<CookiePolicyOptions>(
                 options =>
                     {
@@ -66,7 +68,7 @@
             // Application services
             // services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IEmailSender>(x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
-            services.AddTransient<IRegisterTenantService, RegisterTenantService>();
+            services.AddTransient<ITenantService, TenantService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

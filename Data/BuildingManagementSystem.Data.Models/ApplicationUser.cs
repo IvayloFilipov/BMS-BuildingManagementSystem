@@ -6,7 +6,7 @@ namespace BuildingManagementSystem.Data.Models
     using System.ComponentModel.DataAnnotations;
 
     using BuildingManagementSystem.Data.Common.Models;
-
+    using BuildingManagementSystem.Data.Models.BuildingData;
     using Microsoft.AspNetCore.Identity;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
@@ -36,6 +36,12 @@ namespace BuildingManagementSystem.Data.Models
         [Required]
         [MaxLength(50)]
         public string LastName { get; set; }
+
+        public virtual Owner Owner { get; set; }
+
+        public virtual CompanyOwner CompanyOwner { get; set; }
+
+        public virtual Tenant Tenant { get; set; }
 
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
