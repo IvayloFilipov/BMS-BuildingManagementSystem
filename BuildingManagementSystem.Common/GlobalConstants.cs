@@ -6,14 +6,34 @@
         public const string SystemName = "Building Management System";
         public const string ShortSystemName = "BMS";
 
-        // Building email - added by me. Should create one. This below is myne.
-        public const string SystemEmail = "ivaylo_filipov@abv.bg";
+        // Building email - added by me. Should create one.
+        public const string SystemEmail = "bms@gmail.com";
 
         // Roles constants
         public const string AdministratorRoleName = "Admin";
         public const string OwnerRoleName = "Owner";
         public const string TenantRoleName = "Tenant";
         public const string GuestRoleName = "Guest";
+
+        public const string AdminUserName = "AdminUserName";
+        public const string OwnerUserName = "OwnerUserName";
+        public const string TenantUserName = "TenantUserName";
+
+        public const string AdminEmail = "admin@admin.com";
+        public const string OwnerEmail = "owner@owner.com";
+        public const string TenantEmail = "tenant@tenant.com";
+
+        public const string DefaultAdminPassword = "admin123";
+        public const string DefaultOwnerPassword = "owner123";
+        public const string DefaultManagerPassword = "tenant123";
+
+        public const string AdminFirstName = "Ивайло";
+        public const string OwnerFirstName = "Димо";
+        public const string TenantFirstName = "Иван";
+
+        public const string AdminLastName = "Филипов";
+        public const string OwnerLastName = "Димов";
+        public const string TenantLastName = "Иванов";
 
         // Input models constraints
         // Folder - Building Data

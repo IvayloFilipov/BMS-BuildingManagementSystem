@@ -7,6 +7,7 @@
 
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+    <AppDesignerFolder>Incomes</AppDesignerFolder>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" />
@@ -24,12 +25,6 @@
     <ProjectReference Include="..\..\Data\BuildingManagementSystem.Data\BuildingManagementSystem.Data.csproj" />
     <ProjectReference Include="..\..\Web\BuildingManagementSystem.Web.ViewModels\BuildingManagementSystem.Web.ViewModels.csproj" />
     <ProjectReference Include="..\BuildingManagementSystem.Services.Mapping\BuildingManagementSystem.Services.Mapping.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Registrations\RegisterAddress\" />
-    <Folder Include="Registrations\RegisterCompany\" />
-    <Folder Include="Registrations\RegisterPerson\" />
   </ItemGroup>
 
 </Project>

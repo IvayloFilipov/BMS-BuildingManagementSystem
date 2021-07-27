@@ -17,7 +17,7 @@
                 <select asp-for="@Model.ExpenseTypeId" class="form-control">
                     @foreach (var expense in Model.Expenses)
                     {
-                    <option value="@expense.Id"> @expense.Type</option>
+                        <option value="@expense.Id"> @expense.Type</option>
                     }
                 </select>
             </div>
@@ -28,7 +28,7 @@
                 <select asp-for="@Model.PaymentTypeId" class="form-control">
                     @foreach (var payment in Model.Payments)
                     {
-                    <option value="@payment.Id"> @payment.PaymentType</option>
+                        <option value="@payment.Id"> @payment.PaymentType</option>
                     }
                 </select>
             </div>

@@ -1,19 +1,19 @@
-﻿@model BuildingManagementSystem.Web.ViewModels.Registrations.RegisterPersonViewModel
+﻿@model BuildingManagementSystem.Web.ViewModels.Tenants.RegisterTenantViewModel
 
 <div class="row">
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
         <h2 class="text-center">Домова книга</h2>
-        <h3 class="text-center text-info">Стъпка 2 - Попълване на данните на физическото лице</h3>
+        <h3 class="text-center text-info">Изтриване на наемател</h3>
         <hr />
         <hr />
-
-        <p>Моля попълнете всички полета от формата. След като го направите натиснете бутона <b>'ПРОДЪЛЖИ'</b> за да продължите попълването на електронната Домова книга.</p>
-        <p class="mb-4"><b>Бележка:</b> Ако в предишната Стъпка - <b class="text-info">"Посочване на типа собственост"</b> сте направили неправилен избор може да се върнете назад, като натиснете бутона <b>'НАЗАД'</b> и да направите корекция.</p>
+        <p class="mb-4">Вие се намирате на страницата за <b>Изтриване на наемател</b> от функционалността по попълване на данни за електронната Домова книга.</p>
+        <p class="mb-4">Моля попълнете всички полета от формата. За да регистрирате наемател и да завършите подаването на данни натиснете бутона <b>'ИЗТРИЙ НАЕМАТЕЛ'</b>.</p>
     </div>
 
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
-        <form method="post" asp-action="RegisterPerson" asp-controller="Registrations">
-            <div class="form-group mt-4">
+        <form method="post" asp-action="DeleteTenant" asp-controller="Tenants">
+            @*<div asp-validation-summary="All" class="text-danger"></div>*@
+            <div class="form-group">
                 <i class="fas fa-user"></i>
                 <label asp-for="@Model.FirstName"></label>
                 <input asp-for="@Model.FirstName" class="form-control" />
@@ -37,18 +37,15 @@
                 <input asp-for="@Model.Email" class="form-control" value="@this.User.Identity.Name" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <i class="fas fa-mobile-alt"></i>
                 <label asp-for="@Model.Phone"></label>
                 <input asp-for="@Model.Phone" class="form-control" />
                 <span asp-validation-for="@Model.Phone" class="text-danger"></span>
             </div>
 
-            <p class="text-primary mb-3">Моля направете своят избор!</p>
-
-            <input type="button" class="btn btn-primary text-uppercase" value="Назад" onclick="window.location= '@Url.Action( "Index", "Registrations")'" />
-            @*<input type="submit" class="btn btn-primary text-uppercase" value="Продължи" onclick="window.location= '@Url.Action( "RegisterAddress", "Registrations")'" />*@
-            <input type="submit" class="btn btn-primary text-uppercase" value="Продължи" />
+            @*<input type="button" class="btn btn-primary text-uppercase" value="Изтрий наемател" onclick="window.location= '@Url.Action( "Index", "Home")'" />*@
+            <input type="submit" class="btn btn-primary text-uppercase" value="Изтрий наемател" />
         </form>
         <br />
     </div>

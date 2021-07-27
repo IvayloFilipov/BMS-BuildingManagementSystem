@@ -6,8 +6,10 @@
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Data.Models;
+    using BuildingManagementSystem.Data.Models.BuildingData;
     using BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
+    using BuildingManagementSystem.Web.ViewModels.ManagerModules.Incomes;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -23,26 +25,28 @@
             this.userManager = userManager; // UserManager MUST be added here in the controller in order POST method to have access to User data (Id). DO NOT insert UserManager into services!!!
         }
 
-        public IActionResult AddIncome()
+        public IActionResult AddIncomeAsync()
         {
             return this.View(new AddIncomeViewModel
             {
                 Payments = this.GetPaymentType(),
-                Properties = this.GetPropertyType(),
                 Floors = this.GetPropertyFloor(),
+                Properties = this.GetSomePartsFromProperty(),
+                // Properties = this.GetPropertyType(),
             });
         }
 
         // Example how to get User Id
+        // [Authorize(Roles = "Admin")]
         [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddIncome(AddIncomeViewModel income)
+        public async Task<IActionResult> AddIncomeAsync(AddIncomeViewModel income)
         {
             if (!this.ModelState.IsValid)
             {
                 income.Payments = this.GetPaymentType();
-                income.Properties = this.GetPropertyType();
                 income.Floors = this.GetPropertyFloor();
+                income.Properties = this.GetSomePartsFromProperty();
+                // income.Properties = this.GetPropertyType();
 
                 return this.View(income);
             }
@@ -51,6 +55,39 @@
 
             // UserId = user.Id...
             return this.RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
+        // public IEnumerable<PropertiesSomePartsDataModel> GetSomePartsFromProperty()
+        // {
+        //     var parts = this.dbContext
+        //         .Properties
+        //         .Select(x => new PropertiesSomePartsDataModel
+        //         {
+        //             Id = x.Id,
+        //             BuildingName = x.Building.Name,
+        //             PropertyType = x.PropertyType.Type,
+        //             ProperyFloor = x.PropertyFloor.Floor,
+        //             Number = x.Number,
+        //         })
+        //         .ToList();
+        //     return parts;
+        // }
+
+        public IEnumerable<PropertiesSomePartsDataModel> GetSomePartsFromProperty()
+        {
+            var parts = this.dbContext
+                .Properties
+                .Select(x => new PropertiesSomePartsDataModel
+                {
+                    Id = x.Id,
+                    BuildingName = x.Building.Name,
+                    PropertyType = x.PropertyType.Type,
+                    PropertyFloor = x.PropertyFloor.Floor,
+                    Number = x.Number,
+                })
+                .ToList();
+
+            return parts;
         }
 
         public IEnumerable<PaymentTypeDataModel> GetPaymentType()
@@ -66,19 +103,18 @@
             return payments;
         }
 
-        public IEnumerable<PropertyTypeDataModel> GetPropertyType()
-        {
-            var properties = this.dbContext
-                .PropertyTypes
-                .Select(x => new PropertyTypeDataModel
-                {
-                    Id = x.Id,
-                    PropertyType = x.Type,
-                })
-                .ToList();
-
-            return properties;
-        }
+        // public IEnumerable<PropertyTypeDataModel> GetPropertyType()
+        // {
+        //     var properties = this.dbContext
+        //         .PropertyTypes
+        //         .Select(x => new PropertyTypeDataModel
+        //         {
+        //             Id = x.Id,
+        //             PropertyType = x.Type,
+        //         })
+        //         .ToList();
+        //     return properties;
+        // }
 
         public IEnumerable<PropertyFloorDataModel> GetPropertyFloor()
         {
@@ -103,8 +139,8 @@
             });
         }
 
+        // [Authorize(Roles = "Admin")]
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public IActionResult PayExpense(PayExpenseViewModel expenseType)
         {
             if (!this.ModelState.IsValid)

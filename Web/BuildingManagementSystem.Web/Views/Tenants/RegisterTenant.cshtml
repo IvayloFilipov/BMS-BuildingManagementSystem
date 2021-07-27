@@ -3,29 +3,11 @@
 <div class="row">
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
         <h2 class="text-center">Домова книга</h2>
-        @*(User.Identity.IsAuthenticated) (User.IsInRole("user") || User.IsInRole("admin"))*@
-        @if (User.Identity.IsAuthenticated)
-        {
-            <h3 class="text-center text-info">Регистриране на наемател</h3>
-        }
-        else
-        {
-            <h3 class="text-center text-info">Изтриване на наемател</h3>
-        }
-
+        <h3 class="text-center text-info">Регистриране на наемател</h3>
         <hr />
         <hr />
-
-        @if (User.Identity.IsAuthenticated)
-        {
-            <p class="mb-4">Вие се намирате на страницата за <b>Регистриране на наемател</b> от функционалността по попълване на данни за електронната Домова книга.</p>
-            <p class="mb-4">Моля попълнете всички полета от формата. За да регистрирате наемател и да завършите подаването на данни натиснете бутона <b>'ЗАПИШИ'</b>.</p>
-        }
-        else
-        {
-            <p class="mb-4">Вие се намирате на страницата за <b>Изтриване на наемател</b> от функционалността по попълване на данни за електронната Домова книга.</p>
-            <p class="mb-4">Моля попълнете всички полета от формата. За да регистрирате наемател и да завършите подаването на данни натиснете бутона <b>'ИЗТРИЙ НАЕМАТЕЛ'</b>.</p>
-        }
+        <p class="mb-4">Вие се намирате на страницата за <b>Регистриране на наемател</b> от функционалността по попълване на данни за електронната Домова книга.</p>
+        <p class="mb-4">Моля попълнете всички полета от формата. За да регистрирате наемател и да завършите подаването на данни натиснете бутона <b>'ЗАПИШИ'</b>.</p>
     </div>
 
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
@@ -64,9 +46,6 @@
 
             @*<input type="submit" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "action Name", "controller Name")'" />*@
             <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" />
-            @*<input type="button" class="btn btn-primary text-uppercase" value="Изтрий наемател" onclick="window.location= '@Url.Action( "Index", "Home")'" />*@
-            <input type="submit" class="btn btn-primary text-uppercase" value="Изтрий наемател" />
-
         </form>
         <br />
     </div>

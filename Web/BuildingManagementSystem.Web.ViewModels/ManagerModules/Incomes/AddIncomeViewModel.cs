@@ -3,8 +3,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using BuildingManagementSystem.Data.Models.BuildingIncomes;
-    using BuildingManagementSystem.Services.Mapping;
+    using BuildingManagementSystem.Data.Models.BuildingData;
+    using BuildingManagementSystem.Web.ViewModels.ManagerModules.Incomes;
 
     public class AddIncomeViewModel
     {
@@ -28,11 +28,10 @@
         [Display(Name = "Описание на периода за който се отнася прихода")]
         public string PaymentPeriod { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете типа на имота на задълженият обект")]
-        [Display(Name = "Задължен обект/тип на имота")]
-        public int PropertyId { get; set; }
-
-        public IEnumerable<PropertyTypeDataModel> Properties { get; set; }
+        // [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете типа на имота на задълженият  обект")]
+        // [Display(Name = "Задължен обект/тип на имота")]
+        // public int PropertyId { get; set; }
+        // public IEnumerable<PropertyTypeDataModel> Properties { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете етажа на задълженият обект")]
         [Display(Name = "Задължен обект/етаж")]
@@ -45,14 +44,16 @@
         [Display(Name = "Задължен обект/номер")]
         public int PropertyNumber { get; set; }
 
-        public string PropertyWithDebt => $"Етаж: , №";
-
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете имената на платеца")]
         [StringLength(50, ErrorMessage = "олето '{0}' трябва да съдържа минимум {2} и максимум {1} символа.", MinimumLength = 8)]
         [Display(Name = "Име и фамилия на платеца")]
         public string PayerName { get; set; }
 
-        // public int AccountId { get; set; }
-        // public IEnumerable<BuildingAccountsViewModel> Accounts { get; set; }
+        [Display(Name = "Задължен обект")]
+        public int PropertiesId { get; set; }
+
+        public IEnumerable<PropertiesSomePartsDataModel> Properties { get; set; }
+
+        // public IEnumerable<Property> Properties { get; set; }
     }
 }

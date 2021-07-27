@@ -17,27 +17,31 @@
     public class TenantsController : BaseController
     {
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly RoleManager<ApplicationRole> roleManager;
         private readonly ITenantService tenantService;
 
-        public TenantsController(UserManager<ApplicationUser> userManager, ITenantService tenantService)
+        public TenantsController(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, ITenantService tenantService)
         {
             this.userManager = userManager; // TenantsController needed UserManager.
+            this.roleManager = roleManager;
             this.tenantService = tenantService;
         }
 
-        // [Authorize(Roles = "User, Admin")]
+        // [Authorize(Roles = "Owner, Admin")]
+        // [Authorize]
         public IActionResult RegisterTenant()
         {
             return this.View();
         }
 
-        // [Authorize(Roles = "User, Admin")]
+        // [Authorize(Roles = "Owner, Admin")]
+        // [Authorize]
         [HttpPost]
         public async Task<IActionResult> RegisterTenantAsync(RegisterTenantViewModel tenant)
         {
             // Must set in -> RegisterTenantViewModel : MapTo<Tenant> <-
             // var currTenant = AutoMapperConfig.MapperInstance.Map<Tenant>(tenant);
-            // var userId = this.User.GetId();
+
             if (!this.ModelState.IsValid)
             {
                 return this.View(tenant);
@@ -46,10 +50,46 @@
             var user = await this.userManager.GetUserAsync(this.User);
 
             // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            await this.userManager.AddToRoleAsync(user, TenantRoleName);
+            var userId = this.User.GetId();
+
+            var isRoleExist = await this.roleManager.RoleExistsAsync(TenantRoleName);
+
+            if (isRoleExist)
+            {
+                var result = await this.userManager.AddToRoleAsync(user, TenantRoleName);
+
+                if (!result.Succeeded)
+                {
+                    this.ModelState.AddModelError(string.Empty, $"Adding role: {TenantRoleName} failed");
+                }
+                else
+                {
+                    this.ViewBag.Message = $"Role: {TenantRoleName} was added";
+
+                    return this.View();
+                }
+            }
 
             // await this.tenantService.RegisterTenantAsync(tenant, userId);
-            await this.tenantService.RegisterTenantAsync(tenant, user.Id);
+            await this.tenantService.RegisterTenantAsync(tenant.FirstName, tenant.MiddleName, tenant.LastName, tenant.Email, tenant.Phone, userId);
+
+            return this.RedirectToAction(nameof(HomeController.Info), "Home");
+        }
+
+        // [Authorize]
+        public IActionResult DeleteTenant()
+        {
+            return this.View();
+        }
+
+        // [Authorize]
+        [HttpPost]
+        public IActionResult DeleteTenant(string userId)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
 
             return this.RedirectToAction(nameof(HomeController.Info), "Home");
         }

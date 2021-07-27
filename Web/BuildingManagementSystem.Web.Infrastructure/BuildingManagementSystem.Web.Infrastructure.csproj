@@ -23,4 +23,8 @@
     <Folder Include="ViewComponents\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingManagementSystem.Common\BuildingManagementSystem.Common.csproj" />
+  </ItemGroup>
+
 </Project>

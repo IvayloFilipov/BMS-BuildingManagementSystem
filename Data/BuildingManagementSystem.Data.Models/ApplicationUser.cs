@@ -37,6 +37,8 @@ namespace BuildingManagementSystem.Data.Models
         [MaxLength(50)]
         public string LastName { get; set; }
 
+        public bool IsRegisterConfirmed { get; set; }
+
         public virtual Owner Owner { get; set; }
 
         public virtual CompanyOwner CompanyOwner { get; set; }

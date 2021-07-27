@@ -80,6 +80,8 @@
             [Display(Name = "Повторете паролата")]
             [Compare("Password", ErrorMessage = ConfirmPasswordErrorMessage)]
             public string ConfirmPassword { get; set; }
+
+            public bool IsRegisterConfirmed { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -102,6 +104,7 @@
                     PhoneNumber = this.Input.PhoneNumber,
                     FirstName = this.Input.FirstName,
                     LastName = this.Input.LastName,
+                    IsRegisterConfirmed = this.Input.IsRegisterConfirmed,
                 };
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
                 if (result.Succeeded)

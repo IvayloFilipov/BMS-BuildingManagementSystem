@@ -43,24 +43,36 @@
                 <span asp-validation-for="@Model.PaymentPeriod" class="text-danger"></span>
             </div>
 
+            @*<div class="form-group">
+                    <i class="fas fa-info-circle"></i>
+                    <label asp-for="@Model.PropertyId"></label>
+                    <select asp-for="@Model.PropertyId" class="form-control">
+                        @foreach (var property in Model.Properties)
+                        {
+                            <option value="@property.Id"> @property.PropertyType</option>
+                        }
+                    </select>
+                </div>*@
+
             <div class="form-group">
                 <i class="fas fa-info-circle"></i>
-                <label asp-for="@Model.PropertyId"></label>
-                <select asp-for="@Model.PropertyId" class="form-control">
-                    @foreach (var property in Model.Properties)
+                <label asp-for="@Model.PropertyFloorId"></label>
+                <select asp-for="@Model.PropertyFloorId" class="form-control">
+                    @foreach (var floor in Model.Properties)
                     {
-                        <option value="@property.Id"> @property.PropertyType</option>
+                        <option value="@floor.Id"> @floor.PropertyType</option>
                     }
                 </select>
             </div>
 
             <div class="form-group">
                 <i class="fas fa-info-circle"></i>
-                <label asp-for="@Model.PropertyFloorId"></label>
-                <select asp-for="@Model.PropertyFloorId" class="form-control">
-                    @foreach (var floor in Model.Floors)
+                <label asp-for="@Model.PropertiesId"></label>
+                <select asp-for="@Model.PropertiesId" class="form-control">
+                    @foreach (var property in Model.Properties)
                     {
-                        <option value="@floor.Id"> @floor.PropertyFloor</option>
+                        @*<option value="@property.Id"> @property.Building.Name + ", " + "етаж: " + @property.PropertyFloor + ", " + @property.PropertyType + ".№ " + @property.Number</option>*@
+                        <option value="@property.Id"> @property.BuildingName, етаж: @property.PropertyFloor, @property.PropertyType № @property.Number</option>
                     }
                 </select>
             </div>

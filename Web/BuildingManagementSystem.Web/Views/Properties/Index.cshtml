@@ -8,12 +8,12 @@
         <hr />
 
         <p>Моля попълнете полета от формата, валидни за <b class="text-danger">притежавания от Вас имот</b>. След като го направите натиснете бутона <b>'ЗАПИШИ'</b> за да завършите попълването на електронната Домова книга.</p>
-        <p class="mb-4"><b>Бележка:</b> Ако в предишната Стъпка - <b class="text-info">"Попълване на данните за постоянният Ви адрес"</b> сте пропуснали нещо или сте въвели некоректни данни може да се върнете назад, като натиснете бутона <b>'НАЗАД'</b> и да направите корекция.</p>
+        @*<p class="mb-4"><b>Бележка:</b> Ако в предишната Стъпка - <b class="text-info">"Попълване на данните за постоянният Ви адрес"</b> сте пропуснали нещо или сте въвели некоректни данни може да се върнете назад, като натиснете бутона <b>'НАЗАД'</b> и да направите корекция.</p>*@
     </div>
 
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
         <form method="post" asp-action="Index" asp-controller="Properties">
-            <div class="form-group">
+            <div class="form-group mt-4">
                 <i class="fas fa-info-circle"></i>
                 <label asp-for="@Model.PropertyTypeId"></label>
                 <select asp-for="@Model.PropertyTypeId" class="form-control">
@@ -58,9 +58,9 @@
                 <span asp-validation-for="@Model.CoOwner" class="text-danger"></span>
             </div>
 
-            <p class="text-primary mb-3">Моля направете своят избор!</p>
+            <p class="text-primary mb-3">Моля запишете данните!</p>
 
-            <input type="button" class="btn btn-primary text-uppercase" value="Назад" onclick="window.location= '@Url.Action( "RegisterAddress", "Registrations")'" />
+            @*<input type="button" class="btn btn-primary text-uppercase" value="Назад" onclick="window.location= '@Url.Action( "RegisterAddress", "Registrations")'" />*@
 
             @*<input type="submit" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "Info", "Home")'" />*@
             <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" />
@@ -68,7 +68,6 @@
         <br />
     </div>
 </div>
-
 
 
 
