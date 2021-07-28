@@ -71,24 +71,24 @@
             }
 
             // await this.tenantService.RegisterTenantAsync(tenant, userId);
-            await this.tenantService.RegisterTenantAsync(tenant.FirstName, tenant.MiddleName, tenant.LastName, tenant.Email, tenant.Phone, userId);
+            await this.tenantService.AddTenantAsync(tenant.FirstName, tenant.MiddleName, tenant.LastName, tenant.Email, tenant.Phone, userId);
 
             return this.RedirectToAction(nameof(HomeController.Info), "Home");
         }
 
-        // [Authorize]
+        // [Authorize(Roles = "Owner, Admin")]
         public IActionResult DeleteTenant()
         {
             return this.View();
         }
 
-        // [Authorize]
+        // [Authorize(Roles = "Owner, Admin")]
         [HttpPost]
-        public IActionResult DeleteTenant(string userId)
+        public IActionResult DeleteTenant(DeleteTenantViewModel tenant)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View();
+                return this.View(tenant);
             }
 
             return this.RedirectToAction(nameof(HomeController.Info), "Home");

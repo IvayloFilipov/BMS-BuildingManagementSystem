@@ -1,8 +1,9 @@
 ﻿namespace BuildingManagementSystem.Services.Data.Registrations.RegisterCompanyOwner
 {
-    using System;
+    using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
+    using BuildingManagementSystem.Data.Models.BuildingData;
 
     public class CompanyOwnerService : ICompanyOwnerService
     {
@@ -13,9 +14,23 @@
             this.dbContext = dbContext;
         }
 
-        public void RegisterCompany()
+        public async Task<int> AddCompanyOwnerAsync(string companyName, string uic, string companyOwnerFirstName, string companyOwnerLastName, string email, string phone)
         {
-            throw new NotImplementedException();
+            var companyOwner = new CompanyOwner()
+            {
+                CompanyName = companyName,
+                UIC = uic,
+                CompanyOwnerFirstName = companyOwnerFirstName,
+                CompanyOwnerLastName = companyOwnerLastName,
+                Email = email,
+                Phone = phone,
+            };
+
+            await this.dbContext.CompanyOwners.AddAsync(companyOwner);
+
+            await this.dbContext.SaveChangesAsync();
+
+            return companyOwner.Id;
         }
     }
 }

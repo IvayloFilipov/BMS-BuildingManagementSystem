@@ -1,0 +1,48 @@
+﻿@model BuildingManagementSystem.Web.ViewModels.Tenants.ManagerModules.TenantsViewModel
+
+<div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <h2 class="text-center">Домова книга</h2>
+        <h3 class="text-center text-info">Списък на регистрираните наематели</h3>
+        <hr />
+        <hr />
+        <p class="mb-4">Вие се намирате на страницата, която показва всички наематели, <b>ЗАПИСАНИ</b> в електронната Домова книга от собствениците на имоти</p>
+        <p class="mb-4"><b>Бележка: </b>Наемател, за да получи достъп до функционалността на приложението е необходимо да се регистрира и регистрацията му да бъде потвърдена от Домоуправителя</p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">Име: tenant.FirstName</h6>
+                    <h6 class="card-title">Презиме: tenant.MiddleName</h6>
+                    <h6 class="card-title">Фамилия: tenant.LastName</h6>
+                    <p class="card-text">Емейл: tenant.Email</p>
+                    <p class="card-text">Телефон: tenant.Phone</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="row">
+            @foreach (var tenant in Model.Tenants)
+            {
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Име: @tenant.FirstName</h5>
+                                <h5 class="card-title">Презиме: @tenant.MiddleName</h5>
+                                <h5 class="card-title">Фамилия: @tenant.LastName</h5>
+                                <p class="card-text">Емейл: @tenant.Email</p>
+                                <p class="card-text">Телефон: @tenant.Phone</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>*@
+
+</div>

@@ -4,9 +4,9 @@
 
     public interface ITenantService
     {
-        Task<int> RegisterTenantAsync(string firstName, string middleName, string lastName, string email, string phone, string userId);
+        Task<int> AddTenantAsync(string firstName, string middleName, string lastName, string email, string phone, string userId);
 
-        void DeleteTenant(string userId);
+        void RemoveTenant(string userId, bool isDeleted);
 
         void SetTenantToRole(string tenantId);
     }

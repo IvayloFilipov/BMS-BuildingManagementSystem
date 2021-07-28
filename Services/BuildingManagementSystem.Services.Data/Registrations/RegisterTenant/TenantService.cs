@@ -15,7 +15,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<int> RegisterTenantAsync(string firstName, string middleName, string lastName, string email, string phone, string userId)
+        public async Task<int> AddTenantAsync(string firstName, string middleName, string lastName, string email, string phone, string userId)
         {
             var currTenant = new Tenant
             {
@@ -27,18 +27,18 @@
                 UserId = userId,
             };
 
-            await this.dbContext.AddAsync(currTenant);
+            await this.dbContext.Tenants.AddAsync(currTenant);
 
             await this.dbContext.SaveChangesAsync();
 
             return currTenant.Id;
         }
 
-        public void DeleteTenant(string userId)
+        public void RemoveTenant(string userId, bool isDeleted)
         {
             var currTenant = this.dbContext
                 .Tenants
-                .Where(x => x.UserId == userId)
+                .Where(x => x.UserId == userId && x.IsDeleted == false)
                 .FirstOrDefault();
 
             if (currTenant == null)
@@ -46,7 +46,8 @@
                 return;
             }
 
-            this.dbContext.Tenants.Remove(currTenant);
+            // this.dbContext.Tenants.Remove(currTenant);
+            currTenant.IsDeleted = true;
 
             this.dbContext.SaveChanges();
         }

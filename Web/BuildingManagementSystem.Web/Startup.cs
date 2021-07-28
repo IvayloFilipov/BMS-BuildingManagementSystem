@@ -8,7 +8,12 @@
     using BuildingManagementSystem.Data.Models;
     using BuildingManagementSystem.Data.Repositories;
     using BuildingManagementSystem.Data.Seeding;
+    using BuildingManagementSystem.Services.Data.Debts;
+    using BuildingManagementSystem.Services.Data.Expenses;
     using BuildingManagementSystem.Services.Data.Incomes;
+    using BuildingManagementSystem.Services.Data.Registrations.RegisterCompanyOwner;
+    using BuildingManagementSystem.Services.Data.Registrations.RegisterOwner;
+    using BuildingManagementSystem.Services.Data.Registrations.RegisterProperty;
     using BuildingManagementSystem.Services.Data.Registrations.RegisterTenant;
     using BuildingManagementSystem.Services.Mapping;
     using BuildingManagementSystem.Services.Messaging;
@@ -69,8 +74,14 @@
             // Application services
             // services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IEmailSender>(x => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
-            services.AddTransient<ITenantService, TenantService>();
             services.AddTransient<IIncomeService, IncomeService>();
+            services.AddTransient<IFeeService, FeeService>();
+            services.AddTransient<IGenerateDebtService, GenerateDebtService>();
+            services.AddTransient<IExpenseService, ExpenseService>();
+            services.AddTransient<ICompanyOwnerService, CompanyOwnerService>();
+            services.AddTransient<IOwnerService, OwnerService>();
+            services.AddTransient<IPropertyService, PropertyService>();
+            services.AddTransient<ITenantService, TenantService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

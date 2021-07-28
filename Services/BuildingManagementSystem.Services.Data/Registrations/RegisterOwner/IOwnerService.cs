@@ -1,7 +1,9 @@
 ﻿namespace BuildingManagementSystem.Services.Data.Registrations.RegisterOwner
 {
+    using System.Threading.Tasks;
+
     public interface IOwnerService
     {
-        void RegisterPerson();
+        Task<int> AddOwnerAsync(string firstName, string middleName, string lastName, string email, string phone);
     }
 }

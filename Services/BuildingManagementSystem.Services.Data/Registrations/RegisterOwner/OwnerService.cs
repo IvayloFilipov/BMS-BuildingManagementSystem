@@ -1,8 +1,9 @@
 ﻿namespace BuildingManagementSystem.Services.Data.Registrations.RegisterOwner
 {
-    using System;
+    using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
+    using BuildingManagementSystem.Data.Models.BuildingData;
 
     public class OwnerService : IOwnerService
     {
@@ -13,9 +14,22 @@
             this.dbContext = dbContext;
         }
 
-        public void RegisterPerson()
+        public async Task<int> AddOwnerAsync(string firstName, string middleName, string lastName, string email, string phone)
         {
-            throw new NotImplementedException();
+            var owner = new Owner()
+            {
+                FirstName = firstName,
+                MiddleName = middleName,
+                LastName = lastName,
+                Email = email,
+                Phone = phone,
+            };
+
+            await this.dbContext.Owners.AddAsync(owner);
+
+            await this.dbContext.SaveChangesAsync();
+
+            return owner.Id;
         }
     }
 }

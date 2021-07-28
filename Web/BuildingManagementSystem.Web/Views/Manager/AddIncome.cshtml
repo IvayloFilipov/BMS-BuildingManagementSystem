@@ -43,39 +43,38 @@
                 <span asp-validation-for="@Model.PaymentPeriod" class="text-danger"></span>
             </div>
 
-            @*<div class="form-group">
-                    <i class="fas fa-info-circle"></i>
-                    <label asp-for="@Model.PropertyId"></label>
-                    <select asp-for="@Model.PropertyId" class="form-control">
-                        @foreach (var property in Model.Properties)
-                        {
-                            <option value="@property.Id"> @property.PropertyType</option>
-                        }
-                    </select>
-                </div>*@
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.PropertyId"></label>
+                <select asp-for="@Model.PropertyId" class="form-control">
+                    @foreach (var property in Model.Properties)
+                    {
+                        <option value="@property.Id"> @property.PropertyType</option>
+                    }
+                </select>
+            </div>
 
             <div class="form-group">
                 <i class="fas fa-info-circle"></i>
                 <label asp-for="@Model.PropertyFloorId"></label>
                 <select asp-for="@Model.PropertyFloorId" class="form-control">
-                    @foreach (var floor in Model.Properties)
+                    @foreach (var floor in Model.Floors)
                     {
-                        <option value="@floor.Id"> @floor.PropertyType</option>
+                        <option value="@floor.Id"> @floor.PropertyFloor</option>
                     }
                 </select>
             </div>
 
-            <div class="form-group">
-                <i class="fas fa-info-circle"></i>
-                <label asp-for="@Model.PropertiesId"></label>
-                <select asp-for="@Model.PropertiesId" class="form-control">
-                    @foreach (var property in Model.Properties)
-                    {
-                        @*<option value="@property.Id"> @property.Building.Name + ", " + "етаж: " + @property.PropertyFloor + ", " + @property.PropertyType + ".№ " + @property.Number</option>*@
-                        <option value="@property.Id"> @property.BuildingName, етаж: @property.PropertyFloor, @property.PropertyType № @property.Number</option>
-                    }
-                </select>
-            </div>
+            @*<div class="form-group">
+                    <i class="fas fa-info-circle"></i>
+                    <label asp-for="@Model.PropertiesId"></label>
+                    <select asp-for="@Model.PropertiesId" class="form-control">
+                        @foreach (var property in Model.Properties)
+                        {
+                        <option value="@property.Id"> @property.Name, етаж: @property.Floor, @property.Type № @property.Number</option>
+                        }
+                    </select>
+                </div>*@
 
             <div class="form-group mb-4">
                 <i class="fas fa-info-circle"></i>

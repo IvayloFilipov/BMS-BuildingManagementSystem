@@ -10,6 +10,8 @@
     using BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
     using BuildingManagementSystem.Web.ViewModels.ManagerModules.Incomes;
+    using BuildingManagementSystem.Web.ViewModels.Tenants;
+    using BuildingManagementSystem.Web.ViewModels.Tenants.ManagerModules;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -31,8 +33,8 @@
             {
                 Payments = this.GetPaymentType(),
                 Floors = this.GetPropertyFloor(),
-                Properties = this.GetSomePartsFromProperty(),
-                // Properties = this.GetPropertyType(),
+                Properties = this.GetPropertyType(),
+                // Properties = this.GetSomePartsFromProperty(),
             });
         }
 
@@ -45,51 +47,32 @@
             {
                 income.Payments = this.GetPaymentType();
                 income.Floors = this.GetPropertyFloor();
-                income.Properties = this.GetSomePartsFromProperty();
-                // income.Properties = this.GetPropertyType();
+                income.Properties = this.GetPropertyType();
+                // income.Properties = this.GetSomePartsFromProperty();
 
                 return this.View(income);
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            // UserId = user.Id...
             return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
-        // public IEnumerable<PropertiesSomePartsDataModel> GetSomePartsFromProperty()
+        // public IEnumerable<SomePropertiesPartsDataModel> GetSomePartsFromProperty()
         // {
         //     var parts = this.dbContext
         //         .Properties
-        //         .Select(x => new PropertiesSomePartsDataModel
+        //         .Select(x => new SomePropertiesPartsDataModel
         //         {
         //             Id = x.Id,
-        //             BuildingName = x.Building.Name,
-        //             PropertyType = x.PropertyType.Type,
-        //             ProperyFloor = x.PropertyFloor.Floor,
+        //             Name = x.Building.Name,
+        //             Type = x.PropertyType.Type,
+        //             Floor = x.PropertyFloor.Floor,
         //             Number = x.Number,
         //         })
         //         .ToList();
         //     return parts;
         // }
-
-        public IEnumerable<PropertiesSomePartsDataModel> GetSomePartsFromProperty()
-        {
-            var parts = this.dbContext
-                .Properties
-                .Select(x => new PropertiesSomePartsDataModel
-                {
-                    Id = x.Id,
-                    BuildingName = x.Building.Name,
-                    PropertyType = x.PropertyType.Type,
-                    PropertyFloor = x.PropertyFloor.Floor,
-                    Number = x.Number,
-                })
-                .ToList();
-
-            return parts;
-        }
-
         public IEnumerable<PaymentTypeDataModel> GetPaymentType()
         {
             var payments = this.dbContext
@@ -100,21 +83,22 @@
                     PaymentType = x.Type,
                 })
                 .ToList();
+
             return payments;
         }
 
-        // public IEnumerable<PropertyTypeDataModel> GetPropertyType()
-        // {
-        //     var properties = this.dbContext
-        //         .PropertyTypes
-        //         .Select(x => new PropertyTypeDataModel
-        //         {
-        //             Id = x.Id,
-        //             PropertyType = x.Type,
-        //         })
-        //         .ToList();
-        //     return properties;
-        // }
+        public IEnumerable<PropertyTypeDataModel> GetPropertyType()
+        {
+            var properties = this.dbContext
+                .PropertyTypes
+                .Select(x => new PropertyTypeDataModel
+                {
+                    Id = x.Id,
+                    PropertyType = x.Type,
+                })
+                .ToList();
+            return properties;
+        }
 
         public IEnumerable<PropertyFloorDataModel> GetPropertyFloor()
         {
@@ -199,5 +183,39 @@
 
             return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
+
+        public IActionResult UploadDocument()
+        {
+            return this.View();
+        }
+
+        public IActionResult GetTenants()
+        {
+            var viewModel = new TenantsViewModel();
+            var tenants = this.dbContext
+                .Tenants
+                .Select(t => new AllTenantsDataModel
+                {
+                    FirstName = t.FirstName,
+                    MiddleName = t.MiddleName,
+                    LastName = t.LastName,
+                    Email = t.Email,
+                    Phone = t.Phone,
+                })
+                .ToList();
+            viewModel.Tenants = tenants;
+            return this.View(viewModel);
+        }
+
+        //public IActionResult GetTenants()
+        //{
+        //    return this.View();
+        //}
+
+        //[HttpPost]
+        //public IActionResult GetTenants(TenantsViewModel alltenants)
+        //{
+        //    return this.View(alltenants);
+        //}
     }
 }
