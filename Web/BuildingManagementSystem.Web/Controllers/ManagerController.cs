@@ -34,6 +34,7 @@
                 Payments = this.GetPaymentType(),
                 Floors = this.GetPropertyFloor(),
                 Properties = this.GetPropertyType(),
+
                 // Properties = this.GetSomePartsFromProperty(),
             });
         }
@@ -188,18 +189,5 @@
         {
             return this.View();
         }
-
-        
-
-        //public IActionResult GetTenants()
-        //{
-        //    return this.View();
-        //}
-
-        //[HttpPost]
-        //public IActionResult GetTenants(TenantsViewModel alltenants)
-        //{
-        //    return this.View(alltenants);
-        //}
     }
 }

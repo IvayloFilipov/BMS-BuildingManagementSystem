@@ -113,7 +113,7 @@
             return this.RedirectToAction(nameof(PropertiesController.Index), "Properties");
         }
 
-        public IActionResult GetAllUsers()
+        public IActionResult ShowAllUsers()
         {
             var allUsers = this.initialRegister.GetAllUsers();
 

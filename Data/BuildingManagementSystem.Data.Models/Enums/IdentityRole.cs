@@ -1,9 +1,19 @@
 ﻿namespace BuildingManagementSystem.Data.Models.Enums
 {
+    using System.ComponentModel.DataAnnotations;
+
     public enum IdentityRole
     {
-        User = 10,
-        Tenant = 20,
-        Admin = 30,
+        [Display(Name = "Администратор")]
+        Admin = 10,
+
+        [Display(Name = "Собственик")]
+        Owner = 20,
+
+        [Display(Name = "Наемател")]
+        Tenant = 30,
+
+        [Display(Name = "Гост")]
+        Guest = 40,
     }
 }
