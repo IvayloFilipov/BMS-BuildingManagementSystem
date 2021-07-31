@@ -2,19 +2,42 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
+    using BuildingManagementSystem.Data.Models;
+    using BuildingManagementSystem.Services.Data.Registrations.InitialRegistrations;
+    using BuildingManagementSystem.Services.Data.Registrations.RegisterAddress;
+    using BuildingManagementSystem.Services.Data.Registrations.RegisterCompanyOwner;
+    using BuildingManagementSystem.Services.Data.Registrations.RegisterOwner;
+    using BuildingManagementSystem.Web.Infrastructure;
     using BuildingManagementSystem.Web.ViewModels.Registrations;
-    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class RegistrationsController : BaseController
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly IOwnerService ownerService;
+        private readonly ICompanyOwnerService companyOwnerService;
+        private readonly IAddressService addressService;
+        private readonly IInitialRegisterService initialRegister;
 
-        public RegistrationsController(ApplicationDbContext dbContext)
+        public RegistrationsController(
+            ApplicationDbContext dbContext,
+            UserManager<ApplicationUser> userManager,
+            IOwnerService ownerService,
+            ICompanyOwnerService companyOwnerService,
+            IAddressService addressService,
+            IInitialRegisterService initialRegister)
         {
             this.dbContext = dbContext;
+            this.userManager = userManager;
+            this.ownerService = ownerService;
+            this.companyOwnerService = companyOwnerService;
+            this.addressService = addressService;
+            this.initialRegister = initialRegister;
         }
 
         [HttpGet]
@@ -30,12 +53,19 @@
 
         // [Authorize(Roles = "Owner")]
         [HttpPost]
-        public IActionResult RegisterPerson(RegisterPersonViewModel person)
+        public async Task<IActionResult> RegisterPerson(RegisterPersonViewModel person)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View(person);
             }
+
+            var user = await this.userManager.GetUserAsync(this.User);
+            var userId = user.Id;
+
+            var userIdFromMethod = this.User.GetId();
+
+            await this.ownerService.AddOwnerAsync(person.FirstName, person.MiddleName, person.LastName, person.Email, person.Phone, person.UserId);
 
             return this.RedirectToAction("RegisterAddress");
         }
@@ -47,12 +77,14 @@
 
         // [Authorize(Roles = "Owner")]
         [HttpPost]
-        public IActionResult RegisterCompany(RegisterCompanyViewModel company)
+        public async Task<IActionResult> RegisterCompany(RegisterCompanyViewModel company)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View(company);
             }
+
+            await this.companyOwnerService.AddCompanyOwnerAsync(company.CompanyName, company.UIC, company.CompanyOwnerFirstName, company.CompanyOwnerLastName, company.Email, company.Phone);
 
             return this.RedirectToAction("RegisterAddress");
         }
@@ -67,7 +99,7 @@
 
         // [Authorize(Roles = "Owner")]
         [HttpPost]
-        public IActionResult RegisterAddress(RegisterAddressViewModel address)
+        public async Task<IActionResult> RegisterAddress(RegisterAddressViewModel address)
         {
             if (!this.ModelState.IsValid)
             {
@@ -76,7 +108,16 @@
                 return this.View(address);
             }
 
+            await this.addressService.AddAddressAsync(address.CityId, address.District, address.ZipCode, address.Street, address.StreetNumber, address.BlockNumber, address.EntranceNumber, address.Floor, address.AppartNumber);
+
             return this.RedirectToAction(nameof(PropertiesController.Index), "Properties");
+        }
+
+        public IActionResult GetAllUsers()
+        {
+            var allUsers = this.initialRegister.GetAllUsers();
+
+            return this.View(allUsers);
         }
 
         public IEnumerable<AllCitiesDataModel> GetAllCities()

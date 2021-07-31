@@ -41,5 +41,14 @@
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
+
+        // Това е собственика, на който си наемател.
+        public int OwnerId { get; set; }
+
+        public Owner Owner { get; set; }
+
+        public int CompanyOwnerId { get; set; }
+
+        public CompanyOwner CompanyOwner { get; set; }
     }
 }

@@ -1,10 +1,12 @@
-﻿namespace BuildingManagementSystem.Services.Data.Registrations.RegisterTenant
+﻿namespace BuildingManagementSystem.Services.Data.Registrations.Tenants
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Data.Models.BuildingData;
+    using BuildingManagementSystem.Web.ViewModels.Tenants.ManagerModules;
 
     public class TenantService : ITenantService
     {
@@ -17,6 +19,12 @@
 
         public async Task<int> AddTenantAsync(string firstName, string middleName, string lastName, string email, string phone, string userId)
         {
+            var ownerId = this.dbContext
+                .Owners
+                .Where(x => x.UserId == userId)
+                .Select(x => x.Id)
+                .FirstOrDefault();
+
             var currTenant = new Tenant
             {
                 FirstName = firstName,
@@ -24,7 +32,7 @@
                 LastName = lastName,
                 Email = email,
                 Phone = phone,
-                UserId = userId,
+                OwnerId = ownerId,
             };
 
             await this.dbContext.Tenants.AddAsync(currTenant);
@@ -32,6 +40,25 @@
             await this.dbContext.SaveChangesAsync();
 
             return currTenant.Id;
+        }
+
+        public IEnumerable<AllTenantsDataModel> GetAll()
+        {
+            var tenants = this.dbContext
+                .Tenants
+                .Select(x => new AllTenantsDataModel
+                {
+                    Id = x.Id,
+                    FirstName = x.FirstName,
+                    MiddleName = x.MiddleName,
+                    LastName = x.LastName,
+                    Email = x.Email,
+                    Phone = x.Phone,
+                    OwnerId = x.UserId,
+                })
+                .ToList();
+
+            return tenants;
         }
 
         public void RemoveTenant(string userId, bool isDeleted)

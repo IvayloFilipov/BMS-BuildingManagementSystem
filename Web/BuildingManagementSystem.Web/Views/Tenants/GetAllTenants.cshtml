@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BuildingManagementSystem.Web.ViewModels.Tenants.ManagerModules.AllTenantsDataModel>
+
+@{
+    int count = 1;
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <h2 class="text-center">Домова книга</h2>
+        <h3 class="text-center text-info">Списък на записаните наематели</h3>
+        <hr />
+        <hr />
+        <p class="mb-4">Вие се намирате на страницата, която показва всички наематели, <b>ЗАПИСАНИ</b> в електронната Домова книга от собствениците на имоти</p>
+        <p class="mb-4"><b>Бележка: </b>Наемател, за да получи достъп до функционалността на приложението е необходимо да се регистрира и регистрацията му да бъде потвърдена от Домоуправителя</p>
+    </div>
+
+    <table class="table table-responsive-sm mt-4">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Име</th>
+                <th scope="col">Презиме</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Е-мейл</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">Регистрирай</th>
+                <th scope="col">Изтрий</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tenants in Model)
+            {
+            <tr class="table-hover">
+                <th scope="row">@(count++)</th>
+                <td>@tenants.FirstName</td>
+                <td>@tenants.MiddleName</td>
+                <td>@tenants.LastName</td>
+                <td>@tenants.Email</td>
+                <td>@tenants.Phone</td>
+                <td>
+                    <div class="align-content-lg-around float-md-none float-md-none">
+                        <a asp-controller="Tenants" asp-action="GetTenants" asp-route-id="@tenants.Id" class="btn btn-outline-primary btn-sm ">Потвърди</a>
+                        @*<input type="submit" class="btn btn-outline-primary text-uppercase" value="Регистрирай" onclick="window.location= '@Url.Action( "Info", "Home")'" />*@
+                    </div>
+                </td>
+                <td>
+                    <div class="align-content-lg-around float-md-none float-md-none">
+                        <a asp-controller="Tenants" asp-action="DeleteTenant" asp-route-id="@tenants.Id" class="btn btn-outline-danger btn-sm">Изтрий</a>
+                    </div>
+
+                    @*<input type="submit" class="btn btn-outline-primary text-uppercase" value="Регистрирай" onclick="window.location= '@Url.Action( "Info", "Home")'" />*@
+
+                    @*<input type="submit" class="btn btn-outline-danger text-uppercase" value="Изтрий" onclick="window.location= '@Url.Action( "Info", "Home")'" />*@
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

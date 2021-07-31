@@ -44,6 +44,7 @@
                 <span asp-validation-for="@Model.Phone" class="text-danger"></span>
             </div>
 
+            @*<input type="hidden" asp-for="@Model.OwnerId" />*@
             @*<input type="submit" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "action Name", "controller Name")'" />*@
             <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" />
         </form>

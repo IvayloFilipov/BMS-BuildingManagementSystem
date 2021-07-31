@@ -1,0 +1,77 @@
+﻿@model IEnumerable<BuildingManagementSystem.Web.ViewModels.Registrations.RegisteredUsersDataModel>
+
+@{
+    int count = 1;
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <h2 class="text-center">Потребители</h2>
+        <h3 class="text-center text-info">Списък на регистрираните потребители</h3>
+        <hr />
+        <hr />
+        <p class="mb-4">Вие се намирате на страницата, която показва всички потребители, <b>РЕГИСТРИРАНИ</b> в приложението</p>
+        <p class="mb-4"><b>Бележка: </b>Потребител, за да получи достъп до функционалността на приложението е необходимо регистрацията му да бъде потвърдена от Домоуправителя</p>
+    </div>
+
+    <table class="table table-responsive-sm mt-4">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Име</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Е-мейл</th>
+                <th scope="col">Телефон</th>
+                <th scope="col" class="px-sm-5">Задай роля</th>
+                <th scope="col">Потвърди регистрация</th>
+                <th scope="col">Изтрий от списъка</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr class="table-hover">
+                    <th scope="row">@(count++)</th>
+                    <td>@user.FirstName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.Email</td>
+                    <td>@user.PhoneNumber</td>
+                    @*<td>
+                        <div class="dropdown show">
+                            <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Роли
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">Собственик</a>
+                                <a class="dropdown-item" href="#">Наемател</a>
+                                <a class="dropdown-item" href="#">Гост</a>
+                            </div>
+                        </div>
+                    </td>*@
+                    <td>
+                        <div class="dropdown px-sm-4 py-sm-0 align-items-sm-baseline">
+                            <select asp-for="@user" class="form-control">
+                                @foreach (var payment in Model)
+                                {
+                                    <option value="@user"> @user</option>
+                                }
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="align-content-lg-around float-md-none float-md-none">
+                            <a asp-controller="Tenants" asp-action="GetTenants" asp-route-id="@user.IsRegisterConfirmed" class="btn btn-outline-primary btn-sm">Регистрирай</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="align-content-lg-around float-md-none float-md-none">
+                            <a asp-controller="Tenants" asp-action="GetTenants" asp-route-id="@user.IsRegisterConfirmed" class="btn btn-outline-danger btn-sm ">Изтрий</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+

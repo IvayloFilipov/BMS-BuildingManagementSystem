@@ -12,6 +12,7 @@
         public CompanyOwner()
         {
             this.CompanyProperties = new HashSet<Property>();
+            this.Tenants = new HashSet<Tenant>();
         }
 
         [Required]
@@ -49,5 +50,7 @@
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
+
+        public ICollection<Tenant> Tenants { get; set; }
     }
 }

@@ -14,7 +14,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<int> AddOwnerAsync(string firstName, string middleName, string lastName, string email, string phone)
+        public async Task<int> AddOwnerAsync(string firstName, string middleName, string lastName, string email, string phone, string userId)
         {
             var owner = new Owner()
             {
@@ -23,6 +23,7 @@
                 LastName = lastName,
                 Email = email,
                 Phone = phone,
+                UserId = userId,
             };
 
             await this.dbContext.Owners.AddAsync(owner);

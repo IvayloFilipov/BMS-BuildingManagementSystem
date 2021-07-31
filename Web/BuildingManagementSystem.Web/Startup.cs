@@ -11,10 +11,12 @@
     using BuildingManagementSystem.Services.Data.Debts;
     using BuildingManagementSystem.Services.Data.Expenses;
     using BuildingManagementSystem.Services.Data.Incomes;
+    using BuildingManagementSystem.Services.Data.Registrations.InitialRegistrations;
+    using BuildingManagementSystem.Services.Data.Registrations.RegisterAddress;
     using BuildingManagementSystem.Services.Data.Registrations.RegisterCompanyOwner;
     using BuildingManagementSystem.Services.Data.Registrations.RegisterOwner;
     using BuildingManagementSystem.Services.Data.Registrations.RegisterProperty;
-    using BuildingManagementSystem.Services.Data.Registrations.RegisterTenant;
+    using BuildingManagementSystem.Services.Data.Registrations.Tenants;
     using BuildingManagementSystem.Services.Mapping;
     using BuildingManagementSystem.Services.Messaging;
     using BuildingManagementSystem.Web.ViewModels;
@@ -82,6 +84,8 @@
             services.AddTransient<IOwnerService, OwnerService>();
             services.AddTransient<IPropertyService, PropertyService>();
             services.AddTransient<ITenantService, TenantService>();
+            services.AddTransient<IAddressService, AddressService>();
+            services.AddTransient<IInitialRegisterService, InitialRegisterService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

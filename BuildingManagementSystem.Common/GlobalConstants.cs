@@ -15,9 +15,9 @@
         public const string TenantRoleName = "Tenant";
         public const string GuestRoleName = "Guest";
 
-        public const string AdminUserName = "AdminUserName";
-        public const string OwnerUserName = "OwnerUserName";
-        public const string TenantUserName = "TenantUserName";
+        public const string AdminUserName = "admin@admin.com";
+        public const string OwnerUserName = "owner@owner.com";
+        public const string TenantUserName = "tenant@tenant.com";
 
         public const string AdminEmail = "admin@admin.com";
         public const string OwnerEmail = "owner@owner.com";
@@ -25,7 +25,11 @@
 
         public const string DefaultAdminPassword = "admin123";
         public const string DefaultOwnerPassword = "owner123";
-        public const string DefaultManagerPassword = "tenant123";
+        public const string DefaultTenantPassword = "tenant123";
+
+        public const string AdminPhomeNumber = "+359888111222";
+        public const string OwnerPhomeNumber = "+359888111333";
+        public const string TenantPhomeNumber = "+359888111444";
 
         public const string AdminFirstName = "Ивайло";
         public const string OwnerFirstName = "Димо";
@@ -34,6 +38,8 @@
         public const string AdminLastName = "Филипов";
         public const string OwnerLastName = "Димов";
         public const string TenantLastName = "Иванов";
+
+        public const string DefaultAdminPasswordHash = "AQAAAAEAACcQAAAAEDgWx7KpiWu/PVzOgTqPkWk7HaPtBFHdgUjVhQ8WNotJ/OUhJcvjGiWDg+HCGddlbQ==";
 
         // Input models constraints
         // Folder - Building Data

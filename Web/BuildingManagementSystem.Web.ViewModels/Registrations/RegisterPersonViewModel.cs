@@ -30,5 +30,8 @@
         [RegularExpression(@"^[+]{1}[3][5][9][0-9]{9}$", ErrorMessage = PhoneNumberErrorMessage)]
         [Display(Name = "Мобилен телефонен номер")]
         public string Phone { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
     }
 }

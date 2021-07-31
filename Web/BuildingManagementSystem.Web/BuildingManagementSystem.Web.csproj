@@ -50,5 +50,7 @@
   <ItemGroup>
     <Folder Include="Areas\Administration\Views\Dashboard\" />
     <Folder Include="Views\Public\" />
+    <Folder Include="wwwroot\files\documents\" />
+    <Folder Include="wwwroot\files\templates\" />
   </ItemGroup>
 </Project>

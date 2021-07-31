@@ -4,6 +4,6 @@
 
     public interface IOwnerService
     {
-        Task<int> AddOwnerAsync(string firstName, string middleName, string lastName, string email, string phone);
+        Task<int> AddOwnerAsync(string firstName, string middleName, string lastName, string email, string phone, string userId);
     }
 }

@@ -10,7 +10,7 @@
         // [StringLength(30, ErrorMessage = CityNameErrorMessage, MinimumLength = 3)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете името на града")]
         [Display(Name = "Населено място")]
-        public string CityId { get; set; }
+        public int CityId { get; set; }
 
         public IEnumerable<AllCitiesDataModel> AllCities { get; set; }
 
@@ -23,7 +23,7 @@
         [StringLength(4, ErrorMessage = ZipCodeErrorMessage, MinimumLength = 4)]
         [RegularExpression("^[0-9]{4}$", ErrorMessage = "Невалиден пощенски код")]
         [Display(Name = "Пощенски код")]
-        public string ZipCode { get; set; }
+        public int ZipCode { get; set; }
 
         [StringLength(StreetMaxLength, MinimumLength = 5)]
         [Display(Name = "Име на улицата")]

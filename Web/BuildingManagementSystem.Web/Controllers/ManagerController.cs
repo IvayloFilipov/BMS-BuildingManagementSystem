@@ -189,23 +189,7 @@
             return this.View();
         }
 
-        public IActionResult GetTenants()
-        {
-            var viewModel = new TenantsViewModel();
-            var tenants = this.dbContext
-                .Tenants
-                .Select(t => new AllTenantsDataModel
-                {
-                    FirstName = t.FirstName,
-                    MiddleName = t.MiddleName,
-                    LastName = t.LastName,
-                    Email = t.Email,
-                    Phone = t.Phone,
-                })
-                .ToList();
-            viewModel.Tenants = tenants;
-            return this.View(viewModel);
-        }
+        
 
         //public IActionResult GetTenants()
         //{
