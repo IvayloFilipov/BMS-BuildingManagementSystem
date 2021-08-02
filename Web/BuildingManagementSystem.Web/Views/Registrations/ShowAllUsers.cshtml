@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RegisteredUsersDataModel>
+﻿@model ShowAllUsersViewModel
 
 @{
     int count = 1;
@@ -10,53 +10,58 @@
         <h3 class="text-center text-info">Списък на регистрираните потребители</h3>
         <hr />
         <hr />
-        <p class="mb-4">Вие се намирате на страницата, която показва всички потребители, <b>РЕГИСТРИРАНИ</b> в приложението</p>
+        <p class="mb-4">Вие се намирате на страницата, която показва всички потребители, <b>РЕГИСТРИРАНИ</b> в приложението, на които не е зададена <b>роля</b> и регистрацията не е потвърдена</p>
         <p class="mb-4"><b>БЕЛЕЖКА: </b>Потребител, за да получи достъп до функционалността на приложението е необходимо да му бъде зададена <b class="text-info">роля</b> и регистрацията му да бъде потвърдена от Домоуправителя</p>
     </div>
 
-    <table class="table table-responsive-sm mt-4">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col">№</th>
-                <th scope="col">Име</th>
-                <th scope="col">Фамилия</th>
-                <th scope="col">Е-мейл</th>
-                <th scope="col">Телефон</th>
-                <th scope="col" class="px-sm-5">Задай роля</th>
-                <th scope="col">Потвърди регистрация</th>
-                <th scope="col">Изтрий от списъка</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in Model)
-            {
-                <tr class="table-hover">
-                    <th scope="row">@(count++)</th>
-                    <td>@user.FirstName</td>
-                    <td>@user.LastName</td>
-                    <td>@user.Email</td>
-                    <td>@user.PhoneNumber</td>
-                    <td>
-                        <div class="dropdown px-sm-4 py-sm-0 align-items-sm-baseline">
-                            <select asp-for="@user.Roles" asp-items="Html.GetEnumSelectList<IdentityRole>()"></select>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="align-content-lg-around float-md-none float-md-none">
-                            <a asp-controller="Registrations" asp-action="SetRoleToUser" asp-route-id="@user.IsRegisterConfirmed" class="btn btn-outline-primary btn-sm">Регистрирай</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="align-content-lg-around float-md-none float-md-none">
-                            <a asp-controller="Registrations" asp-action="DeleteUser" asp-route-id="@user.IsRegisterConfirmed" class="btn btn-outline-danger btn-sm">Изтрий</a>
-                            @*<button asp-controller="Tenants" asp-action="GetTenants" asp-route-id="@user.IsRegisterConfirmed" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalDelete">Изтрий</button>*@
-                            @*<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalDelete">Изтрий</button>*@
-                        </div>
-                    </td>
+    <form method="post" asp-controller="Registrations" asp-action="SetRoleToUser">
+        <table class="table table-responsive-sm mt-4">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">Име</th>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">Е-мейл</th>
+                    <th scope="col">Телефон</th>
+                    <th scope="col" class="px-sm-3">Роля</th>
+                    <th scope="col">Потвърди регистрация</th>
+                    <th scope="col">Изтрий от списъка</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.RegisteredUsers)
+                {
+                    <tr class="table-hover">
+                        <th scope="row">@(count++)</th>
+                        <td>@user.FirstName</td>
+                        <td>@user.LastName</td>
+                        <td>@user.Email</td>
+                        <td>@user.PhoneNumber</td>
+                        <td>
+                            <div class="form-group">
+                                <select required class="form-control" asp-for="RoleId" asp-items="Html.GetEnumSelectList<IdentityRole>()">
+                                    <option selected disabled>Избери роля</option>
+                                </select>
+                            </div>
+                            <input class="form-control" asp-for="UserId" value="@user.Id" type="hidden" />
+                        </td>
+                        <td>
+                            <div class="align-content-lg-around float-md-none">
+                                <input type="submit" class="btn btn-outline-primary btn-sm" value="Регистрирай" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="align-content-lg-around float-md-none">
+                                <a asp-controller="Registrations" asp-action="DeleteUser" asp-route-id="@user.Id" class="btn btn-outline-danger btn-sm">Изтрий</a>
+                                @*<button asp-controller="Tenants" asp-action="GetTenants" asp-route-id="@user.IsRegisterConfirmed" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalDelete">Изтрий</button>*@
+                                @*<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalDelete">Изтрий</button>*@
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
 </div>
 
 <!-- Modal -->
@@ -79,4 +84,3 @@
         </div>
     </div>
 </div>-->
-

@@ -7,9 +7,9 @@
 
     public interface IInitialRegisterService
     {
-        Task<string> SetRoleAsync(string userId, int roleId);
-
         IEnumerable<RegisteredUsersDataModel> GetAllUsers();
+
+        Task<string> SetRoleAsync(string userId, string roleId);
 
         void DeleteUser(string userId);
     }

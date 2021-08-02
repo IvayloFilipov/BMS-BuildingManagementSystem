@@ -47,6 +47,7 @@
             return this.RedirectToAction(nameof(HomeController.Info), "Home");
         }
 
+        // [Authorize(Roles = "Owner, Admin")]
         public IActionResult GetAllTenants()
         {
             var allTenants = this.tenantService.GetAll();

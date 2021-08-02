@@ -12,6 +12,7 @@
     using BuildingManagementSystem.Services.Data.Registrations.RegisterOwner;
     using BuildingManagementSystem.Web.Infrastructure;
     using BuildingManagementSystem.Web.ViewModels.Registrations;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -113,13 +114,6 @@
             return this.RedirectToAction(nameof(PropertiesController.Index), "Properties");
         }
 
-        public IActionResult ShowAllUsers()
-        {
-            var allUsers = this.initialRegister.GetAllUsers();
-
-            return this.View(allUsers);
-        }
-
         public IEnumerable<AllCitiesDataModel> GetAllCities()
         {
             var cities = this.dbContext
@@ -134,13 +128,41 @@
             return cities;
         }
 
-        // Тук нямам вю, направо трябва да сетна роля на юзъра и да направя IsRegisterConfirmed -> true
-        public IActionResult SetRoleToUser()
+        // [Authorize(Roles = "Admin")]
+        public IActionResult ShowAllUsers()
         {
-            return this.View();
+            var allUsers = this.initialRegister.GetAllUsers();
+
+            var newModelShowUsers = new ShowAllUsersViewModel()
+            {
+                RegisteredUsers = allUsers
+                .Where(x => x.IsRegisterConfirmed == false),
+            };
+
+            return this.View(newModelShowUsers);
+        }
+
+        // Тук нямам вю, направо трябва да сетна роля на юзъра и да направя IsRegisterConfirmed -> true
+        // [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public IActionResult SetRoleToUser(ShowAllUsersViewModel allUsers)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(allUsers);
+            }
+
+            //var userId = this.userManager.FindByIdAsync();
+
+            //var roleId = this.userManager.GetUsersInRoleAsync();
+
+            //await initialRegister.SetRoleAsync();
+
+            return this.RedirectToAction(nameof(this.Index), "Registrations");
         }
 
         // Set isDeleted to true
+        // [Authorize(Roles = "Admin")]
         public IActionResult DeleteUser()
         {
             return this.View();

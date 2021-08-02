@@ -4,7 +4,8 @@
 
     public class RegisteredUsersDataModel
     {
-        // public string UserName { get; set; }
+        public string Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -15,6 +16,6 @@
 
         public bool IsRegisterConfirmed { get; set; }
 
-        public IdentityRole Roles { get; set; }
+        public string RoleId { get; set; }
     }
 }

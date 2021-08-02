@@ -1,19 +1,24 @@
 ﻿namespace BuildingManagementSystem.Services.Data.Registrations.InitialRegistrations
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
+    using BuildingManagementSystem.Data.Models;
     using BuildingManagementSystem.Web.ViewModels.Registrations;
+    using Microsoft.AspNetCore.Identity;
 
     public class InitialRegisterService : IInitialRegisterService
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly IServiceProvider serviceProvider;
 
-        public InitialRegisterService(ApplicationDbContext dbContext)
+        public InitialRegisterService(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
             this.dbContext = dbContext;
+            this.serviceProvider = serviceProvider;
         }
 
         public IEnumerable<RegisteredUsersDataModel> GetAllUsers()
@@ -22,6 +27,7 @@
                 .Users
                 .Select(x => new RegisteredUsersDataModel
                 {
+                    Id = x.Id,
                     FirstName = x.FirstName,
                     LastName = x.LastName,
                     Email = x.Email,
@@ -33,16 +39,18 @@
             return users;
         }
 
-        public async Task<string> SetRoleAsync(string userId, int roleId)
+        public async Task<string> SetRoleAsync(string userId, string roleId)
         {
-            var user = this.dbContext.Users.Where(x => x.Id == userId).FirstOrDefault();
 
-            user.IsRegisterConfirmed = true;
+            var currUser = this.dbContext.Users.Where(x => x.Id == userId).FirstOrDefault();
+            var currUserId = currUser.Id;
+
+            currUser.IsRegisterConfirmed = true;
 
             // await this.dbContext.AddAsync(user);
             await this.dbContext.SaveChangesAsync();
 
-            return user.Id;
+            return currUserId;
         }
 
         public void DeleteUser(string userId)
