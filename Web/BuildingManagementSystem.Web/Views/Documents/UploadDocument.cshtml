@@ -1,0 +1,48 @@
+﻿@model BuildingManagementSystem.Web.ViewModels.ManagerModules.Documents.UploadDocumentViewModel
+
+<div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <h2 class="text-center">Документи</h2>
+        <h3 class="text-center text-info">Документи на Етажната собственост</h3>
+        <hr />
+        <hr />
+
+        <p class="mb-4">Моля попълнете всички полета от формата. След като го направите натиснете бутона <b>'ЗАПИШИ'</b> </p>
+    </div>
+
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <form method="post" asp-action="RegisterPerson" asp-controller="Registrations">
+            <div class="form-group mt-4">
+                <i class="fas fa-pen"></i>
+                <label asp-for="@Model.DocumentName"></label>
+                <textarea asp-for="@Model.DocumentName" class="form-control" rows="1"></textarea>
+                <span asp-validation-for="@Model.DocumentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-pen"></i>
+                <label asp-for="@Model.Descrtiption"></label>
+                <textarea asp-for="@Model.Descrtiption>" class="form-control" rows="2"></textarea>
+                <span asp-validation-for="@Model.Descrtiption" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.URL"></label>
+                <input asp-for="@Model.URL" class="form-control" />
+                <span asp-validation-for="@Model.URL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <label asp-for="@Model.Extension"></label>
+                <input asp-for="@Model.Extension" class="form-control" />
+                <span asp-validation-for="Extension" class="text-danger"></span>
+            </div>
+
+            <p class="text-primary mb-3">Моля направете своят избор!</p>
+
+            <input type="button" class="btn btn-primary text-uppercase" value="Откажи" onclick="window.location= '@Url.Action( " Index", "Registrations" )'" />
+            @*<input type="submit" class="btn btn-primary text-uppercase" value="Продължи" onclick="window.location= '@Url.Action( " RegisterAddress", "Registrations" )'" />*@
+            <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" />
+        </form>
+        <br />
+    </div>
+</div>

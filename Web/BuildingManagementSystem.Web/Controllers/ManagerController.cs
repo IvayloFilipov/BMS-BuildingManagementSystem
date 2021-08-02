@@ -6,12 +6,8 @@
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Data.Models;
-    using BuildingManagementSystem.Data.Models.BuildingData;
     using BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
-    using BuildingManagementSystem.Web.ViewModels.ManagerModules.Incomes;
-    using BuildingManagementSystem.Web.ViewModels.Tenants;
-    using BuildingManagementSystem.Web.ViewModels.Tenants.ManagerModules;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -59,21 +55,6 @@
             return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
-        // public IEnumerable<SomePropertiesPartsDataModel> GetSomePartsFromProperty()
-        // {
-        //     var parts = this.dbContext
-        //         .Properties
-        //         .Select(x => new SomePropertiesPartsDataModel
-        //         {
-        //             Id = x.Id,
-        //             Name = x.Building.Name,
-        //             Type = x.PropertyType.Type,
-        //             Floor = x.PropertyFloor.Floor,
-        //             Number = x.Number,
-        //         })
-        //         .ToList();
-        //     return parts;
-        // }
         public IEnumerable<PaymentTypeDataModel> GetPaymentType()
         {
             var payments = this.dbContext
@@ -183,11 +164,6 @@
             }
 
             return this.RedirectToAction(nameof(HomeController.Index), "Home");
-        }
-
-        public IActionResult UploadDocument()
-        {
-            return this.View();
         }
     }
 }

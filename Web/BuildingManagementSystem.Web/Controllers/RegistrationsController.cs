@@ -67,7 +67,7 @@
 
             await this.ownerService.AddOwnerAsync(person.FirstName, person.MiddleName, person.LastName, person.Email, person.Phone, person.UserId);
 
-            return this.RedirectToAction("RegisterAddress");
+            return this.RedirectToAction(nameof(this.RegisterAddress));
         }
 
         public IActionResult RegisterCompany()
@@ -86,7 +86,7 @@
 
             await this.companyOwnerService.AddCompanyOwnerAsync(company.CompanyName, company.UIC, company.CompanyOwnerFirstName, company.CompanyOwnerLastName, company.Email, company.Phone);
 
-            return this.RedirectToAction("RegisterAddress");
+            return this.RedirectToAction(nameof(this.RegisterAddress));
         }
 
         public IActionResult RegisterAddress()
@@ -132,6 +132,18 @@
                 .ToList();
 
             return cities;
+        }
+
+        // Тук нямам вю, направо трябва да сетна роля на юзъра и да направя IsRegisterConfirmed -> true
+        public IActionResult SetRoleToUser()
+        {
+            return this.View();
+        }
+
+        // Set isDeleted to true
+        public IActionResult DeleteUser()
+        {
+            return this.View();
         }
     }
 }

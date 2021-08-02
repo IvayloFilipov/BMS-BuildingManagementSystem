@@ -35,8 +35,8 @@
         [Display(Name = "Мобилен телефонен номер на наемателя")]
         public string Phone { get; set; }
 
-        //// Това е Id-то на собственика, който е регистрирал наемателя в приложението.
-        //[Required]
-        //public string OwnerId { get; set; }
+        // Това е Id-то на собственика, който е регистрирал наемателя в приложението.
+        [Required]
+        public string OwnerId { get; set; }
     }
 }

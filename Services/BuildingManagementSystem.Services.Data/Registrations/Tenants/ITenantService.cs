@@ -11,8 +11,6 @@
 
         IEnumerable<AllTenantsDataModel> GetAll();
 
-        void RemoveTenant(string userId, bool isDeleted);
-
-        void SetTenantToRole(string tenantId);
+        void RemoveTenant(string userId);
     }
 }

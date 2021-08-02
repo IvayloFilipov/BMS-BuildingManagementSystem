@@ -11,7 +11,7 @@
         <hr />
         <hr />
         <p class="mb-4">Вие се намирате на страницата, която показва всички потребители, <b>РЕГИСТРИРАНИ</b> в приложението</p>
-        <p class="mb-4"><b>Бележка: </b>Потребител, за да получи достъп до функционалността на приложението е необходимо да му бъде зададена роля и регистрацията му да бъде потвърдена от Домоуправителя</p>
+        <p class="mb-4"><b>БЕЛЕЖКА: </b>Потребител, за да получи достъп до функционалността на приложението е необходимо да му бъде зададена <b class="text-info">роля</b> и регистрацията му да бъде потвърдена от Домоуправителя</p>
     </div>
 
     <table class="table table-responsive-sm mt-4">
@@ -43,12 +43,14 @@
                     </td>
                     <td>
                         <div class="align-content-lg-around float-md-none float-md-none">
-                            <a asp-controller="Tenants" asp-action="GetTenants" asp-route-id="@user.IsRegisterConfirmed" class="btn btn-outline-primary btn-sm">Регистрирай</a>
+                            <a asp-controller="Registrations" asp-action="SetRoleToUser" asp-route-id="@user.IsRegisterConfirmed" class="btn btn-outline-primary btn-sm">Регистрирай</a>
                         </div>
                     </td>
                     <td>
                         <div class="align-content-lg-around float-md-none float-md-none">
-                            <a asp-controller="Tenants" asp-action="GetTenants" asp-route-id="@user.IsRegisterConfirmed" class="btn btn-outline-danger btn-sm ">Изтрий</a>
+                            <a asp-controller="Registrations" asp-action="DeleteUser" asp-route-id="@user.IsRegisterConfirmed" class="btn btn-outline-danger btn-sm">Изтрий</a>
+                            @*<button asp-controller="Tenants" asp-action="GetTenants" asp-route-id="@user.IsRegisterConfirmed" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalDelete">Изтрий</button>*@
+                            @*<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalDelete">Изтрий</button>*@
                         </div>
                     </td>
                 </tr>
@@ -56,4 +58,25 @@
         </tbody>
     </table>
 </div>
+
+<!-- Modal -->
+<!--<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-black-50" id="modalDeleteLabel">Изтриване на наемател!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-danger"><b>Желаете ли да изтриете наемателя?</b></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Откажи</button>
+                <button type="button" class="btn btn-danger text-uppercase" onclick="deleteUser.submit()">Изтрий</button>
+            </div>
+        </div>
+    </div>
+</div>-->
 

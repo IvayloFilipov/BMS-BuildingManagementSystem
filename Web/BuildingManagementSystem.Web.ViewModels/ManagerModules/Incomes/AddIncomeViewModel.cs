@@ -3,9 +3,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using BuildingManagementSystem.Data.Models.BuildingData;
-    using BuildingManagementSystem.Web.ViewModels.ManagerModules.Incomes;
-
     public class AddIncomeViewModel
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете наименование на прихода")]

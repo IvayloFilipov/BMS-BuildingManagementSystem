@@ -37,16 +37,18 @@
         // many-to-one with Property - many Properties can be hired by one Tenant
         public virtual ICollection<Property> TenantProperties { get; set; }
 
+        // Това е Id-то регистрирания собственик като string, на който си наемател и те е регистрирал в приложението.
         [Required]
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
 
-        // Това е собственика, на който си наемател.
+        // Това е Id-то на собственика като int, на който си наемател и те е регистрирал в приложението.
         public int OwnerId { get; set; }
 
         public Owner Owner { get; set; }
 
+        // Това е Id-то на фирмата собственик като int, на която си наемател и те е регистрирала в приложението.
         public int CompanyOwnerId { get; set; }
 
         public CompanyOwner CompanyOwner { get; set; }

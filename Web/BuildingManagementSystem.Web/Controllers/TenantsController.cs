@@ -69,6 +69,8 @@
                 return this.View(tenant);
             }
 
+            // this.tenantService.RemoveTenant(tenant., tenant.LastName, tenant.IsDeleted);
+
             return this.RedirectToAction(nameof(HomeController.Info), "Home");
         }
     }

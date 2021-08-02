@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Web.ViewModels.Registrations;
@@ -30,6 +31,32 @@
                 .ToList();
 
             return users;
+        }
+
+        public async Task<string> SetRoleAsync(string userId, int roleId)
+        {
+            var user = this.dbContext.Users.Where(x => x.Id == userId).FirstOrDefault();
+
+            user.IsRegisterConfirmed = true;
+
+            // await this.dbContext.AddAsync(user);
+            await this.dbContext.SaveChangesAsync();
+
+            return user.Id;
+        }
+
+        public void DeleteUser(string userId)
+        {
+            var user = this.dbContext.Users.Where(x => x.Id == userId).FirstOrDefault();
+
+            if (user == null)
+            {
+                return;
+            }
+
+            user.IsDeleted = true;
+
+            this.dbContext.SaveChanges();
         }
     }
 }

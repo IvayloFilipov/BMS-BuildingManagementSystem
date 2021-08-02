@@ -61,7 +61,7 @@
             return tenants;
         }
 
-        public void RemoveTenant(string userId, bool isDeleted)
+        public void RemoveTenant(string userId)
         {
             var currTenant = this.dbContext
                 .Tenants
@@ -73,13 +73,12 @@
                 return;
             }
 
-            // this.dbContext.Tenants.Remove(currTenant);
             currTenant.IsDeleted = true;
 
             this.dbContext.SaveChanges();
         }
 
-        public void SetTenantToRole(string tenantId)
+        public void SetUserToRoleTenant(string tenantId)
         {
             throw new System.NotImplementedException();
         }
