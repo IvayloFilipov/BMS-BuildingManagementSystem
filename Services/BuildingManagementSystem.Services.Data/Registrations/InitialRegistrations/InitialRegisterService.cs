@@ -50,6 +50,8 @@
             // await this.dbContext.AddAsync(user);
             await this.dbContext.SaveChangesAsync();
 
+            // dbContext.user
+
             return currUserId;
         }
 

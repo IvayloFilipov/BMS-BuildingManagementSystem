@@ -142,30 +142,49 @@
             return this.View(newModelShowUsers);
         }
 
-        // Тук нямам вю, направо трябва да сетна роля на юзъра и да направя IsRegisterConfirmed -> true
-        // [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult SetRoleToUser(ShowAllUsersViewModel allUsers)
+        public async Task<IActionResult> SetRoleToUser(string userId, BuildingManagementSystem.Data.Models.Enums.IdentityRole roleId)
         {
-            if (!this.ModelState.IsValid)
+            if (roleId == Data.Models.Enums.IdentityRole.Admin)
             {
-                return this.View(allUsers);
+                return this.BadRequest();
             }
 
-            //var userId = this.userManager.FindByIdAsync();
+            var selectedUser = await this.userManager.FindByIdAsync(userId);
 
-            //var roleId = this.userManager.GetUsersInRoleAsync();
+            if (selectedUser is null)
+            {
+                return this.BadRequest();
+            }
 
-            //await initialRegister.SetRoleAsync();
+            if (selectedUser.IsRegisterConfirmed)
+            {
+                return this.BadRequest();
+            }
+
+            selectedUser.IsRegisterConfirmed = true;
+
+            await this.userManager.UpdateAsync(selectedUser);
+            await this.userManager.AddToRoleAsync(selectedUser, roleId.ToString());
 
             return this.RedirectToAction(nameof(this.Index), "Registrations");
         }
 
         // Set isDeleted to true
         // [Authorize(Roles = "Admin")]
-        public IActionResult DeleteUser()
+        public async Task<IActionResult> DeleteUser(string id)
         {
-            return this.View();
+            var user = await this.userManager.FindByIdAsync(id);
+            if (user is null)
+            {
+                return this.BadRequest();
+            }
+
+            user.IsDeleted = true;
+
+            await this.userManager.UpdateAsync(user);
+
+            return this.RedirectToAction(nameof(this.Index), "Registrations");
         }
     }
 }

@@ -14,54 +14,68 @@
         <p class="mb-4"><b>БЕЛЕЖКА: </b>Потребител, за да получи достъп до функционалността на приложението е необходимо да му бъде зададена <b class="text-info">роля</b> и регистрацията му да бъде потвърдена от Домоуправителя</p>
     </div>
 
-    <form method="post" asp-controller="Registrations" asp-action="SetRoleToUser">
-        <table class="table table-responsive-sm mt-4">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">№</th>
-                    <th scope="col">Име</th>
-                    <th scope="col">Фамилия</th>
-                    <th scope="col">Е-мейл</th>
-                    <th scope="col">Телефон</th>
-                    <th scope="col" class="px-sm-3">Роля</th>
-                    <th scope="col">Потвърди регистрация</th>
-                    <th scope="col">Изтрий от списъка</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var user in Model.RegisteredUsers)
-                {
-                    <tr class="table-hover">
-                        <th scope="row">@(count++)</th>
-                        <td>@user.FirstName</td>
-                        <td>@user.LastName</td>
-                        <td>@user.Email</td>
-                        <td>@user.PhoneNumber</td>
-                        <td>
-                            <div class="form-group">
+    @*<form method="post" asp-controller="Registrations" asp-action="SetRoleToUser">*@
+    <table class="table table-responsive-sm mt-4">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Име</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Е-мейл</th>
+                <th scope="col">Телефон</th>
+                <th scope="col" class="px-sm-3">Роля</th>
+                <th scope="col">Потвърди регистрация</th>
+                <th scope="col">Изтрий от списъка</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.RegisteredUsers)
+            {
+                <tr class="table-hover">
+                    <th scope="row">@(count++)</th>
+                    <td>@user.FirstName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.Email</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>
+                        @*<div class="form-group">
                                 <select required class="form-control" asp-for="RoleId" asp-items="Html.GetEnumSelectList<IdentityRole>()">
                                     <option selected disabled>Избери роля</option>
                                 </select>
                             </div>
-                            <input class="form-control" asp-for="UserId" value="@user.Id" type="hidden" />
-                        </td>
-                        <td>
-                            <div class="align-content-lg-around float-md-none">
-                                <input type="submit" class="btn btn-outline-primary btn-sm" value="Регистрирай" />
+                            <input type="hidden" asp-for="UserId" value="@user.Id" />*@
+                        <form id="@user.Id" method="post" asp-action="SetRoleToUser" asp-controller="Registrations">
+                            <div class="form-group">
+                                @*<input type="hidden" asp-for="UserId" value="@user.Id" />*@
+                                <input type="hidden" name="userId" value="@user.Id" />
+
+                                <select required class="roleSelect" name="roleId" asp-items="Html.GetEnumSelectList<IdentityRole>()">
+                                    <option selected disabled>Избери роля</option>
+                                </select>
                             </div>
-                        </td>
-                        <td>
-                            <div class="align-content-lg-around float-md-none">
-                                <a asp-controller="Registrations" asp-action="DeleteUser" asp-route-id="@user.Id" class="btn btn-outline-danger btn-sm">Изтрий</a>
-                                @*<button asp-controller="Tenants" asp-action="GetTenants" asp-route-id="@user.IsRegisterConfirmed" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalDelete">Изтрий</button>*@
-                                @*<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalDelete">Изтрий</button>*@
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </form>
+                        </form>
+                    </td>
+                    <td>
+                        <div class="align-content-lg-around float-md-none">
+                            @*<a asp-controller="Registrations" asp-action="SetRoleToUser" asp-route-id="@user.Id" class="btn btn-outline-danger btn-sm">Регистрирай</a>*@
+
+                            @*<input type="submit" class="btn btn-outline-primary btn-sm" value="Регистрирай" />*@
+                            <button id="@user.Id" type="submit" class="registerButton btn btn-outline-primary btn-sm">Регистрирай</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="align-content-lg-around float-md-none">
+                            <a asp-controller="Registrations" asp-action="DeleteUser" asp-route-id="@user.Id" class="btn btn-outline-danger btn-sm">Изтрий</a>
+
+                            @*<button asp-controller="Tenants" asp-action="GetTenants" asp-route-id="@user.IsRegisterConfirmed" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalDelete">Изтрий</button>*@
+                            @*<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modalDelete">Изтрий</button>*@
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*</form>*@
 </div>
 
 <!-- Modal -->
@@ -84,3 +98,20 @@
         </div>
     </div>
 </div>-->
+
+@section scripts{
+    <script>
+        $(function () {
+            var allButtons = $(".registerButton");
+            for (var i = 0; i < allButtons.length; i++) {
+                $(allButtons[i]).click(function () {
+                    // By convention - form has the same Id as the button
+                    var buttonId = $(this).attr("id");
+                    $('#' + buttonId).submit();
+                });
+            }
+        });
+    </script>
+
+    
+}
