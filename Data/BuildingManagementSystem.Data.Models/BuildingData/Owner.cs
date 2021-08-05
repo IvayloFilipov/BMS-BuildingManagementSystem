@@ -38,7 +38,7 @@
         public virtual ICollection<PropertyOwner> Properties { get; set; }
 
         // one-to-one with Address - every Owner has only one permanent address
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
 
         public virtual Address Address { get; set; }
 
