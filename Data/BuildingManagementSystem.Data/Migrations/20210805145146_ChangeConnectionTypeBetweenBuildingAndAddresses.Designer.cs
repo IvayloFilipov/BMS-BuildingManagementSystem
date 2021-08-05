@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildingManagementSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210716105334_ChangedDataTypeFromIntToStringInPropertyFloorEntity")]
-    partial class ChangedDataTypeFromIntToStringInPropertyFloorEntity
+    [Migration("20210805145146_ChangeConnectionTypeBetweenBuildingAndAddresses")]
+    partial class ChangeConnectionTypeBetweenBuildingAndAddresses
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -95,6 +95,9 @@ namespace BuildingManagementSystem.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsRegisterConfirmed")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -158,8 +161,8 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AppartNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("AppartNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BlockNumber")
                         .HasMaxLength(5)
@@ -185,8 +188,8 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
 
-                    b.Property<int?>("Floor")
-                        .HasColumnType("int");
+                    b.Property<string>("Floor")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -202,14 +205,9 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
 
-                    b.Property<int>("ZipCode")
-                        .HasMaxLength(4)
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("BuildingId")
-                        .IsUnique();
+                    b.HasIndex("BuildingId");
 
                     b.HasIndex("CityId");
 
@@ -224,6 +222,10 @@ namespace BuildingManagementSystem.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.HasKey("Id");
 
@@ -254,7 +256,7 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("CompanyName")
@@ -298,12 +300,20 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[AddressId] IS NOT NULL");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("CompanyOwners");
                 });
@@ -315,7 +325,7 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
@@ -353,12 +363,20 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[AddressId] IS NOT NULL");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Owners");
                 });
@@ -370,16 +388,20 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AppartNumber")
+                    b.Property<int?>("BuildingId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BuildingId")
-                        .HasColumnType("int");
+                    b.Property<string>("CoOwner")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("CompanyOwnerId")
                         .HasColumnType("int");
 
                     b.Property<int?>("DogCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Number")
                         .HasColumnType("int");
 
                     b.Property<int>("PropertyFloorId")
@@ -418,7 +440,8 @@ namespace BuildingManagementSystem.Data.Migrations
 
                     b.Property<string>("Floor")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -471,6 +494,9 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CompanyOwnerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -502,14 +528,28 @@ namespace BuildingManagementSystem.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyOwnerId");
+
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("OwnerId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Tenants");
                 });
@@ -598,7 +638,7 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("BuildingId")
+                    b.Property<int?>("BuildingId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
@@ -608,7 +648,6 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -646,10 +685,21 @@ namespace BuildingManagementSystem.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("IncomeDescription")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("PayerName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("PaymentPeriod")
+                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -792,7 +842,6 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -997,8 +1046,8 @@ namespace BuildingManagementSystem.Data.Migrations
             modelBuilder.Entity("BuildingManagementSystem.Data.Models.BuildingData.Address", b =>
                 {
                     b.HasOne("BuildingManagementSystem.Data.Models.BuildingData.Building", "Building")
-                        .WithOne("Address")
-                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.Address", "BuildingId")
+                        .WithMany("Addresses")
+                        .HasForeignKey("BuildingId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -1017,31 +1066,41 @@ namespace BuildingManagementSystem.Data.Migrations
                 {
                     b.HasOne("BuildingManagementSystem.Data.Models.BuildingData.Address", "Address")
                         .WithOne("CompanyOwner")
-                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.CompanyOwner", "AddressId")
+                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.CompanyOwner", "AddressId");
+
+                    b.HasOne("BuildingManagementSystem.Data.Models.ApplicationUser", "User")
+                        .WithOne("CompanyOwner")
+                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.CompanyOwner", "UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Address");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BuildingManagementSystem.Data.Models.BuildingData.Owner", b =>
                 {
                     b.HasOne("BuildingManagementSystem.Data.Models.BuildingData.Address", "Address")
                         .WithOne("Owner")
-                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.Owner", "AddressId")
+                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.Owner", "AddressId");
+
+                    b.HasOne("BuildingManagementSystem.Data.Models.ApplicationUser", "User")
+                        .WithOne("Owner")
+                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.Owner", "UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Address");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BuildingManagementSystem.Data.Models.BuildingData.Property", b =>
                 {
                     b.HasOne("BuildingManagementSystem.Data.Models.BuildingData.Building", "Building")
                         .WithMany("Properties")
-                        .HasForeignKey("BuildingId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("BuildingId");
 
                     b.HasOne("BuildingManagementSystem.Data.Models.BuildingData.CompanyOwner", null)
                         .WithMany("CompanyProperties")
@@ -1093,6 +1152,33 @@ namespace BuildingManagementSystem.Data.Migrations
                     b.Navigation("Property");
                 });
 
+            modelBuilder.Entity("BuildingManagementSystem.Data.Models.BuildingData.Tenant", b =>
+                {
+                    b.HasOne("BuildingManagementSystem.Data.Models.BuildingData.CompanyOwner", "CompanyOwner")
+                        .WithMany("Tenants")
+                        .HasForeignKey("CompanyOwnerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BuildingManagementSystem.Data.Models.BuildingData.Owner", "Owner")
+                        .WithMany("Tenants")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("BuildingManagementSystem.Data.Models.ApplicationUser", "User")
+                        .WithOne("Tenant")
+                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.Tenant", "UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CompanyOwner");
+
+                    b.Navigation("Owner");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("BuildingManagementSystem.Data.Models.BuildingExpenses.Transaction", b =>
                 {
                     b.HasOne("BuildingManagementSystem.Data.Models.BuildingFunds.Account", "Account")
@@ -1122,9 +1208,7 @@ namespace BuildingManagementSystem.Data.Migrations
                 {
                     b.HasOne("BuildingManagementSystem.Data.Models.BuildingData.Building", "Buildings")
                         .WithMany("Accounts")
-                        .HasForeignKey("BuildingId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("BuildingId");
 
                     b.Navigation("Buildings");
                 });
@@ -1232,9 +1316,15 @@ namespace BuildingManagementSystem.Data.Migrations
                 {
                     b.Navigation("Claims");
 
+                    b.Navigation("CompanyOwner");
+
                     b.Navigation("Logins");
 
+                    b.Navigation("Owner");
+
                     b.Navigation("Roles");
+
+                    b.Navigation("Tenant");
                 });
 
             modelBuilder.Entity("BuildingManagementSystem.Data.Models.BuildingData.Address", b =>
@@ -1248,7 +1338,7 @@ namespace BuildingManagementSystem.Data.Migrations
                 {
                     b.Navigation("Accounts");
 
-                    b.Navigation("Address");
+                    b.Navigation("Addresses");
 
                     b.Navigation("Properties");
                 });
@@ -1261,11 +1351,15 @@ namespace BuildingManagementSystem.Data.Migrations
             modelBuilder.Entity("BuildingManagementSystem.Data.Models.BuildingData.CompanyOwner", b =>
                 {
                     b.Navigation("CompanyProperties");
+
+                    b.Navigation("Tenants");
                 });
 
             modelBuilder.Entity("BuildingManagementSystem.Data.Models.BuildingData.Owner", b =>
                 {
                     b.Navigation("Properties");
+
+                    b.Navigation("Tenants");
                 });
 
             modelBuilder.Entity("BuildingManagementSystem.Data.Models.BuildingData.Property", b =>

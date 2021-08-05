@@ -31,8 +31,8 @@
                           {
                               new BuildingAccountsSeeder(),
                               new BuildingNameSeeder(),
-                              new BuildingAddressSeeder(),
                               new CitiySeeder(),
+                              new BuildingAddressSeeder(),
                               new ExpenseTypeSeeder(),
                               new MonthlyFeesSeeder(),
                               new PaymentTypeSeeder(),

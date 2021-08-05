@@ -166,7 +166,7 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
 
-                    b.Property<int?>("BuildingId")
+                    b.Property<int>("BuildingId")
                         .HasColumnType("int");
 
                     b.Property<int>("CityId")
@@ -205,9 +205,7 @@ namespace BuildingManagementSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BuildingId")
-                        .IsUnique()
-                        .HasFilter("[BuildingId] IS NOT NULL");
+                    b.HasIndex("BuildingId");
 
                     b.HasIndex("CityId");
 
@@ -1046,8 +1044,10 @@ namespace BuildingManagementSystem.Data.Migrations
             modelBuilder.Entity("BuildingManagementSystem.Data.Models.BuildingData.Address", b =>
                 {
                     b.HasOne("BuildingManagementSystem.Data.Models.BuildingData.Building", "Building")
-                        .WithOne("Address")
-                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.Address", "BuildingId");
+                        .WithMany("Addresses")
+                        .HasForeignKey("BuildingId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("BuildingManagementSystem.Data.Models.BuildingData.City", "City")
                         .WithMany("Addresses")
@@ -1336,7 +1336,7 @@ namespace BuildingManagementSystem.Data.Migrations
                 {
                     b.Navigation("Accounts");
 
-                    b.Navigation("Address");
+                    b.Navigation("Addresses");
 
                     b.Navigation("Properties");
                 });
