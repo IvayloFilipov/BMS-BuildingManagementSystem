@@ -17,14 +17,24 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<int> AddAddressAsync(int cityId, string district, int zipCode, string street, string streetNumber, string blockNumber, string entranceNumber, string floor, string appartNumber)
+        public async Task<int> AddAddressAsync(int cityId, int buildingId, string district, string street, string streetNumber, string blockNumber, string entranceNumber, string floor, string appartNumber)
         {
-            // var city = this.dbContext.Cities.Select(x => x.Id == cityId);
+            var selectedCityID = this.dbContext
+                .Cities
+                .Where(x => x.Id == cityId)
+                .Select(x => x.Id)
+                .FirstOrDefault();
+
+            var selectedBuildingId = this.dbContext
+                .Building
+                .Select(x => x.Id)
+                .FirstOrDefault();
+
             var address = new Address()
             {
-                CityId = cityId,
+                CityId = selectedCityID,
+                BuildingId = selectedBuildingId,
                 District = district,
-                ZipCode = zipCode,
                 Street = street,
                 StreetNumber = streetNumber,
                 BlockNumber = blockNumber,

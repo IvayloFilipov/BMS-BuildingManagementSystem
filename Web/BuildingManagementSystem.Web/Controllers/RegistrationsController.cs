@@ -108,7 +108,7 @@
                 return this.View(address);
             }
 
-            await this.addressService.AddAddressAsync(address.CityId, address.District, address.ZipCode, address.Street, address.StreetNumber, address.BlockNumber, address.EntranceNumber, address.Floor, address.AppartNumber);
+            await this.addressService.AddAddressAsync(address.CityId, address.District, address.Street, address.StreetNumber, address.BlockNumber, address.EntranceNumber, address.Floor, address.AppartNumber);
 
             return this.RedirectToAction(nameof(PropertiesController.Index), "Properties");
         }

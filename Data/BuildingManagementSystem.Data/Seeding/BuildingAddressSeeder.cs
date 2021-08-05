@@ -18,7 +18,6 @@
             {
                 CityId = cityId,
                 District = "Сердика",
-                ZipCode = 1202,
                 Street = "Княз Борис I",
                 StreetNumber = "196",
                 BuildingId = buildingId,

@@ -7,7 +7,7 @@
 
     public interface IAddressService
     {
-        Task<int> AddAddressAsync(int cityId, string district, int zipCode, string street, string streetNumber, string blockNumber, string entranceNumber, string floor, string appartNumber);
+        Task<int> AddAddressAsync(int cityId, int buildingId, string district, string street, string streetNumber, string blockNumber, string entranceNumber, string floor, string appartNumber);
 
         public IEnumerable<AllCitiesDataModel> GetAllCities();
     }

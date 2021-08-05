@@ -16,9 +16,6 @@
         [MaxLength(DistrictMaxLength)]
         public string District { get; set; }
 
-        [MaxLength(ZipCodeNumberMaxLength)]
-        public int ZipCode { get; set; }
-
         [MaxLength(StreetMaxLength)]
         public string Street { get; set; }
 
@@ -36,7 +33,7 @@
         public string AppartNumber { get; set; }
 
         // one-to-one with Building
-        public int? BuildingId { get; set; } // <- or to put [ForeignKey("Building")] above public int Id { get; set; }
+        public int? BuildingId { get; set; }
 
         public virtual Building Building { get; set; }
 

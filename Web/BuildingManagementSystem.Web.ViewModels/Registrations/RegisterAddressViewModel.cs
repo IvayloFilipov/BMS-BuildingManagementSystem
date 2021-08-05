@@ -19,12 +19,6 @@
         [Display(Name = "Квартал")]
         public string District { get; set; }
 
-        // [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете пощенския код")]
-        [StringLength(4, ErrorMessage = ZipCodeErrorMessage, MinimumLength = 4)]
-        [RegularExpression("^[0-9]{4}$", ErrorMessage = "Невалиден пощенски код")]
-        [Display(Name = "Пощенски код")]
-        public int ZipCode { get; set; }
-
         [StringLength(StreetMaxLength, MinimumLength = 5)]
         [Display(Name = "Име на улицата")]
         public string Street { get; set; }
