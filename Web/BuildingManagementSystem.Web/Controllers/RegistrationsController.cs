@@ -84,7 +84,10 @@
                 return this.View(company);
             }
 
-            await this.companyOwnerService.AddCompanyOwnerAsync(company.CompanyName, company.UIC, company.CompanyOwnerFirstName, company.CompanyOwnerLastName, company.Email, company.Phone);
+            var user = await this.userManager.GetUserAsync(this.User);
+            var userId = user.Id;
+
+            await this.companyOwnerService.AddCompanyOwnerAsync(company.CompanyName, company.UIC, company.CompanyOwnerFirstName, company.CompanyOwnerLastName, company.Email, company.Phone, userId);
 
             return this.RedirectToAction(nameof(this.RegisterAddress));
         }

@@ -14,7 +14,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<int> AddCompanyOwnerAsync(string companyName, string uic, string companyOwnerFirstName, string companyOwnerLastName, string email, string phone)
+        public async Task<int> AddCompanyOwnerAsync(string companyName, string uic, string companyOwnerFirstName, string companyOwnerLastName, string email, string phone, string userId)
         {
             var companyOwner = new CompanyOwner()
             {
@@ -24,6 +24,7 @@
                 CompanyOwnerLastName = companyOwnerLastName,
                 Email = email,
                 Phone = phone,
+                UserId = userId,
             };
 
             await this.dbContext.CompanyOwners.AddAsync(companyOwner);

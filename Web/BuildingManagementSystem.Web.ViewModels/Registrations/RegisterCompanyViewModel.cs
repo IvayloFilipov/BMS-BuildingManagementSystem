@@ -37,5 +37,8 @@
         [StringLength(CompanyPhoneMaxLength)]
         [Display(Name = "Телефонен номер")]
         public string Phone { get; set; }
+
+        [Required]
+        public string LoggedUserId { get; set; }
     }
 }
