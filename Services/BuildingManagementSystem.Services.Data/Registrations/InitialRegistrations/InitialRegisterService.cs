@@ -6,9 +6,7 @@
     using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
-    using BuildingManagementSystem.Data.Models;
     using BuildingManagementSystem.Web.ViewModels.Registrations;
-    using Microsoft.AspNetCore.Identity;
 
     public class InitialRegisterService : IInitialRegisterService
     {
@@ -41,16 +39,16 @@
 
         public async Task<string> SetRoleAsync(string userId, string roleId)
         {
+            var currUser = this.dbContext
+                .Users
+                .Where(x => x.Id == userId)
+                .FirstOrDefault();
 
-            var currUser = this.dbContext.Users.Where(x => x.Id == userId).FirstOrDefault();
             var currUserId = currUser.Id;
 
             currUser.IsRegisterConfirmed = true;
 
-            // await this.dbContext.AddAsync(user);
             await this.dbContext.SaveChangesAsync();
-
-            // dbContext.user
 
             return currUserId;
         }

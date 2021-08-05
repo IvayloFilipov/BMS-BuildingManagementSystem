@@ -1,24 +1,19 @@
 ﻿namespace BuildingManagementSystem.Web.Controllers
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Data.Models;
     using BuildingManagementSystem.Services.Data.Registrations.InitialRegistrations;
     using BuildingManagementSystem.Services.Data.Registrations.RegisterAddress;
     using BuildingManagementSystem.Services.Data.Registrations.RegisterCompanyOwner;
     using BuildingManagementSystem.Services.Data.Registrations.RegisterOwner;
-    using BuildingManagementSystem.Web.Infrastructure;
     using BuildingManagementSystem.Web.ViewModels.Registrations;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class RegistrationsController : BaseController
     {
-        private readonly ApplicationDbContext dbContext;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IOwnerService ownerService;
         private readonly ICompanyOwnerService companyOwnerService;
@@ -26,14 +21,12 @@
         private readonly IInitialRegisterService initialRegister;
 
         public RegistrationsController(
-            ApplicationDbContext dbContext,
             UserManager<ApplicationUser> userManager,
             IOwnerService ownerService,
             ICompanyOwnerService companyOwnerService,
             IAddressService addressService,
             IInitialRegisterService initialRegister)
         {
-            this.dbContext = dbContext;
             this.userManager = userManager;
             this.ownerService = ownerService;
             this.companyOwnerService = companyOwnerService;

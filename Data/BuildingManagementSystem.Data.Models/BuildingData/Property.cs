@@ -40,7 +40,7 @@
         [MaxLength(100)]
         public string CoOwner { get; set; }
 
-        public int? DogCount { get; set; }
+        public int DogCount { get; set; }
 
         // one-to-many with Tenant - one Tenant can hire many Properties
         public int TenantId { get; set; }

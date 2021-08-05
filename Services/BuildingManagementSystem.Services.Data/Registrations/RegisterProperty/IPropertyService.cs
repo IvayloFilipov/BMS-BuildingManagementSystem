@@ -1,9 +1,16 @@
 ﻿namespace BuildingManagementSystem.Services.Data.Registrations.RegisterProperty
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
+
+    using BuildingManagementSystem.Web.ViewModels.Properties;
 
     public interface IPropertyService
     {
         Task<int> AddPropertyAsync(int propertyType, int propertyFloor, int number, double propertyPart, string coowner, int dogCount);
+
+        public IEnumerable<PropertyTypeViewModel> GetPropertyTypes();
+
+        public IEnumerable<PropertyFloorViewModel> GetPropertyFloors();
     }
 }
