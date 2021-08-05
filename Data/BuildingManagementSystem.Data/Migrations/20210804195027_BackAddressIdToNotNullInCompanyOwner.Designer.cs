@@ -4,14 +4,16 @@ using BuildingManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BuildingManagementSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210804195027_BackAddressIdToNotNullInCompanyOwner")]
+    partial class BackAddressIdToNotNullInCompanyOwner
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -260,7 +262,7 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AddressId")
+                    b.Property<int>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("CompanyName")
@@ -311,8 +313,7 @@ namespace BuildingManagementSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId")
-                        .IsUnique()
-                        .HasFilter("[AddressId] IS NOT NULL");
+                        .IsUnique();
 
                     b.HasIndex("IsDeleted");
 
@@ -329,7 +330,7 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
@@ -374,7 +375,8 @@ namespace BuildingManagementSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[AddressId] IS NOT NULL");
 
                     b.HasIndex("IsDeleted");
 
@@ -1067,7 +1069,9 @@ namespace BuildingManagementSystem.Data.Migrations
                 {
                     b.HasOne("BuildingManagementSystem.Data.Models.BuildingData.Address", "Address")
                         .WithOne("CompanyOwner")
-                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.CompanyOwner", "AddressId");
+                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.CompanyOwner", "AddressId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("BuildingManagementSystem.Data.Models.ApplicationUser", "User")
                         .WithOne("CompanyOwner")
@@ -1084,9 +1088,7 @@ namespace BuildingManagementSystem.Data.Migrations
                 {
                     b.HasOne("BuildingManagementSystem.Data.Models.BuildingData.Address", "Address")
                         .WithOne("Owner")
-                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.Owner", "AddressId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.Owner", "AddressId");
 
                     b.HasOne("BuildingManagementSystem.Data.Models.ApplicationUser", "User")
                         .WithOne("Owner")

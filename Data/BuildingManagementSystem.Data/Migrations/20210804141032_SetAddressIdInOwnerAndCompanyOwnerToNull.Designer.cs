@@ -4,14 +4,16 @@ using BuildingManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BuildingManagementSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210804141032_SetAddressIdInOwnerAndCompanyOwnerToNull")]
+    partial class SetAddressIdInOwnerAndCompanyOwnerToNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -329,7 +331,7 @@ namespace BuildingManagementSystem.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
@@ -374,7 +376,8 @@ namespace BuildingManagementSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[AddressId] IS NOT NULL");
 
                     b.HasIndex("IsDeleted");
 
@@ -1084,9 +1087,7 @@ namespace BuildingManagementSystem.Data.Migrations
                 {
                     b.HasOne("BuildingManagementSystem.Data.Models.BuildingData.Address", "Address")
                         .WithOne("Owner")
-                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.Owner", "AddressId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("BuildingManagementSystem.Data.Models.BuildingData.Owner", "AddressId");
 
                     b.HasOne("BuildingManagementSystem.Data.Models.ApplicationUser", "User")
                         .WithOne("Owner")

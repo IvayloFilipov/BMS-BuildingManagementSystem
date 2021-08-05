@@ -32,6 +32,6 @@
         public string Phone { get; set; }
 
         [Required]
-        public string UserId { get; set; }
+        public string LoggedUserId { get; set; }
     }
 }

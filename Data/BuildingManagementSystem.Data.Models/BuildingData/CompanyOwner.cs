@@ -39,7 +39,7 @@
         public string Phone { get; set; }
 
         // one-to-one with Address - one/every CompanyOwner has only one permanent address
-        public int AddressId { get; set; }
+        public int? AddressId { get; set; }
 
         public virtual Address Address { get; set; }
 

@@ -64,13 +64,12 @@
             var user = await this.userManager.GetUserAsync(this.User);
             var userId = user.Id;
 
-            var userIdFromMethod = this.User.GetId();
-
-            await this.ownerService.AddOwnerAsync(person.FirstName, person.MiddleName, person.LastName, person.Email, person.Phone, person.UserId);
+            await this.ownerService.AddOwnerAsync(person.FirstName, person.MiddleName, person.LastName, person.Email, person.Phone, userId);
 
             return this.RedirectToAction(nameof(this.RegisterAddress));
         }
 
+        // [Authorize(Roles = "Owner")]
         public IActionResult RegisterCompany()
         {
             return this.View();
@@ -94,7 +93,7 @@
         {
             return this.View(new RegisterAddressViewModel
             {
-                AllCities = this.GetAllCities(),
+                AllCities = this.addressService.GetAllCities(),
             });
         }
 
@@ -104,7 +103,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                address.AllCities = this.GetAllCities();
+                address.AllCities = this.addressService.GetAllCities();
 
                 return this.View(address);
             }
@@ -112,20 +111,6 @@
             await this.addressService.AddAddressAsync(address.CityId, address.District, address.ZipCode, address.Street, address.StreetNumber, address.BlockNumber, address.EntranceNumber, address.Floor, address.AppartNumber);
 
             return this.RedirectToAction(nameof(PropertiesController.Index), "Properties");
-        }
-
-        public IEnumerable<AllCitiesDataModel> GetAllCities()
-        {
-            var cities = this.dbContext
-                .Cities
-                .Select(x => new AllCitiesDataModel
-                {
-                    Id = x.Id,
-                    City = x.Name,
-                })
-                .ToList();
-
-            return cities;
         }
 
         // [Authorize(Roles = "Admin")]
@@ -165,16 +150,17 @@
             selectedUser.IsRegisterConfirmed = true;
 
             await this.userManager.UpdateAsync(selectedUser);
+
             await this.userManager.AddToRoleAsync(selectedUser, roleId.ToString());
 
             return this.RedirectToAction(nameof(this.Index), "Registrations");
         }
 
-        // Set isDeleted to true
         // [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var user = await this.userManager.FindByIdAsync(id);
+
             if (user is null)
             {
                 return this.BadRequest();

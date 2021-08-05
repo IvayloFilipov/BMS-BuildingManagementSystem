@@ -1,10 +1,12 @@
 ﻿namespace BuildingManagementSystem.Services.Data.Registrations.RegisterAddress
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Data.Models.BuildingData;
+    using BuildingManagementSystem.Web.ViewModels.Registrations;
 
     public class AddressService : IAddressService
     {
@@ -36,6 +38,20 @@
             await this.dbContext.SaveChangesAsync();
 
             return address.Id;
+        }
+
+        public IEnumerable<AllCitiesDataModel> GetAllCities()
+        {
+            var cities = this.dbContext
+                .Cities
+                .Select(x => new AllCitiesDataModel
+                {
+                    Id = x.Id,
+                    City = x.Name,
+                })
+                .ToList();
+
+            return cities;
         }
     }
 }

@@ -1,5 +1,9 @@
 ﻿@model BuildingManagementSystem.Web.ViewModels.Registrations.RegisterPersonViewModel
 
+@{
+    var loggedUser = this.User.GetId();
+}
+
 <div class="row">
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
         <h2 class="text-center">Домова книга</h2>
@@ -42,6 +46,10 @@
                 <label asp-for="@Model.Phone"></label>
                 <input asp-for="@Model.Phone" class="form-control" />
                 <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="@Model.LoggedUserId" value="@loggedUser" class="form-control" />
+                <span asp-validation-for="@Model.LoggedUserId"></span>
             </div>
 
             <p class="text-primary mb-3">Моля направете своят избор!</p>
