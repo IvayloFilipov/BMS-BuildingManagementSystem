@@ -12,7 +12,7 @@
         {
             var cityId = dbContext.Cities.Where(c => c.Name == "София").Select(c => c.Id).FirstOrDefault();
 
-            var buildingId = dbContext.Building.Select(b => b.Id).FirstOrDefault();
+            var buildingId = dbContext.Building.Where(c => c.Name == "Моята Кооперация").Select(b => b.Id).FirstOrDefault();
 
             var buildingAddress = new Address()
             {
@@ -24,7 +24,7 @@
                 BuildingId = buildingId,
             };
 
-            if (dbContext.Building.Any(x => x.Id == buildingId))
+            if (dbContext.Addresses.Any())
             {
                 return;
             }
