@@ -32,8 +32,8 @@
 
         public string AppartNumber { get; set; }
 
-        // one-to-one with Building
-        public int? BuildingId { get; set; }
+        // one-to-many with Building
+        public int BuildingId { get; set; }
 
         public virtual Building Building { get; set; }
 

@@ -11,6 +11,7 @@
         {
             this.Properties = new HashSet<Property>();
             this.Accounts = new HashSet<Account>();
+            this.Addresses = new HashSet<Address>();
         }
 
         [Key]
@@ -19,8 +20,8 @@
         [MaxLength(35)]
         public string Name { get; set; }
 
-        // one-to-one with Address - one building has only one address
-        public virtual Address Address { get; set; }
+        // one-to-many with Address - one building has many addresses
+        public virtual ICollection<Address> Addresses { get; set; }
 
         // many-to-one with Account
         public virtual ICollection<Account> Accounts { get; set; }
