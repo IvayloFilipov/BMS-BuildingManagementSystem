@@ -37,6 +37,6 @@
 
         // Това е Id-то на собственика, който е регистрирал наемателя в приложението.
         [Required]
-        public string OwnerId { get; set; }
+        public string LoggedUserId { get; set; }
     }
 }

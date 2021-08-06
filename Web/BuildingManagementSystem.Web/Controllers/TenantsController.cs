@@ -5,7 +5,6 @@
     using BuildingManagementSystem.Data.Models;
 
     using BuildingManagementSystem.Services.Data.Registrations.Tenants;
-    using BuildingManagementSystem.Web.Infrastructure;
     using BuildingManagementSystem.Web.ViewModels.Tenants;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -18,13 +17,13 @@
 
         public TenantsController(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, ITenantService tenantService)
         {
-            this.userManager = userManager; // TenantsController needed UserManager.
+            this.userManager = userManager;
             this.roleManager = roleManager;
             this.tenantService = tenantService;
         }
 
         // [Authorize(Roles = "Owner, Admin")]
-        public IActionResult RegisterTenant()
+        public IActionResult RegisterTenantAsync()
         {
             return this.View();
         }
@@ -40,39 +39,21 @@
                 return this.View(tenant);
             }
 
-            var ownerId = this.User.GetId();
+            // var loggedUserId = this.User.GetId();
+            var loggedUser = await this.userManager.GetUserAsync(this.User);
+            var loggedUserId = loggedUser.Id;
 
-            await this.tenantService.AddTenantAsync(tenant.FirstName, tenant.MiddleName, tenant.LastName, tenant.Email, tenant.Phone, ownerId);
+            await this.tenantService.AddTenantAsync(tenant.FirstName, tenant.MiddleName, tenant.LastName, tenant.Email, tenant.Phone, loggedUserId);
 
             return this.RedirectToAction(nameof(HomeController.Info), "Home");
         }
 
-        // [Authorize(Roles = "Owner, Admin")]
+        // [Authorize(Roles = "Admin")]
         public IActionResult GetAllTenants()
         {
             var allTenants = this.tenantService.GetAll();
 
             return this.View(allTenants);
-        }
-
-        // [Authorize(Roles = "Owner, Admin")]
-        public IActionResult DeleteTenant()
-        {
-            return this.View();
-        }
-
-        // [Authorize(Roles = "Owner, Admin")]
-        [HttpPost]
-        public IActionResult DeleteTenant(DeleteTenantViewModel tenant)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(tenant);
-            }
-
-            // this.tenantService.RemoveTenant(tenant., tenant.LastName, tenant.IsDeleted);
-
-            return this.RedirectToAction(nameof(HomeController.Info), "Home");
         }
     }
 }

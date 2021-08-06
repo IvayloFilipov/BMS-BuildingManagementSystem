@@ -7,10 +7,12 @@
 
     public interface ITenantService
     {
-        Task<int> AddTenantAsync(string firstName, string middleName, string lastName, string email, string phone, string ownerId);
+        Task<int> AddTenantAsync(string firstName, string middleName, string lastName, string email, string phone, string userId);
 
-        IEnumerable<AllTenantsDataModel> GetAll();
+        public IEnumerable<AllTenantsDataModel> GetAll();
 
         void RemoveTenant(string userId);
+
+        bool ConfirmTenantRegitration(int tenantId);
     }
 }

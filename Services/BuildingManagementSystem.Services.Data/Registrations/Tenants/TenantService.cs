@@ -19,8 +19,14 @@
 
         public async Task<int> AddTenantAsync(string firstName, string middleName, string lastName, string email, string phone, string userId)
         {
-            var ownerId = this.dbContext
+            var loggedOwnerId = this.dbContext
                 .Owners
+                .Where(x => x.UserId == userId)
+                .Select(x => x.Id)
+                .FirstOrDefault();
+
+            var loggedCompanyOwnerId = this.dbContext
+                .CompanyOwners
                 .Where(x => x.UserId == userId)
                 .Select(x => x.Id)
                 .FirstOrDefault();
@@ -32,7 +38,9 @@
                 LastName = lastName,
                 Email = email,
                 Phone = phone,
-                OwnerId = ownerId,
+                OwnerId = loggedOwnerId != 0 ? loggedOwnerId : null,
+                CompanyOwnerId = loggedCompanyOwnerId != 0 ? loggedCompanyOwnerId : null,
+                UserId = userId,
             };
 
             await this.dbContext.Tenants.AddAsync(currTenant);
@@ -78,7 +86,7 @@
             this.dbContext.SaveChanges();
         }
 
-        public void SetUserToRoleTenant(string tenantId)
+        public bool ConfirmTenantRegitration(int tenantId)
         {
             throw new System.NotImplementedException();
         }
