@@ -5,19 +5,18 @@
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Data.Models;
     using BuildingManagementSystem.Services.Data.Registrations.RegisterProperty;
+    using BuildingManagementSystem.Web.Infrastructure;
     using BuildingManagementSystem.Web.ViewModels.Properties;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class PropertiesController : BaseController
     {
-        private readonly ApplicationDbContext dbContext;
         private readonly IPropertyService propertyService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public PropertiesController(ApplicationDbContext dbContext, IPropertyService propertyService, UserManager<ApplicationUser> userManager)
+        public PropertiesController(IPropertyService propertyService, UserManager<ApplicationUser> userManager)
         {
-            this.dbContext = dbContext;
             this.propertyService = propertyService;
             this.userManager = userManager;
         }
@@ -44,7 +43,11 @@
                 return this.View(property);
             }
 
-            await this.propertyService.AddPropertyAsync(property.PropertyTypeId, property.PtropertyFloorId, property.AppartNumber, property.PropertyPart, property.CoOwner, property.DogCount);
+            // var userId = this.User.GetId();
+            var user = await this.userManager.GetUserAsync(this.User);
+            var userId = user.Id;
+
+            await this.propertyService.AddPropertyAsync(property.PropertyTypeId, property.PtropertyFloorId, property.AppartNumber, property.PropertyPart, property.CoOwner, property.DogCount, userId);
 
             return this.RedirectToAction(nameof(ModulesController.Index), "Modules");
         }

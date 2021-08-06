@@ -77,6 +77,7 @@
                 return this.View(company);
             }
 
+            // var userId = this.User.GetId();
             var user = await this.userManager.GetUserAsync(this.User);
             var userId = user.Id;
 
@@ -104,7 +105,11 @@
                 return this.View(address);
             }
 
-            await this.addressService.AddAddressAsync(address.CityId, address.District, address.Street, address.StreetNumber, address.BlockNumber, address.EntranceNumber, address.Floor, address.AppartNumber);
+            // var userId = this.User.GetId();
+            var user = await this.userManager.GetUserAsync(this.User);
+            var userId = user.Id;
+
+            await this.addressService.AddAddressAsync(address.CityId, address.District, address.Street, address.StreetNumber, address.BlockNumber, address.EntranceNumber, address.Floor, address.AppartNumber, userId);
 
             return this.RedirectToAction(nameof(PropertiesController.Index), "Properties");
         }

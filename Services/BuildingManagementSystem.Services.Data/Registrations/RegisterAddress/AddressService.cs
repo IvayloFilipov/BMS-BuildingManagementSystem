@@ -17,7 +17,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<int> AddAddressAsync(int cityId, string district, string street, string streetNumber, string blockNumber, string entranceNumber, string floor, string appartNumber)
+        public async Task<int> AddAddressAsync(int cityId, string district, string street, string streetNumber, string blockNumber, string entranceNumber, string floor, string appartNumber, string userId)
         {
             var selectedCityID = this.dbContext
                 .Cities
@@ -41,6 +41,7 @@
                 EntranceNumber = entranceNumber,
                 Floor = floor,
                 AppartNumber = appartNumber,
+                UserId = userId,
             };
 
             await this.dbContext.Addresses.AddAsync(address);

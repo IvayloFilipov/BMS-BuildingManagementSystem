@@ -36,5 +36,8 @@
         [StringLength(100, ErrorMessage = "Въведените данни не могат да бъдат по-малко от {1} и повече от {2} символа.", MinimumLength = 8)]
         [Display(Name = "Име и фамилия на съсобственика (отбележете само ако сте в съсобственост)")]
         public string CoOwner { get; set; }
+
+        [Required]
+        public string LoggedUserId { get; set; }
     }
 }

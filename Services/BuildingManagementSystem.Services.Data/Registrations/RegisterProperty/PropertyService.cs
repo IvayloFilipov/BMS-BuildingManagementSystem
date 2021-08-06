@@ -17,7 +17,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<int> AddPropertyAsync(int propertyTypeId, int propertyFloorId, int number, double propertyPart, string coowner, int dogCount)
+        public async Task<int> AddPropertyAsync(int propertyTypeId, int propertyFloorId, int number, double propertyPart, string coowner, int dogCount, string userId)
         {
             var selectedPropertyTypeId = this.dbContext
                 .PaymentTypes
@@ -39,6 +39,7 @@
                 PropertyPart = propertyPart,
                 CoOwner = coowner,
                 DogCount = dogCount,
+                UserId = userId,
             };
 
             await this.dbContext.Properties.AddAsync(property);

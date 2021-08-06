@@ -7,7 +7,7 @@
 
     public interface IPropertyService
     {
-        Task<int> AddPropertyAsync(int propertyType, int propertyFloor, int number, double propertyPart, string coowner, int dogCount);
+        Task<int> AddPropertyAsync(int propertyType, int propertyFloor, int number, double propertyPart, string coowner, int dogCount, string userId);
 
         public IEnumerable<PropertyTypeViewModel> GetPropertyTypes();
 

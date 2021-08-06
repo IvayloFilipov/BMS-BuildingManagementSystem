@@ -42,5 +42,8 @@
         [StringLength(ApprtmentNumberMaxLength, MinimumLength = 1)]
         [Display(Name = "Номер на апартамента")]
         public string AppartNumber { get; set; }
+
+        [Required]
+        public string LoggedUserId { get; set; }
     }
 }
