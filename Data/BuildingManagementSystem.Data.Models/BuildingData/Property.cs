@@ -19,7 +19,7 @@
         public int Id { get; set; }
 
         // one-to-many with Building -
-        public int? BuildingId { get; set; }
+        public int BuildingId { get; set; }
 
         public virtual Building Building { get; set; }
 
@@ -35,7 +35,7 @@
 
         public int Number { get; set; }
 
-        public double PropertyPart { get; set; }
+        public string PropertyPart { get; set; }
 
         [MaxLength(100)]
         public string CoOwner { get; set; }

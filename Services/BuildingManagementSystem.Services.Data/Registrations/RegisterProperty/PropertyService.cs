@@ -17,8 +17,13 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<int> AddPropertyAsync(int propertyTypeId, int propertyFloorId, int number, double propertyPart, string coowner, int dogCount, string userId)
+        public async Task<int> AddPropertyAsync(int propertyTypeId, int propertyFloorId, int number, string propertyPart, string coowner, int dogCount, string userId)
         {
+            var selectedBuildingId = this.dbContext
+                .Building
+                .Select(x => x.Id)
+                .FirstOrDefault();
+
             var selectedPropertyTypeId = this.dbContext
                 .PaymentTypes
                 .Where(x => x.Id == propertyTypeId)
@@ -33,6 +38,7 @@
 
             var property = new Property()
             {
+                BuildingId = selectedBuildingId,
                 PropertyTypeId = selectedPropertyTypeId,
                 PropertyFloorId = selectedPropertyFloorId,
                 Number = number,

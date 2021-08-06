@@ -14,6 +14,8 @@
 
             var buildingId = dbContext.Building.Where(c => c.Name == "Моята Кооперация").Select(b => b.Id).FirstOrDefault();
 
+            var defaultUserId = "2a0d500d-2cb2-4578-9fcb-603d41285f5c";
+
             var buildingAddress = new Address()
             {
                 CityId = cityId,
@@ -21,6 +23,7 @@
                 Street = "Княз Борис I",
                 StreetNumber = "196",
                 BuildingId = buildingId,
+                UserId = defaultUserId,
             };
 
             if (dbContext.Addresses.Any())

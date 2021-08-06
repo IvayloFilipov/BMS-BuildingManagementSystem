@@ -31,6 +31,8 @@
                           {
                               new BuildingAccountsSeeder(),
                               new BuildingNameSeeder(),
+                              new RolesSeeder(),
+                              new UsersSeeder(),
                               new CitiySeeder(),
                               new BuildingAddressSeeder(),
                               new ExpenseTypeSeeder(),
@@ -39,8 +41,6 @@
                               new PropertyFloorSeeder(),
                               new PropertyStatusSeeder(),
                               new PropertyTypeSeeder(),
-                              new RolesSeeder(),
-                              new UsersSeeder(),
                           };
 
             foreach (var seeder in seeders)
