@@ -43,11 +43,16 @@
         public int DogCount { get; set; }
 
         // one-to-many with Tenant - one Tenant can hire many Properties
-        public int TenantId { get; set; }
+        public int? TenantId { get; set; }
 
         public virtual Tenant Tenant { get; set; }
 
-        // many-to-many with Owner - make class PropertyOwner
+        [Required]
+        public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
+
+        // many-to-many with Owner
         public virtual ICollection<PropertyOwner> Owners { get; set; }
 
         // many-to-one with PropertyDebt (in Debts folder) - one Property can have many monthly debts (if not pay on time)
