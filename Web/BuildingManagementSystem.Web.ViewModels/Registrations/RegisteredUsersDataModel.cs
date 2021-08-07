@@ -1,7 +1,5 @@
 ﻿namespace BuildingManagementSystem.Web.ViewModels.Registrations
 {
-    using BuildingManagementSystem.Data.Models.Enums;
-
     public class RegisteredUsersDataModel
     {
         public string Id { get; set; }

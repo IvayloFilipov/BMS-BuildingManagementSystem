@@ -112,7 +112,8 @@
 
             await this.addressService.AddAddressAsync(address.CityId, address.District, address.Street, address.StreetNumber, address.BlockNumber, address.EntranceNumber, address.Floor, address.AppartNumber, userId);
 
-            return this.RedirectToAction(nameof(PropertiesController.Index), "Properties");
+            // return this.RedirectToAction(nameof(PropertiesController.Index), "Properties");
+            return this.RedirectToAction(nameof(PropertiesController.ShowAllProperties), "Properties");
         }
 
         // [Authorize(Roles = "Admin")]

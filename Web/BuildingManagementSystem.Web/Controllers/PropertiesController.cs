@@ -49,5 +49,51 @@
 
             return this.RedirectToAction(nameof(ModulesController.Index), "Home");
         }
+
+        // [Authorize(Roles = "Admin")]
+        public IActionResult ShowAllProperties()
+        {
+            var allProperties = this.propertyService.AllProperties();
+
+            return this.View(allProperties);
+        }
+
+        // [Authorize(Roles = "Admin")]
+        public IActionResult ConfirmPropertyRegitration(ShowAllPropertiesViewModel property)
+        {
+            var propertyId = property.Id;
+
+            if (propertyId == 0)
+            {
+                return this.BadRequest();
+            }
+
+            this.propertyService.ConfirmSelectedPropertyRegitration(propertyId);
+
+            return this.RedirectToAction(nameof(PropertiesController.ShowSelectedProperties), "Properties");
+        }
+
+        // [Authorize(Roles = "Admin")]
+        public IActionResult ShowSelectedProperties()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ShowSelectedProperties(FinalRegistrationPropertyViewModel data)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(data);
+            }
+
+            // var userId = this.User.GetId();
+            var user = await this.userManager.GetUserAsync(this.User);
+            var userId = user.Id;
+
+            var lastData = await this.propertyService.AddPropertyLastDataAsync(data.CoOwner, data.DogCount, userId);
+
+            return this.RedirectToAction(nameof(HomeController.Info), "Home");
+        }
     }
 }

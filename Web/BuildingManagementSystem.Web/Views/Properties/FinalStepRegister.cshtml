@@ -1,0 +1,78 @@
+﻿@model BuildingManagementSystem.Web.ViewModels.Properties.IndexViewModel
+
+@{
+    var loggedUser = this.User.GetId();
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <h2 class="text-center">Домова книга</h2>
+        <h3 class="text-center text-info">Стъпка 4 - Попълване на данните за притежавания от Вас имот</h3>
+        <hr />
+        <hr />
+
+        <p>Моля попълнете полета от формата, валидни за <b class="text-danger">притежавания от Вас имот</b>. След като го направите натиснете бутона <b>'ЗАПИШИ'</b> за да завършите попълването на електронната Домова книга.</p>
+        @*<p class="mb-4"><b>Бележка:</b> Ако в предишната Стъпка - <b class="text-info">"Попълване на данните за постоянният Ви адрес"</b> сте пропуснали нещо или сте въвели некоректни данни може да се върнете назад, като натиснете бутона <b>'НАЗАД'</b> и да направите корекция.</p>*@
+    </div>
+
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <form method="post" asp-action="Index" asp-controller="Properties">
+            <div class="form-group mt-4">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.PropertyTypeId"></label>
+                <select asp-for="@Model.PropertyTypeId" class="form-control">
+                    @foreach (var type in Model.Types)
+                    {
+                        <option value="@type.Id"> @type.TypeName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.PtropertyFloorId"></label>
+                <select asp-for="@Model.PtropertyFloorId" class="form-control">
+                    @foreach (var floor in Model.Floors)
+                    {
+                        <option value="@floor.Id"> @floor.FloorName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.AppartNumber"></label>
+                <input asp-for="@Model.AppartNumber" class="form-control" />
+                <span asp-validation-for="@Model.AppartNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.PropertyPart"></label>
+                <input asp-for="@Model.PropertyPart" class="form-control" />
+                <span asp-validation-for="PropertyPart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.DogCount"></label>
+                <input asp-for="@Model.DogCount" class="form-control" />
+                <span asp-validation-for="@Model.DogCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-user-plus"></i>
+                <label asp-for="@Model.CoOwner"></label>
+                <input asp-for="@Model.CoOwner" class="form-control" />
+                <span asp-validation-for="@Model.CoOwner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="@Model.LoggedUserId" value="@loggedUser" class="form-control" />
+                <span asp-validation-for="@Model.LoggedUserId"></span>
+            </div>
+
+            <p class="text-primary mb-3">Моля запишете данните!</p>
+
+            @*<input type="button" class="btn btn-primary text-uppercase" value="Назад" onclick="window.location= '@Url.Action( "RegisterAddress", "Registrations")'" />*@
+
+            @*<input type="submit" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "Info", "Home")'" />*@
+            <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" />
+        </form>
+        <br />
+    </div>
+</div>

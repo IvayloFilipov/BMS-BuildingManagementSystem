@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using BuildingManagementSystem.Web.ViewModels.Properties;
     using BuildingManagementSystem.Web.ViewModels.Tenants.ManagerModules;
 
     public interface ITenantService

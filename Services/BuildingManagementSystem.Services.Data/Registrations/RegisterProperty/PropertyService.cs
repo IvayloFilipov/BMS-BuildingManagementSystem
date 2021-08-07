@@ -82,5 +82,57 @@
 
             return types;
         }
+
+        public IEnumerable<ShowAllPropertiesViewModel> AllProperties()
+        {
+            var property = this.dbContext
+                .Properties
+                .Where(x => x.IsSold == false)
+                .Select(x => new ShowAllPropertiesViewModel
+                {
+                    Id = x.Id,
+                    BuildingName = x.Building.Name,
+                    PropertyType = x.PropertyType.Type,
+                    PropertyFloor = x.PropertyFloor.Floor,
+                    PropertyNumber = x.Number.ToString(),
+                    PropertyPart = x.PropertyPart,
+                })
+                .ToList();
+
+            return property;
+        }
+
+        public void ConfirmSelectedPropertyRegitration(int propertyId)
+        {
+            var currProperty = this.dbContext
+                .Properties
+                .Where(x => x.Id == propertyId && x.IsSold == false)
+                .FirstOrDefault();
+
+            if (currProperty == null)
+            {
+                return;
+            }
+
+            currProperty.IsSold = true;
+
+            this.dbContext.SaveChanges();
+        }
+
+        public async Task<int> AddPropertyLastDataAsync(string coowner, int dogCount, string userId)
+        {
+            var property = new Property()
+            {
+                CoOwner = coowner,
+                DogCount = dogCount,
+                UserId = userId,
+            };
+
+            await this.dbContext.Properties.AddAsync(property);
+
+            await this.dbContext.SaveChangesAsync();
+
+            return property.Id;
+        }
     }
 }
