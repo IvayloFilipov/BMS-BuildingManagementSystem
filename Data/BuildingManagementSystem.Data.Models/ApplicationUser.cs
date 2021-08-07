@@ -17,6 +17,7 @@ namespace BuildingManagementSystem.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.Tenants = new HashSet<Tenant>();
         }
 
         // Audit info
@@ -43,7 +44,7 @@ namespace BuildingManagementSystem.Data.Models
 
         public virtual CompanyOwner CompanyOwner { get; set; }
 
-        public virtual Tenant Tenant { get; set; }
+        public virtual ICollection<Tenant> Tenants { get; set; }
 
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 

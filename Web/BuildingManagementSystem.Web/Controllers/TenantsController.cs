@@ -6,6 +6,7 @@
 
     using BuildingManagementSystem.Services.Data.Registrations.Tenants;
     using BuildingManagementSystem.Web.ViewModels.Tenants;
+    using BuildingManagementSystem.Web.ViewModels.Tenants.ManagerModules;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -32,8 +33,6 @@
         [HttpPost]
         public async Task<IActionResult> RegisterTenantAsync(RegisterTenantViewModel tenant)
         {
-            // Must set in -> RegisterTenantViewModel : MapTo<Tenant> <-
-            // var currTenant = AutoMapperConfig.MapperInstance.Map<Tenant>(tenant);
             if (!this.ModelState.IsValid)
             {
                 return this.View(tenant);
@@ -54,6 +53,36 @@
             var allTenants = this.tenantService.GetAll();
 
             return this.View(allTenants);
+        }
+
+        // [Authorize(Roles = "Admin")]
+        public IActionResult ConfirmRegitration(AllTenantsDataModel tenant)
+        {
+            var tenantId = tenant.Id;
+
+            if (tenantId == 0)
+            {
+                return this.BadRequest();
+            }
+
+            this.tenantService.ConfirmTenantRegitration(tenantId);
+
+            return this.RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
+        // [Authorize(Roles = "Admin")]
+        public IActionResult DeleteTenant(AllTenantsDataModel tenant)
+        {
+            var tenantId = tenant.Id;
+
+            if (tenantId == 0)
+            {
+                return this.BadRequest();
+            }
+
+            this.tenantService.RemoveTenant(tenantId);
+
+            return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }

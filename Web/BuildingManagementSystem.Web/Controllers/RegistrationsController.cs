@@ -8,6 +8,7 @@
     using BuildingManagementSystem.Services.Data.Registrations.RegisterAddress;
     using BuildingManagementSystem.Services.Data.Registrations.RegisterCompanyOwner;
     using BuildingManagementSystem.Services.Data.Registrations.RegisterOwner;
+    using BuildingManagementSystem.Web.Infrastructure;
     using BuildingManagementSystem.Web.ViewModels.Registrations;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -157,19 +158,30 @@
             return this.RedirectToAction(nameof(this.Index), "Registrations");
         }
 
-        // [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteUser(string id)
-        {
-            var user = await this.userManager.FindByIdAsync(id);
+        //// [Authorize(Roles = "Admin")]
+        // public async Task<IActionResult> DeleteUser(string id)
+        // {
+        //     var user = await this.userManager.FindByIdAsync(id);
+        //     if (user is null)
+        //     {
+        //         return this.BadRequest();
+        //     }
+        //     user.IsDeleted = true;
+        //     await this.userManager.UpdateAsync(user);
+        //     return this.RedirectToAction(nameof(this.Index), "Registrations");
+        // }
 
-            if (user is null)
+        // [Authorize(Roles = "Admin")]
+        public IActionResult DeleteUser()
+        {
+            var userId = this.User.GetId();
+
+            if (userId is null)
             {
-                return this.BadRequest();
+                return this.BadRequest(userId);
             }
 
-            user.IsDeleted = true;
-
-            await this.userManager.UpdateAsync(user);
+            this.initialRegister.RemoveUser(userId);
 
             return this.RedirectToAction(nameof(this.Index), "Registrations");
         }

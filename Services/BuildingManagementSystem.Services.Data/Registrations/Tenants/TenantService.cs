@@ -43,6 +43,7 @@
                 UserId = userId,
             };
 
+            // this.dbContext.Entry(currTenant).Property(x => x.UserId).IsModified = true;
             await this.dbContext.Tenants.AddAsync(currTenant);
 
             await this.dbContext.SaveChangesAsync();
@@ -69,11 +70,28 @@
             return tenants;
         }
 
-        public void RemoveTenant(string userId)
+        public void ConfirmTenantRegitration(int tenantId)
         {
             var currTenant = this.dbContext
                 .Tenants
-                .Where(x => x.UserId == userId && x.IsDeleted == false)
+                .Where(x => x.Id == tenantId && x.IsConfirmed == false)
+                .FirstOrDefault();
+
+            if (currTenant == null)
+            {
+                return;
+            }
+
+            currTenant.IsConfirmed = true;
+
+            this.dbContext.SaveChanges();
+        }
+
+        public void RemoveTenant(int tenantId)
+        {
+            var currTenant = this.dbContext
+                .Tenants
+                .Where(x => x.Id == tenantId && x.IsDeleted == false)
                 .FirstOrDefault();
 
             if (currTenant == null)
@@ -84,11 +102,6 @@
             currTenant.IsDeleted = true;
 
             this.dbContext.SaveChanges();
-        }
-
-        public bool ConfirmTenantRegitration(int tenantId)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

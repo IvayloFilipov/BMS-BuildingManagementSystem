@@ -53,9 +53,13 @@
             return currUserId;
         }
 
-        public void DeleteUser(string userId)
+        // was DeleteUser
+        public void RemoveUser(string userId)
         {
-            var user = this.dbContext.Users.Where(x => x.Id == userId).FirstOrDefault();
+            var user = this.dbContext
+                .Users
+                .Where(x => x.Id == userId)
+                .FirstOrDefault();
 
             if (user == null)
             {

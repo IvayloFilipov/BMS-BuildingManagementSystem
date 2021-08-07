@@ -30,29 +30,25 @@
         <tbody>
             @foreach (var tenants in Model)
             {
-            <tr class="table-hover">
-                <th scope="row">@(count++)</th>
-                <td>@tenants.FirstName</td>
-                <td>@tenants.MiddleName</td>
-                <td>@tenants.LastName</td>
-                <td>@tenants.Email</td>
-                <td>@tenants.Phone</td>
-                <td>
-                    <div class="align-content-lg-around float-md-none float-md-none">
-                        <a asp-controller="Tenants" asp-action="GetTenants" asp-route-id="@tenants.Id" class="btn btn-outline-primary btn-sm ">Потвърди</a>
-                        @*<input type="submit" class="btn btn-outline-primary text-uppercase" value="Регистрирай" onclick="window.location= '@Url.Action( "Info", "Home")'" />*@
-                    </div>
-                </td>
-                <td>
-                    <div class="align-content-lg-around float-md-none float-md-none">
-                        <a asp-controller="Tenants" asp-action="DeleteTenant" asp-route-id="@tenants.Id" class="btn btn-outline-danger btn-sm">Изтрий</a>
-                    </div>
-
-                    @*<input type="submit" class="btn btn-outline-primary text-uppercase" value="Регистрирай" onclick="window.location= '@Url.Action( "Info", "Home")'" />*@
-
-                    @*<input type="submit" class="btn btn-outline-danger text-uppercase" value="Изтрий" onclick="window.location= '@Url.Action( "Info", "Home")'" />*@
-                </td>
-            </tr>
+                <tr class="table-hover">
+                    <th scope="row">@(count++)</th>
+                    <td>@tenants.FirstName</td>
+                    <td>@tenants.MiddleName</td>
+                    <td>@tenants.LastName</td>
+                    <td>@tenants.Email</td>
+                    <td>@tenants.Phone</td>
+                    <td>
+                        <div class="align-content-lg-around float-md-none float-md-none">
+                            <a asp-controller="Tenants" asp-action="ConfirmRegitration" asp-route-id="@tenants.Id" class="btn btn-outline-primary btn-sm ">Потвърди</a>
+                            @*<input type="submit" class="btn btn-outline-primary text-uppercase" value="Регистрирай" onclick="window.location= '@Url.Action( "Info", "Home")'" />*@
+                        </div>
+                    </td>
+                    <td>
+                        <div class="align-content-lg-around float-md-none float-md-none">
+                            <a asp-controller="Tenants" asp-action="DeleteTenant" asp-route-id="@tenants.Id" class="btn btn-outline-danger btn-sm">Изтрий</a>
+                        </div>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

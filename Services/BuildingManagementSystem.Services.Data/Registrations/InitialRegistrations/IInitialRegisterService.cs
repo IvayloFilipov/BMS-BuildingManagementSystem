@@ -11,6 +11,6 @@
 
         Task<string> SetRoleAsync(string userId, string roleId);
 
-        void DeleteUser(string userId);
+        void RemoveUser(string userId);
     }
 }

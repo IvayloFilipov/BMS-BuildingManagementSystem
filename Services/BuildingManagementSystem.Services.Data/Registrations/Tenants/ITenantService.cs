@@ -11,8 +11,8 @@
 
         public IEnumerable<AllTenantsDataModel> GetAll();
 
-        void RemoveTenant(string userId);
+        void ConfirmTenantRegitration(int tenantId);
 
-        bool ConfirmTenantRegitration(int tenantId);
+        void RemoveTenant(int tenantId);
     }
 }

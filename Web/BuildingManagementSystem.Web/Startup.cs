@@ -80,12 +80,12 @@
             services.AddTransient<IFeeService, FeeService>();
             services.AddTransient<IGenerateDebtService, GenerateDebtService>();
             services.AddTransient<IExpenseService, ExpenseService>();
+            services.AddTransient<IInitialRegisterService, InitialRegisterService>();
+            services.AddTransient<IAddressService, AddressService>();
             services.AddTransient<ICompanyOwnerService, CompanyOwnerService>();
             services.AddTransient<IOwnerService, OwnerService>();
             services.AddTransient<IPropertyService, PropertyService>();
             services.AddTransient<ITenantService, TenantService>();
-            services.AddTransient<IAddressService, AddressService>();
-            services.AddTransient<IInitialRegisterService, InitialRegisterService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

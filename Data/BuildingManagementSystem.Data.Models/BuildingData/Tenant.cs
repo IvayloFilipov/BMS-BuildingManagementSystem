@@ -4,7 +4,6 @@
     using System.ComponentModel.DataAnnotations;
 
     using BuildingManagementSystem.Data.Common.Models;
-    using Microsoft.AspNetCore.Identity;
 
     using static BuildingManagementSystem.Common.GlobalConstants;
 
@@ -38,10 +37,9 @@
         public virtual ICollection<Property> TenantProperties { get; set; }
 
         // Това е Id-то регистрирания собственик като string, на който си наемател и те е регистрирал в приложението след като се е логнал.
-        [Required]
         public string UserId { get; set; }
 
-        public virtual ApplicationUser User { get; set; }
+        public ApplicationUser User { get; set; }
 
         // Това е Id-то на собственика като int, на който си наемател и те е регистрирал в приложението.
         public int? OwnerId { get; set; }
