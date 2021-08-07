@@ -35,6 +35,8 @@
 
         public int Number { get; set; }
 
+        [Required]
+        [MaxLength(10)]
         public string PropertyPart { get; set; }
 
         [MaxLength(100)]
@@ -47,7 +49,6 @@
 
         public virtual Tenant Tenant { get; set; }
 
-        [Required]
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }

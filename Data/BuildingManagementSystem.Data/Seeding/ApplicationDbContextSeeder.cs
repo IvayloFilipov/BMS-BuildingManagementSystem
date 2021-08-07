@@ -41,6 +41,7 @@
                               new PropertyFloorSeeder(),
                               new PropertyStatusSeeder(),
                               new PropertyTypeSeeder(),
+                              new PropertiesSeeder(),
                           };
 
             foreach (var seeder in seeders)
