@@ -61,5 +61,7 @@
 
         // many-to-one with Payment
         public virtual ICollection<Payment> PropertyPayments { get; set; }
+
+        public bool IsSold { get; set; }
     }
 }
