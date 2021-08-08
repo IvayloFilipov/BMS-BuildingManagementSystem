@@ -24,19 +24,19 @@
         //         .Building
         //         .Select(x => x.Id)
         //         .FirstOrDefault();
-           
+
         //     var selectedPropertyTypeId = this.dbContext
         //         .PaymentTypes
         //         .Where(x => x.Id == propertyTypeId)
         //         .Select(x => x.Id)
         //         .FirstOrDefault();
-           
+
         //     var selectedPropertyFloorId = this.dbContext
         //         .PropertyFloors
         //         .Where(x => x.Id == propertyFloorId)
         //         .Select(x => x.Id)
         //         .FirstOrDefault();
-           
+
         //     var property = new Property()
         //     {
         //         BuildingId = selectedBuildingId,
@@ -48,11 +48,11 @@
         //         DogCount = dogCount,
         //         UserId = userId,
         //     };
-           
+
         //     await this.dbContext.Properties.AddAsync(property);
-           
+
         //     await this.dbContext.SaveChangesAsync();
-           
+
         //     return property.Id;
         // }
 
@@ -66,10 +66,10 @@
         //             FloorName = x.Floor,
         //         })
         //         .ToList();
-           
+
         //     return floors;
         // }
-           
+
         // public IEnumerable<PropertyTypeViewModel> GetPropertyTypes()
         // {
         //     var types = this.dbContext
@@ -80,7 +80,7 @@
         //                TypeName = x.Type,
         //            })
         //            .ToList();
-           
+
         //     return types;
         // }
 
@@ -103,7 +103,7 @@
             return property;
         }
 
-        async Task<ShowAllPropertiesViewModel> SelectedProperty(int propertyId)
+        public async Task<ShowAllPropertiesViewModel> SelectedProperty(int propertyId)
         {
             var property = await this.dbContext
                 .Properties
@@ -115,8 +115,9 @@
                     PropertyFloor = x.PropertyFloor.Floor,
                     PropertyNumber = x.Number.ToString(),
                     PropertyPart = x.PropertyPart,
+                    IsSold = x.IsSold,
                 })
-                .FirstOrDefaultAsync(x => x.IsSold == true && x.Id == propertyId);
+                .FirstOrDefaultAsync(x => x.IsSold && x.Id == propertyId);
 
             return property;
         }
@@ -138,16 +139,17 @@
             this.dbContext.SaveChanges();
         }
 
-        public async Task<int> AddPropertyLastDataAsync(string coowner, int dogCount, string userId)
+        public async Task<int> AddPropertyLastDataAsync(string coOwner, int dogCount, string userId, int propertyId)
         {
-            var property = new Property()
+            var property = await this.dbContext.Properties.FindAsync(propertyId);
+            if (property is null)
             {
-                CoOwner = coowner,
-                DogCount = dogCount,
-                UserId = userId,
-            };
+                throw new System.ArgumentException($"Invalid property ID={propertyId}!", nameof(propertyId));
+            }
 
-            await this.dbContext.Properties.AddAsync(property);
+            property.CoOwner = coOwner;
+            property.DogCount = dogCount;
+            property.UserId = userId;
 
             await this.dbContext.SaveChangesAsync();
 

@@ -1,7 +1,7 @@
 ﻿@model BuildingManagementSystem.Web.ViewModels.Properties.FinalRegistrationPropertyViewModel
 
 @{
-    var loggedUser = this.User.GetId();
+    var loggedUserId = this.User.GetId();
     var firstName = this.User.Identity.Name;
 
     int count = 1;
@@ -19,7 +19,6 @@
 
     @if (Model != null)
     {
-        <div>
             <table class="table table-responsive-sm mt-4 mb-5">
                 <thead class="thead-light">
                     <tr>
@@ -45,37 +44,10 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
     }
 
-        <table class="table table-responsive-sm mt-4 mb-5">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">№</th>
-                    <th scope="col">Сграда</th>
-                    <th scope="col">Тип на имота</th>
-                    <th scope="col">Етаж №</th>
-                    <th scope="col">Имот №</th>
-                    <th scope="col">Идеални части (%)</th>
-                    <th scope="col">Име, Фамилия</th>
-                    @*<th scope="col">Изтрий</th>*@
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="table-hover">
-                    <th scope="row">@count</th>
-                    <td>@Model.BuildingName</td>
-                    <td>@Model.PropertyType</td>
-                    <td>@Model.PropertyFloor</td>
-                    <td>@Model.PropertyNumber</td>
-                    <td>@Model.PropertyPart</td>
-                    <td>@firstName</td>
-                </tr>
-            </tbody>
-        </table>
-
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
-        <form method="post" asp-action="ShowSelectedPropertiesAsync" asp-controller="Properties">
+        <form method="post" asp-action="ShowSelectedProperties" asp-controller="Properties">
             <div class="form-group">
                 <i class="fas fa-info-circle"></i>
                 <label asp-for="@Model.DogCount"></label>
@@ -89,8 +61,9 @@
                 <span asp-validation-for="@Model.CoOwner" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="hidden" asp-for="@Model.LoggedUserId" value="@loggedUser" class="form-control" />
-                <span asp-validation-for="@Model.LoggedUserId"></span>
+                <input type="hidden" asp-for="@Model.LoggedUserId" value="@loggedUserId" class="form-control" />
+                <input type="hidden" asp-for="@Model.Id" value="@Model.Id" class="form-control" />
+                <span asp-validation-for="@loggedUserId"></span>
             </div>
 
             <p class="text-primary mb-3">Моля запишете данните!</p>

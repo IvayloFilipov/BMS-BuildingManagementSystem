@@ -104,7 +104,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             var userId = user.Id;
 
-            await this.propertyService.AddPropertyLastDataAsync(data.CoOwner, data.DogCount, userId);
+            await this.propertyService.AddPropertyLastDataAsync(data.CoOwner, data.DogCount, userId, data.Id);
 
             return this.RedirectToAction(nameof(HomeController.Info), "Home");
         }

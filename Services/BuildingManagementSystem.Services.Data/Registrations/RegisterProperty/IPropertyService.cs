@@ -17,7 +17,7 @@
 
         void ConfirmSelectedPropertyRegitration(int propertyId);
 
-        Task<int> AddPropertyLastDataAsync(string coowner, int dogCount, string userId);
+        Task<int> AddPropertyLastDataAsync(string coowner, int dogCount, string userId, int propertyId);
 
         Task<ShowAllPropertiesViewModel> SelectedProperty(int propertyId);
     }
