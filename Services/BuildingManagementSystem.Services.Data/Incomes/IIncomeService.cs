@@ -4,11 +4,20 @@
     using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data.Models.BuildingData;
+    using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
 
     public interface IIncomeService
     {
         Task AddIncomeAsync();
 
+        Task AddToAccountAsync();
+
         IEnumerable<Property> GetAllProperties();
+
+        public IEnumerable<PaymentTypeDataModel> GetPaymentType();
+
+        public IEnumerable<PropertyFloorDataModel> GetPropertyFloor();
+
+        public IEnumerable<PropertyTypeDataModel> GetPropertyType();
     }
 }

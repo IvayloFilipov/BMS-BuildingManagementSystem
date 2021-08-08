@@ -1,11 +1,12 @@
 ﻿namespace BuildingManagementSystem.Web.Controllers
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Data.Models;
+    using BuildingManagementSystem.Services.Data.Expenses;
+    using BuildingManagementSystem.Services.Data.Incomes;
     using BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
     using Microsoft.AspNetCore.Authorization;
@@ -14,38 +15,36 @@
 
     public class ManagerController : BaseController
     {
-        private readonly ApplicationDbContext dbContext;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IExpenseService expenseService;
+        private readonly IIncomeService incomeService;
 
-        public ManagerController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager)
+        public ManagerController(UserManager<ApplicationUser> userManager, IExpenseService expenseService, IIncomeService incomeService)
         {
-            this.dbContext = dbContext;
-            this.userManager = userManager; // UserManager MUST be added here in the controller in order POST method to have access to User data (Id). DO NOT insert UserManager into services!!!
+            this.userManager = userManager;
+            this.expenseService = expenseService;
+            this.incomeService = incomeService;
         }
 
         public IActionResult AddIncomeAsync()
         {
             return this.View(new AddIncomeViewModel
             {
-                Payments = this.GetPaymentType(),
-                Floors = this.GetPropertyFloor(),
-                Properties = this.GetPropertyType(),
-
-                // Properties = this.GetSomePartsFromProperty(),
+                Payments = this.incomeService.GetPaymentType(),
+                Floors = this.incomeService.GetPropertyFloor(),
+                Properties = this.incomeService.GetPropertyType(),
             });
         }
 
-        // Example how to get User Id
         // [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> AddIncomeAsync(AddIncomeViewModel income)
         {
             if (!this.ModelState.IsValid)
             {
-                income.Payments = this.GetPaymentType();
-                income.Floors = this.GetPropertyFloor();
-                income.Properties = this.GetPropertyType();
-                // income.Properties = this.GetSomePartsFromProperty();
+                income.Payments = this.incomeService.GetPaymentType();
+                income.Floors = this.incomeService.GetPropertyFloor();
+                income.Properties = this.incomeService.GetPropertyType();
 
                 return this.View(income);
             }
@@ -55,101 +54,38 @@
             return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
-        public IEnumerable<PaymentTypeDataModel> GetPaymentType()
-        {
-            var payments = this.dbContext
-                .PaymentTypes
-                .Select(x => new PaymentTypeDataModel
-                {
-                    Id = x.Id,
-                    PaymentType = x.Type,
-                })
-                .ToList();
-
-            return payments;
-        }
-
-        public IEnumerable<PropertyTypeDataModel> GetPropertyType()
-        {
-            var properties = this.dbContext
-                .PropertyTypes
-                .Select(x => new PropertyTypeDataModel
-                {
-                    Id = x.Id,
-                    PropertyType = x.Type,
-                })
-                .ToList();
-            return properties;
-        }
-
-        public IEnumerable<PropertyFloorDataModel> GetPropertyFloor()
-        {
-            var floors = this.dbContext
-                .PropertyFloors
-                .Select(x => new PropertyFloorDataModel
-                {
-                    Id = x.Id,
-                    PropertyFloor = x.Floor,
-                })
-                .ToList();
-
-            return floors;
-        }
-
         public IActionResult PayExpense()
         {
             return this.View(new PayExpenseViewModel
             {
-                Expenses = this.GetExpenseType(),
-                Payments = this.GetExpensePaymentType(),
+                Expenses = this.expenseService.GetExpenseType(),
+                Payments = this.expenseService.GetExpensePaymentType(),
             });
         }
 
         // [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult PayExpense(PayExpenseViewModel expenseType)
+        public async Task<IActionResult> PayExpense(PayExpenseViewModel expenseType)
         {
             if (!this.ModelState.IsValid)
             {
-                expenseType.Expenses = this.GetExpenseType();
-                expenseType.Expenses = (IEnumerable<ExpenseTypeDataModel>)this.GetExpensePaymentType();
+                expenseType.Expenses = this.expenseService.GetExpenseType();
+                expenseType.Expenses = (IEnumerable<ExpenseTypeDataModel>)this.expenseService.GetExpensePaymentType();
 
                 return this.View(expenseType);
             }
 
-            // return this.RedirectToAction("Index", "Home");
+            await this.expenseService.PayExpenseAsync(expenseType.ExpenseTypeId, expenseType.PaymentTypeId, expenseType.Amount, expenseType.Description);
+
             return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
-        public IEnumerable<ExpenseTypeDataModel> GetExpenseType()
+        public IActionResult SubtractFromAccount() // Subtract from selected account
         {
-            var expenseType = this.dbContext
-                .ExpenseTypes
-                .Select(x => new ExpenseTypeDataModel
-                {
-                    Id = x.Id,
-                    Type = x.Type,
-                })
-                .ToList();
-
-            return expenseType;
+            return null;
         }
 
-        public IEnumerable<PaymentTypeDataModel> GetExpensePaymentType()
-        {
-            var paymentType = this.dbContext
-                .PaymentTypes
-                .Select(x => new PaymentTypeDataModel
-                {
-                    Id = x.Id,
-                    PaymentType = x.Type,
-                })
-                .ToList();
-
-            return paymentType;
-        }
-
-        public IActionResult ChangeFee()
+        public IActionResult ChangeFee() // Not implemented yet
         {
             return this.View();
         }

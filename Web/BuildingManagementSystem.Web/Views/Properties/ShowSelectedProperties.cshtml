@@ -16,7 +16,38 @@
 
         <p>Моля попълнете полета от формата, валидни за <b class="text-danger">притежавания от Вас имот</b>. След като го направите натиснете бутона <b>'ЗАПИШИ'</b> за да завършите попълването на електронната Домова книга.</p>
     </div>
-    <div>
+
+    @if (Model != null)
+    {
+        <div>
+            <table class="table table-responsive-sm mt-4 mb-5">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">№</th>
+                        <th scope="col">Сграда</th>
+                        <th scope="col">Тип на имота</th>
+                        <th scope="col">Етаж №</th>
+                        <th scope="col">Имот №</th>
+                        <th scope="col">Идеални части (%)</th>
+                        <th scope="col">Име, Фамилия</th>
+                        @*<th scope="col">Изтрий</th>*@
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-hover">
+                        <th scope="row">@count</th>
+                        <td>@Model.BuildingName</td>
+                        <td>@Model.PropertyType</td>
+                        <td>@Model.PropertyFloor</td>
+                        <td>@Model.PropertyNumber</td>
+                        <td>@Model.PropertyPart</td>
+                        <td>@firstName</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+
         <table class="table table-responsive-sm mt-4 mb-5">
             <thead class="thead-light">
                 <tr>
@@ -42,7 +73,6 @@
                 </tr>
             </tbody>
         </table>
-    </div>
 
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
         <form method="post" asp-action="ShowSelectedPropertiesAsync" asp-controller="Properties">
@@ -64,8 +94,6 @@
             </div>
 
             <p class="text-primary mb-3">Моля запишете данните!</p>
-
-            @*<input type="button" class="btn btn-primary text-uppercase" value="Назад" onclick="window.location= '@Url.Action( "RegisterAddress", "Registrations")'" />*@
 
             @*<input type="submit" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "Info", "Home")'" />*@
             <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" />

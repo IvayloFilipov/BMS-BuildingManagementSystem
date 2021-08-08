@@ -7,6 +7,7 @@
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Data.Models.BuildingData;
     using BuildingManagementSystem.Web.ViewModels.Properties;
+    using Microsoft.EntityFrameworkCore;
 
     public class PropertyService : IPropertyService
     {
@@ -17,71 +18,71 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<int> AddPropertyAsync(int propertyTypeId, int propertyFloorId, int number, string propertyPart, string coowner, int dogCount, string userId)
-        {
-            var selectedBuildingId = this.dbContext
-                .Building
-                .Select(x => x.Id)
-                .FirstOrDefault();
+        // public async Task<int> AddPropertyAsync(int propertyTypeId, int propertyFloorId, int number, string  propertyPart, string coowner, int dogCount, string userId)
+        // {
+        //     var selectedBuildingId = this.dbContext
+        //         .Building
+        //         .Select(x => x.Id)
+        //         .FirstOrDefault();
+           
+        //     var selectedPropertyTypeId = this.dbContext
+        //         .PaymentTypes
+        //         .Where(x => x.Id == propertyTypeId)
+        //         .Select(x => x.Id)
+        //         .FirstOrDefault();
+           
+        //     var selectedPropertyFloorId = this.dbContext
+        //         .PropertyFloors
+        //         .Where(x => x.Id == propertyFloorId)
+        //         .Select(x => x.Id)
+        //         .FirstOrDefault();
+           
+        //     var property = new Property()
+        //     {
+        //         BuildingId = selectedBuildingId,
+        //         PropertyTypeId = selectedPropertyTypeId,
+        //         PropertyFloorId = selectedPropertyFloorId,
+        //         Number = number,
+        //         PropertyPart = propertyPart,
+        //         CoOwner = coowner,
+        //         DogCount = dogCount,
+        //         UserId = userId,
+        //     };
+           
+        //     await this.dbContext.Properties.AddAsync(property);
+           
+        //     await this.dbContext.SaveChangesAsync();
+           
+        //     return property.Id;
+        // }
 
-            var selectedPropertyTypeId = this.dbContext
-                .PaymentTypes
-                .Where(x => x.Id == propertyTypeId)
-                .Select(x => x.Id)
-                .FirstOrDefault();
-
-            var selectedPropertyFloorId = this.dbContext
-                .PropertyFloors
-                .Where(x => x.Id == propertyFloorId)
-                .Select(x => x.Id)
-                .FirstOrDefault();
-
-            var property = new Property()
-            {
-                BuildingId = selectedBuildingId,
-                PropertyTypeId = selectedPropertyTypeId,
-                PropertyFloorId = selectedPropertyFloorId,
-                Number = number,
-                PropertyPart = propertyPart,
-                CoOwner = coowner,
-                DogCount = dogCount,
-                UserId = userId,
-            };
-
-            await this.dbContext.Properties.AddAsync(property);
-
-            await this.dbContext.SaveChangesAsync();
-
-            return property.Id;
-        }
-
-        public IEnumerable<PropertyFloorViewModel> GetPropertyFloors()
-        {
-            var floors = this.dbContext
-                .PropertyFloors
-                .Select(x => new PropertyFloorViewModel
-                {
-                    Id = x.Id,
-                    FloorName = x.Floor,
-                })
-                .ToList();
-
-            return floors;
-        }
-
-        public IEnumerable<PropertyTypeViewModel> GetPropertyTypes()
-        {
-            var types = this.dbContext
-                   .PropertyTypes
-                   .Select(x => new PropertyTypeViewModel
-                   {
-                       Id = x.Id,
-                       TypeName = x.Type,
-                   })
-                   .ToList();
-
-            return types;
-        }
+        // public IEnumerable<PropertyFloorViewModel> GetPropertyFloors()
+        // {
+        //     var floors = this.dbContext
+        //         .PropertyFloors
+        //         .Select(x => new PropertyFloorViewModel
+        //         {
+        //             Id = x.Id,
+        //             FloorName = x.Floor,
+        //         })
+        //         .ToList();
+           
+        //     return floors;
+        // }
+           
+        // public IEnumerable<PropertyTypeViewModel> GetPropertyTypes()
+        // {
+        //     var types = this.dbContext
+        //            .PropertyTypes
+        //            .Select(x => new PropertyTypeViewModel
+        //            {
+        //                Id = x.Id,
+        //                TypeName = x.Type,
+        //            })
+        //            .ToList();
+           
+        //     return types;
+        // }
 
         public IEnumerable<ShowAllPropertiesViewModel> AllProperties()
         {
@@ -98,6 +99,24 @@
                     PropertyPart = x.PropertyPart,
                 })
                 .ToList();
+
+            return property;
+        }
+
+        async Task<ShowAllPropertiesViewModel> SelectedProperty(int propertyId)
+        {
+            var property = await this.dbContext
+                .Properties
+                .Select(x => new ShowAllPropertiesViewModel
+                {
+                    Id = x.Id,
+                    BuildingName = x.Building.Name,
+                    PropertyType = x.PropertyType.Type,
+                    PropertyFloor = x.PropertyFloor.Floor,
+                    PropertyNumber = x.Number.ToString(),
+                    PropertyPart = x.PropertyPart,
+                })
+                .FirstOrDefaultAsync(x => x.IsSold == true && x.Id == propertyId);
 
             return property;
         }

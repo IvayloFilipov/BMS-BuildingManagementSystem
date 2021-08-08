@@ -140,7 +140,7 @@
 
             var selectedUser = await this.userManager.FindByIdAsync(userId);
 
-            if (selectedUser is null)
+            if (selectedUser == null)
             {
                 return this.BadRequest();
             }
