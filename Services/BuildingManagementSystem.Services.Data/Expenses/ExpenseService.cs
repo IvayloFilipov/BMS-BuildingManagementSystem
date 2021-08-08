@@ -7,6 +7,7 @@
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Data.Models.BuildingExpenses;
+    using BuildingManagementSystem.Data.Models.BuildingFunds;
     using BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
 
@@ -23,79 +24,52 @@
 
         public async Task<decimal> PayExpenseAsync(int expenseTypeId, int paymentTypeId, decimal amount, string descrition)
         {
-            var selectedExpenseTypeId = this.dbContext
-                .ExpenseTypes
-                .Where(x => x.Id == expenseTypeId)
-                .Select(x => x.Id)
-                .FirstOrDefault();
-
-            var selectedPaymentTypeId = this.dbContext
-                .PaymentTypes
-                .Where(x => x.Id == paymentTypeId)
-                .Select(x => x.Id)
-                .FirstOrDefault();
+            Account bankAccount;
+            switch (paymentTypeId)
+            {
+                case 1:
+                    // bank payment - hardcodded
+                    bankAccount = this.dbContext.BuildingAccounts.FirstOrDefault(x => x.AccountType == UbbBankAccountType);
+                    break;
+                case 2:
+                    // cash
+                    bankAccount = this.dbContext.BuildingAccounts.FirstOrDefault(x => x.AccountType == CashAccounType);
+                    break;
+                default:
+                    throw new ArgumentException($"Невалиден тип на плащане {paymentTypeId}", nameof(paymentTypeId));
+            }
 
             var payment = new Transaction
             {
-                ExpenseTypeId = selectedExpenseTypeId,
-                PaymentTypeId = selectedPaymentTypeId,
+                ExpenseTypeId = expenseTypeId,
+                PaymentTypeId = paymentTypeId,
                 Amount = amount,
                 Description = descrition,
+                AccountId = bankAccount.Id,
             };
-
-            await this.dbContext.OutgoingPayments.AddAsync(payment);
-
-            await this.dbContext.SaveChangesAsync();
-
-            return payment.Amount;
-        }
-
-        public void SubtractFromAccountAsync(string paymentType, decimal currAmoun)
-        {
-            var amountToSubtract = currAmoun; // ?????
-
-            var moneyInBankAccount = this.dbContext
-                .BuildingAccounts
-                .Where(x => x.AccountType == UbbBankAccountType)
-                .Select(x => x.TotalAmount)
-                .FirstOrDefault();
-
-            var moneyInCashAccount = this.dbContext
-                .BuildingAccounts
-                .Where(x => x.AccountType == CashAccounType)
-                .Select(x => x.TotalAmount)
-                .FirstOrDefault();
-
             try
             {
-                if (paymentType == UbbBankAccountType && moneyInBankAccount >= amountToSubtract)
-                {
-                    moneyInBankAccount -= amountToSubtract;
-                }
-                else if (paymentType == CashAccounType && moneyInCashAccount >= amountToSubtract)
-                {
-                    moneyInCashAccount -= amountToSubtract;
-                }
+                await this.dbContext.OutgoingPayments.AddAsync(payment);
+
+                bankAccount.TotalAmount -= amount;
             }
             catch (Exception)
+            {
+
+                throw;
+            }
+            if (bankAccount.TotalAmount < amount)
             {
                 throw new InvalidOperationException("Недостатъчна наличност по сметката!");
             }
 
-            // if (paymentType == UbbBankAccountType && moneyInBankAccount >= amountToSubtract)
-            // {
-            //     moneyInBankAccount -= amountToSubtract;
-            // }
-            // else if (paymentType == CashAccounType && moneyInCashAccount >= amountToSubtract)
-            // {
-            //     moneyInCashAccount -= amountToSubtract;
-            // }
-            // else
-            // {
-            //     throw new InvalidOperationException("Недостатъчна наличност по сметката!");
-            // }
+            await this.dbContext.OutgoingPayments.AddAsync(payment);
 
-            this.dbContext.SaveChanges();
+            bankAccount.TotalAmount -= amount;
+
+            await this.dbContext.SaveChangesAsync();
+
+            return payment.Amount;
         }
 
         public IEnumerable<ExpenseTypeDataModel> GetExpenseType()

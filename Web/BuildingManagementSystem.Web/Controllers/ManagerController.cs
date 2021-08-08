@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Data.Models;
     using BuildingManagementSystem.Services.Data.Expenses;
     using BuildingManagementSystem.Services.Data.Incomes;
@@ -77,12 +76,7 @@
 
             await this.expenseService.PayExpenseAsync(expenseType.ExpenseTypeId, expenseType.PaymentTypeId, expenseType.Amount, expenseType.Description);
 
-            return this.RedirectToAction(nameof(HomeController.Index), "Home");
-        }
-
-        public IActionResult SubtractFromAccount() // Subtract from selected account
-        {
-            return null;
+            return this.RedirectToAction(nameof(this.PayExpense));
         }
 
         public IActionResult ChangeFee() // Not implemented yet

@@ -10,8 +10,6 @@
     {
         Task<decimal> PayExpenseAsync(int expenseTypeId, int paymentTypeId, decimal amount, string descrition);
 
-        void SubtractFromAccountAsync(string paymentType, decimal currAmoun);
-
         public IEnumerable<ExpenseTypeDataModel> GetExpenseType();
 
         public IEnumerable<PaymentTypeDataModel> GetExpensePaymentType();

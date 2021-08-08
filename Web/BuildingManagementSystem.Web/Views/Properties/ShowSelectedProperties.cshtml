@@ -1,52 +1,54 @@
 ﻿@model BuildingManagementSystem.Web.ViewModels.Properties.FinalRegistrationPropertyViewModel
 
 @{
+    ViewData["Title"] = "гр. София, ул. Първа, №101";
+
     var loggedUserId = this.User.GetId();
-    var firstName = this.User.Identity.Name;
+    var identityName = this.User.Identity.Name;
 
     int count = 1;
 }
 
 <div class="row">
-    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2 mb-5">
         <h2 class="text-center">Домова книга</h2>
         <h3 class="text-center text-info">Стъпка 5 - Попълване на данните за притежавания от Вас имот</h3>
         <hr />
         <hr />
 
-        <p>Моля попълнете полета от формата, валидни за <b class="text-danger">притежавания от Вас имот</b>. След като го направите натиснете бутона <b>'ЗАПИШИ'</b> за да завършите попълването на електронната Домова книга.</p>
+        <p>Моля попълнете останалите полета от формата, валидни за <b class="text-danger">притежавания от Вас имот</b>. След като го направите натиснете бутона <b>'ЗАПИШИ'</b> за да завършите попълването на електронната Домова книга.</p>
     </div>
 
     @if (Model != null)
     {
-            <table class="table table-responsive-sm mt-4 mb-5">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">№</th>
-                        <th scope="col">Сграда</th>
-                        <th scope="col">Тип на имота</th>
-                        <th scope="col">Етаж №</th>
-                        <th scope="col">Имот №</th>
-                        <th scope="col">Идеални части (%)</th>
-                        <th scope="col">Име, Фамилия</th>
-                        @*<th scope="col">Изтрий</th>*@
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="table-hover">
-                        <th scope="row">@count</th>
-                        <td>@Model.BuildingName</td>
-                        <td>@Model.PropertyType</td>
-                        <td>@Model.PropertyFloor</td>
-                        <td>@Model.PropertyNumber</td>
-                        <td>@Model.PropertyPart</td>
-                        <td>@firstName</td>
-                    </tr>
-                </tbody>
-            </table>
+        <table class="table table-responsive-sm mt-4 mb-5">
+            <a><b>@ViewData["Title"]</b></a>
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">Сграда</th>
+                    <th scope="col">Тип на имота</th>
+                    <th scope="col">Етаж №</th>
+                    <th scope="col">Имот №</th>
+                    <th scope="col">Идеални части (%)</th>
+                    <th scope="col">Потребителско име</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-hover">
+                    <th scope="row">@count</th>
+                    <td>@Model.BuildingName</td>
+                    <td>@Model.PropertyType</td>
+                    <td>@Model.PropertyFloor</td>
+                    <td>@Model.PropertyNumber</td>
+                    <td>@Model.PropertyPart</td>
+                    <td>@identityName</td>
+                </tr>
+            </tbody>
+        </table>
     }
 
-    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2 mt-3">
         <form method="post" asp-action="ShowSelectedProperties" asp-controller="Properties">
             <div class="form-group">
                 <i class="fas fa-info-circle"></i>
@@ -66,9 +68,8 @@
                 <span asp-validation-for="@loggedUserId"></span>
             </div>
 
-            <p class="text-primary mb-3">Моля запишете данните!</p>
+            <p class="text-primary mb-3 mt-4">Моля запишете данните!</p>
 
-            @*<input type="submit" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "Info", "Home")'" />*@
             <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" />
         </form>
         <br />

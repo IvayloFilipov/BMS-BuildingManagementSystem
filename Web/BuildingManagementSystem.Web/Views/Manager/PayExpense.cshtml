@@ -10,7 +10,7 @@
     </div>
 
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2 mt-4">
-        <form method="post" asp-action="PayExpense" asp-controller="ManagerController">
+        <form method="post" asp-action="PayExpense" asp-controller="Manager">
             <div class="form-group">
                 <i class="fas fa-info-circle"></i>
                 <label asp-for="@Model.ExpenseTypeId"></label>
@@ -21,7 +21,6 @@
                     }
                 </select>
             </div>
-
             <div class="form-group">
                 <i class="fas fa-credit-card"></i>
                 <label asp-for="@Model.PaymentTypeId"></label>
@@ -32,14 +31,12 @@
                     }
                 </select>
             </div>
-
             <div class="form-group">
                 <i class="fas fa-euro-sign"></i>
                 <label asp-for="@Model.Amount"></label>
                 <input asp-for="@Model.Amount" class="form-control" />
                 <span asp-validation-for="@Model.Amount" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <i class="fas fa-pen"></i>
                 <label asp-for="@Model.Description"></label>
@@ -50,7 +47,7 @@
             <p class="text-primary mb-3">Моля след като добавите разход натиснете бутона <b>'ЗАПИШИ'</b>!</p>
 
             <input type="submit" class="btn btn-primary text-uppercase" value="Откажи" onclick="window.location= '@Url.Action( "Info", "Home")'" />
-            <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "Info", "Home")'" />
+            <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" />
         </form>
         <br />
     </div>

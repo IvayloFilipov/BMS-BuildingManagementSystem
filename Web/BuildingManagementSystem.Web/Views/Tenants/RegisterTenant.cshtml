@@ -11,7 +11,7 @@
         <hr />
         <hr />
         <p class="mb-4">Вие се намирате на страницата за <b>Регистриране на наемател</b> от функционалността по попълване на данни за електронната Домова книга.</p>
-        <p class="mb-4">Моля попълнете всички полета от формата. За да регистрирате наемател и да завършите подаването на данни натиснете бутона <b>'ЗАПИШИ'</b>.</p>
+        <p class="mb-5">Моля попълнете всички полета от формата. За да регистрирате наемател и да завършите подаването на данни натиснете бутона <b>'ЗАПИШИ'</b>.</p>
     </div>
 
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
@@ -41,19 +41,18 @@
                 <input asp-for="@Model.Email" class="form-control" value="@this.User.Identity.Name" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group mb-4">
+            <div class="form-group">
                 <i class="fas fa-mobile-alt"></i>
                 <label asp-for="@Model.Phone"></label>
                 <input asp-for="@Model.Phone" class="form-control" />
                 <span asp-validation-for="@Model.Phone" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <input type="hidden" asp-for="@Model.LoggedUserId" value="@loggedUser" class="form-control" />
                 <span asp-validation-for="@Model.LoggedUserId"></span>
             </div>
 
-            @*<input type="hidden" asp-for="@Model.OwnerId" />*@
-            @*<input type="submit" class="btn btn-primary text-uppercase" value="Запиши" onclick="window.location= '@Url.Action( "action Name", "controller Name")'" />*@
+            <input type="submit" class="btn btn-primary text-uppercase" value="Откажи" onclick="window.location= '@Url.Action( "Index", "Home")'" />
             <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" />
         </form>
         <br />
