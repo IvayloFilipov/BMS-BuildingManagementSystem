@@ -18,7 +18,7 @@
             this.dbContext = dbContext;
         }
 
-        public Task AddIncomeAsync()
+        public async Task<decimal> AddIncomeAsync()
         {
             throw new NotImplementedException();
         }

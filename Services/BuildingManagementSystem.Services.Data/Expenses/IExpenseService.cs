@@ -8,7 +8,7 @@
 
     public interface IExpenseService
     {
-        Task<decimal> PayExpenseAsync(int expenseTypeId, int paymentTypeId, decimal amount, string descrition);
+        Task<decimal> PayExpenseAsync(int expenseTypeId, int paymentTypeId, decimal amount, string description);
 
         public IEnumerable<ExpenseTypeDataModel> GetExpenseType();
 

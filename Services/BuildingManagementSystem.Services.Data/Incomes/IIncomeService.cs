@@ -8,7 +8,7 @@
 
     public interface IIncomeService
     {
-        Task AddIncomeAsync();
+        Task<decimal> AddIncomeAsync();
 
         Task AddToAccountAsync();
 
