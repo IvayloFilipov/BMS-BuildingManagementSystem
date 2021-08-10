@@ -8,7 +8,7 @@
 
     public interface IIncomeService
     {
-        Task<decimal> AddIncomeAsync();
+        Task<decimal> AddIncomeAsync(string incomeDescription, int paymentTypeId, decimal amount, string paymentPeriod, int propertyId, int propertyFloorId, int propertyNumber, string payerName);
 
         Task AddToAccountAsync();
 

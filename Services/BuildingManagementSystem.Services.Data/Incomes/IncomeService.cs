@@ -7,7 +7,11 @@
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Data.Models.BuildingData;
+    using BuildingManagementSystem.Data.Models.BuildingFunds;
+    using BuildingManagementSystem.Data.Models.BuildingIncomes;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
+
+    using static BuildingManagementSystem.Common.GlobalConstants;
 
     public class IncomeService : IIncomeService
     {
@@ -18,9 +22,45 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<decimal> AddIncomeAsync()
+        public async Task<decimal> AddIncomeAsync(string incomeDescription, int paymentTypeId, decimal amount, string paymentPeriod, int propertyId, int propertyFloorId, int propertyNumber, string payerName)
         {
-            throw new NotImplementedException();
+            Account buildingAccount;
+            switch (paymentTypeId)
+            {
+                case 1:
+                    buildingAccount = this.dbContext.BuildingAccounts.Where(x => x.AccountType == UbbBankAccountType).FirstOrDefault();
+                    break;
+                case 2:
+                    buildingAccount = this.dbContext.BuildingAccounts.Where(x => x.AccountType == CashAccounType).FirstOrDefault();
+                    break;
+                default:
+                    throw new ArgumentException($"Невалиден тип на плащане {paymentTypeId}", nameof(paymentTypeId));
+            }
+
+            var currPropertyId = this.dbContext
+                .Properties
+                .Where(x => x.Id == propertyId)
+                .Select(x => x.Id)
+                .FirstOrDefault();
+
+            var currIncome = new Payment
+            {
+                Amount = amount,
+                IncomeDescription = incomeDescription,
+                PayerName = payerName,
+                PaymentPeriod = paymentPeriod,
+                PropertyId = currPropertyId,
+                PaymentTypeId = paymentTypeId,
+                AccountId = buildingAccount.Id,
+            };
+
+            await this.dbContext.IncomingPayments.AddAsync(currIncome);
+
+            buildingAccount.TotalAmount += amount;
+
+            await this.dbContext.SaveChangesAsync();
+
+            return currIncome.Amount;
         }
 
         public Task AddToAccountAsync()

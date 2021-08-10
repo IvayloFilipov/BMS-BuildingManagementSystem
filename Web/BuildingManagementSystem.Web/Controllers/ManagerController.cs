@@ -50,7 +50,7 @@
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            return this.RedirectToAction(nameof(HomeController.Index), "Home");
+            return this.RedirectToAction(nameof(this.AddIncomeAsync));
         }
 
         public IActionResult PayExpense()

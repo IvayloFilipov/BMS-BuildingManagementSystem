@@ -24,43 +24,43 @@
 
         public async Task<decimal> PayExpenseAsync(int expenseTypeId, int paymentTypeId, decimal amount, string description)
         {
-            Account bankAccount;
+            Account buildingAccount;
             switch (paymentTypeId)
             {
                 case 1:
                     // bank payment - hardcoded
-                    bankAccount = this.dbContext.BuildingAccounts.FirstOrDefault(x => x.AccountType == UbbBankAccountType);
+                    buildingAccount = this.dbContext.BuildingAccounts.FirstOrDefault(x => x.AccountType == UbbBankAccountType);
                     break;
                 case 2:
                     // cash payment
-                    bankAccount = this.dbContext.BuildingAccounts.FirstOrDefault(x => x.AccountType == CashAccounType);
+                    buildingAccount = this.dbContext.BuildingAccounts.FirstOrDefault(x => x.AccountType == CashAccounType);
                     break;
                 default:
                     throw new ArgumentException($"Невалиден тип на плащане {paymentTypeId}", nameof(paymentTypeId));
             }
 
-            var payment = new Transaction
+            var currOutgoingPayment = new Transaction
             {
                 ExpenseTypeId = expenseTypeId,
                 PaymentTypeId = paymentTypeId,
                 Amount = amount,
                 Description = description,
-                AccountId = bankAccount.Id,
+                AccountId = buildingAccount.Id,
             };
 
             // The App throws exception and stop
-            // if (bankAccount.TotalAmount < amount)
+            // if (buildingAccount.TotalAmount < amount)
             // {
             //     throw new InvalidOperationException("Недостатъчна наличност по сметката!");
             // }
 
-            await this.dbContext.OutgoingPayments.AddAsync(payment);
+            await this.dbContext.OutgoingPayments.AddAsync(currOutgoingPayment);
 
-            bankAccount.TotalAmount -= amount;
+            buildingAccount.TotalAmount -= amount;
 
             await this.dbContext.SaveChangesAsync();
 
-            return payment.Amount;
+            return currOutgoingPayment.Amount;
         }
 
         public IEnumerable<ExpenseTypeDataModel> GetExpenseType()
