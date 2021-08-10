@@ -63,5 +63,9 @@
         public virtual ICollection<Payment> PropertyPayments { get; set; }
 
         public bool IsSold { get; set; }
+
+        public int StatusId { get; set; }
+
+        public PropertyStatus Status { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace BuildingManagementSystem.Web
 {
+    using System;
     using System.Reflection;
 
     using BuildingManagementSystem.Data;
@@ -21,7 +22,8 @@
     using BuildingManagementSystem.Services.Mapping;
     using BuildingManagementSystem.Services.Messaging;
     using BuildingManagementSystem.Web.ViewModels;
-
+    using Hangfire;
+    using Hangfire.SqlServer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -45,6 +47,20 @@
         {
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddHangfire(
+                config => config.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+                    .UseSimpleAssemblyNameTypeSerializer().UseRecommendedSerializerSettings().UseSqlServerStorage(
+                        this.configuration.GetConnectionString("DefaultConnection"),
+                        new SqlServerStorageOptions
+                        {
+                            CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+                            SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                            QueuePollInterval = TimeSpan.Zero,
+                            UseRecommendedIsolationLevel = true,
+                            UsePageLocksOnDequeue = true,
+                            DisableGlobalLocks = true,
+                        }));
 
             services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
                 .AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
@@ -91,7 +107,7 @@
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IRecurringJobManager recurringJobManager)
         {
             AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
 
@@ -101,7 +117,11 @@
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 dbContext.Database.Migrate();
                 new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
+
+                this.SeedHangfireJobs(recurringJobManager/*, dbContext*/);
             }
+
+            app.UseHangfireServer(new BackgroundJobServerOptions { WorkerCount = 1 });
 
             if (env.IsDevelopment())
             {
@@ -130,6 +150,17 @@
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();
                     });
+        }
+
+        private void SeedHangfireJobs(IRecurringJobManager recurringJobManager/*, ApplicationDbContext dbContext*/)
+        {
+#if DEBUG
+            var cron = Cron.Minutely();
+            recurringJobManager.RemoveIfExists(nameof(GenerateNewDebtsJob));
+#else
+            var cron = Cron.Monthly();
+#endif
+            recurringJobManager.AddOrUpdate<GenerateNewDebtsJob>(nameof(GenerateNewDebtsJob), x => x.Work(), cron);
         }
     }
 }

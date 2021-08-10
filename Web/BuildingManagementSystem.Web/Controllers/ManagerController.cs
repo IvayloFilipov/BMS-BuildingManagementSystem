@@ -48,7 +48,9 @@
                 return this.View(income);
             }
 
-            var user = await this.userManager.GetUserAsync(this.User);
+            // var user = await this.userManager.GetUserAsync(this.User);
+            // var userId = user.Id;
+            await this.incomeService.AddIncomeAsync(income.IncomeDescription, income.PaymentTypeId, income.Amount, income.PaymentPeriod, income.PropertyId, income.PropertyFloorId, income.PropertyNumber, income.PayerName);
 
             return this.RedirectToAction(nameof(this.AddIncomeAsync));
         }
