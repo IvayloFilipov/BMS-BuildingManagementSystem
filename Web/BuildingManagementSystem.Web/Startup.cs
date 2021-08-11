@@ -115,7 +115,9 @@
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
                 dbContext.Database.Migrate();
+
                 new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
 
                 this.SeedHangfireJobs(recurringJobManager/*, dbContext*/);
@@ -156,6 +158,7 @@
         {
 #if DEBUG
             var cron = Cron.Minutely();
+
             recurringJobManager.RemoveIfExists(nameof(GenerateNewDebtsJob));
 #else
             var cron = Cron.Monthly();
