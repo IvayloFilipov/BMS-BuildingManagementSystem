@@ -11,7 +11,7 @@
         <h2 class="text-center">Справка за разходите</h2>
         <hr />
         <hr />
-        <h5 class="text-center text-black mb-5">Хронологична справка за извършените разходи (в лева) за @DateTime.UtcNow.Year год.</h5>
+        <h5 class="text-center text-black mb-5">Таблична справка за извършените разходи (в лева) за @DateTime.UtcNow.Year год.</h5>
     </div>
 
     <a><b>@ViewData["Title"]</b></a>
@@ -19,11 +19,20 @@
         <thead class="table-info">
             <tr>
                 <th scope="col">№</th>
-                <th scope="col">Тип разход</th>
-                <th scope="col">Стойност (лв.)</th>
-                <th scope="col">Кратко описание</th>
-                <th scope="col">Направен в месец</th>
-                <th scope="col">Година</th>
+                <th scope="col">РАЗХОД</th>
+                <th scope="col">Януари</th>
+                <th scope="col">Февруари</th>
+                <th scope="col">Март</th>
+                <th scope="col">Април</th>
+                <th scope="col">Май</th>
+                <th scope="col">Юни</th>
+                <th scope="col">Юли</th>
+                <th scope="col">Август</th>
+                <th scope="col">Септември</th>
+                <th scope="col">Октомври</th>
+                <th scope="col">Ноември</th>
+                <th scope="col">Декември</th>
+                <th scope="col">СУМА</th>
             </tr>
         </thead>
         <tbody>
@@ -62,14 +71,14 @@
 
             @foreach (var expense in Model)
             {
-            <tr class="table-hover">
-                <th scope="row">@(count++)</th>
-                <td>@expense.ExpenseType</td>
-                <td>@expense.Amount лв.</td>
-                <td>@expense.Description</td>
-                <td>@expense.CreatedOnMonth</td>
-                <td>@expense.CreatedOnYear</td>
-            </tr>
+                <tr class="table-hover">
+                    <th scope="row">@(count++)</th>
+                    <td>@expense.ExpenseType</td>
+                    <td>@expense.Amount лв.</td>
+                    <td>@expense.Description</td>
+                    <td>@expense.CreatedOnMonth</td>
+                    <td>@expense.CreatedOnYear</td>
+                </tr>
             }
         </tbody>
         <tfoot>
@@ -79,4 +88,3 @@
         </tfoot>
     </table>
 </div>
-

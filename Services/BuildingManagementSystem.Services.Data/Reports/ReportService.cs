@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Web.ViewModels.ManagerModules.Reports;
 
@@ -17,17 +18,6 @@
 
         public IEnumerable<PaidExpensesViewModel> PaidExpencesReport()
         {
-            //var expenses = this.dbContext
-            //    .OutgoingPayments
-            //    .Select(x => new PaidExpensesViewModel
-            //    {
-            //        Id = x.Id,
-            //        Amount = x.Amount,
-            //        ExpenseTypeId = x.ExpenseTypeId,
-            //        CreatedOnYear = x.CreatedOn.ToString("yyyy"),
-            //        CreatedOnMonth = x.CreatedOn.ToString("MMMM"),
-            //    })
-            //    .ToList();
             var expenses = this.dbContext
                 .OutgoingPayments
                 .Select(x => new PaidExpensesViewModel
@@ -37,6 +27,7 @@
                     ExpenseType = x.ExpenseType.Type,
                     CreatedOnYear = x.CreatedOn.ToString("yyyy"),
                     CreatedOnMonth = x.CreatedOn.ToString("MMMM"),
+                    Description = x.Description,
                 })
                 .ToList();
 

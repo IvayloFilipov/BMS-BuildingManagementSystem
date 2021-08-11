@@ -19,6 +19,13 @@
             return this.View(allPaidExpenses);
         }
 
+        public IActionResult PivotTablePaidExpenses()
+        {
+            var allPaidExpenses = this.reportService.PaidExpencesReport();
+
+            return this.View(allPaidExpenses);
+        }
+
         public IActionResult GetIncomesDebts()
         {
             return this.View();
