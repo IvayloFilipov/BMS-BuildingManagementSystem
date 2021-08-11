@@ -69,8 +69,8 @@
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" asp-controller="Tenants" asp-action="RegisterTenant">Регистриране на наемател</a>
+                                <a class="dropdown-item" asp-controller="Reports" asp-action="GetIncomes">Справка приходи: хронологична</a>
                                 <a class="dropdown-item" asp-controller="Reports" asp-action="GetPaidExpenses">Справка разходи: хронологична</a>
-                                <a class="dropdown-item" asp-controller="Modules" asp-action="Index">Справка: приходи/разходи/задължения</a>
                                 <a class="dropdown-item" asp-controller="Registrations" asp-action="RegisterTenant">Документи</a>
                             </div>
                         </li>
@@ -83,12 +83,12 @@
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" asp-controller="Manager" asp-action="AddIncome">Добавяне на приход</a>
                                     <a class="dropdown-item" asp-controller="Manager" asp-action="PayExpense">Плащане на разход</a>
-                                    <a class="dropdown-item" asp-controller="Manager" asp-action="AddFee">Добавяне на нова месечна такса</a>
-                                    <a class="dropdown-item" asp-controller="Manager" asp-action="ChangeFee">Корекция на месечна такса на имот</a>
-                                    <a class="dropdown-item" asp-controller="Modules" asp-action="Index">Справка: месечна такса / имот</a>
+                                    <a class="dropdown-item" asp-controller="Reports" asp-action="GetIncomes">Справка приходи: хронологична</a>
                                     <a class="dropdown-item" asp-controller="Reports" asp-action="GetPaidExpenses">Справка разходи: хронологична</a>
-                                    <a class="dropdown-item" asp-controller="Reports" asp-action="PivotTablePaidExpenses">Справка разходи: пивот таблица</a>
-                                    <a class="dropdown-item" asp-controller="Modules" asp-action="Index">Справка: приходи / задължения</a>
+                                    <a class="dropdown-item" asp-controller="Manager" asp-action="ChangeFee">Имоти: редактиране на имот</a>
+                                    <a class="dropdown-item" asp-controller="Manager" asp-action="AddFee">Добавяне на нова месечна такса</a>
+                                    @*<a class="dropdown-item" asp-controller="Modules" asp-action="Index">Справка: месечна такса / имот</a>*@
+                                    @*<a class="dropdown-item" asp-controller="Reports" asp-action="PivotTablePaidExpenses">Справка разходи: пивот таблица</a>*@
                                     <a class="dropdown-item" asp-controller="Tenants" asp-action="GetAllTenants">Списък на регистрираните наематели</a>
                                     <a class="dropdown-item" asp-controller="Registrations" asp-action="ShowAllUsers">Списък на регистрираните потребители</a>
                                     <a class="dropdown-item" asp-controller="Documents" asp-action="UploadDocument">Качи документи</a>

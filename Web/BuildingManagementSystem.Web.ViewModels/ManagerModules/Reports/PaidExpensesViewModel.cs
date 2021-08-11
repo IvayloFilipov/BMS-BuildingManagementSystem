@@ -1,7 +1,5 @@
 ﻿namespace BuildingManagementSystem.Web.ViewModels.ManagerModules.Reports
 {
-    using System;
-
     public class PaidExpensesViewModel
     {
         public int Id { get; set; }
@@ -15,5 +13,7 @@
         public string CreatedOnMonth { get; set; }
 
         public string Description { get; set; }
+
+        public string PaymentType { get; set; }
     }
 }

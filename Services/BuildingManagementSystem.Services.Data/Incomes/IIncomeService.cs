@@ -13,8 +13,8 @@
 
         public IEnumerable<PaymentTypeDataModel> GetPaymentType();
 
-        public IEnumerable<PropertyFloorDataModel> GetPropertyFloor();
+        //public IEnumerable<PropertyFloorDataModel> GetPropertyFloor();
 
-        public IEnumerable<PropertyTypeDataModel> GetPropertyType();
+        //public IEnumerable<PropertyTypeDataModel> GetPropertyType();
     }
 }

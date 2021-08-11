@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
-    using BuildingManagementSystem.Data.Models.BuildingData;
     using BuildingManagementSystem.Data.Models.BuildingFunds;
     using BuildingManagementSystem.Data.Models.BuildingIncomes;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
@@ -36,12 +35,6 @@
                 default:
                     throw new ArgumentException($"Невалиден тип на плащане {paymentTypeId}", nameof(paymentTypeId));
             }
-
-            //var currPropertyId = this.dbContext
-            //    .Properties
-            //    .Where(x => x.Id == propertyId)
-            //    .Select(x => x.Id)
-            //    .FirstOrDefault();
 
             var currIncome = new Payment
             {
@@ -93,31 +86,31 @@
             return payments;
         }
 
-        public IEnumerable<PropertyFloorDataModel> GetPropertyFloor()
-        {
-            var floors = this.dbContext
-                   .PropertyFloors
-                   .Select(x => new PropertyFloorDataModel
-                   {
-                       Id = x.Id,
-                       PropertyFloor = x.Floor,
-                   })
-                   .ToList();
+        //public IEnumerable<PropertyFloorDataModel> GetPropertyFloor()
+        //{
+        //    var floors = this.dbContext
+        //           .PropertyFloors
+        //           .Select(x => new PropertyFloorDataModel
+        //           {
+        //               Id = x.Id,
+        //               PropertyFloor = x.Floor,
+        //           })
+        //           .ToList();
 
-            return floors;
-        }
+        //    return floors;
+        //}
 
-        public IEnumerable<PropertyTypeDataModel> GetPropertyType()
-        {
-            var properties = this.dbContext
-                   .PropertyTypes
-                   .Select(x => new PropertyTypeDataModel
-                   {
-                       Id = x.Id,
-                       PropertyType = x.Type,
-                   })
-                   .ToList();
-            return properties;
-        }
+        //public IEnumerable<PropertyTypeDataModel> GetPropertyType()
+        //{
+        //    var properties = this.dbContext
+        //           .PropertyTypes
+        //           .Select(x => new PropertyTypeDataModel
+        //           {
+        //               Id = x.Id,
+        //               PropertyType = x.Type,
+        //           })
+        //           .ToList();
+        //    return properties;
+        //}
     }
 }

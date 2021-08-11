@@ -12,6 +12,7 @@
             this.reportService = reportService;
         }
 
+        // [Authorize(Roles = "Admin")]
         public IActionResult GetPaidExpenses()
         {
             var allPaidExpenses = this.reportService.PaidExpencesReport();
@@ -19,16 +20,12 @@
             return this.View(allPaidExpenses);
         }
 
-        public IActionResult PivotTablePaidExpenses()
+        // [Authorize(Roles = "Admin")]
+        public IActionResult GetIncomes()
         {
-            var allPaidExpenses = this.reportService.PaidExpencesReport();
+            var allPaidIncomes = this.reportService.PaidIncomesReport();
 
-            return this.View(allPaidExpenses);
-        }
-
-        public IActionResult GetIncomesDebts()
-        {
-            return this.View();
+            return this.View(allPaidIncomes);
         }
     }
 }

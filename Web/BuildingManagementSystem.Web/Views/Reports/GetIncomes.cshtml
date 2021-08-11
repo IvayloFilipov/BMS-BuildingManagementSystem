@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BuildingManagementSystem.Web.ViewModels.ManagerModules.Reports.PaidExpensesViewModel>
+﻿@model IEnumerable<BuildingManagementSystem.Web.ViewModels.ManagerModules.Reports.PaidIncomesViewModel>
 
 @{
     ViewData["Title"] = "гр. София, ул. Първа, №101";
@@ -8,10 +8,10 @@
 
 <div class="row">
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
-        <h2 class="text-center">Справка за разходите</h2>
+        <h2 class="text-center">Справка за приходите</h2>
         <hr />
         <hr />
-        <h5 class="text-center text-black mb-5">Хронологична справка за извършените разходи (в лева) за @DateTime.UtcNow.Year год.</h5>
+        <h5 class="text-center text-black mb-5">Хронологична справка за получените приходи (в лева) за @DateTime.UtcNow.Year год.</h5>
     </div>
 
     <a><b>@ViewData["Title"]</b></a>
@@ -19,12 +19,14 @@
         <thead class="table-info">
             <tr>
                 <th scope="col">№</th>
-                <th scope="col">Тип разход</th>
+                <th scope="col">Приход</th>
                 <th scope="col">Стойност</th>
                 <th scope="col">Начин на плащане</th>
-                <th scope="col">Платен в</th>
+                <th scope="col">Получен в</th>
                 <th scope="col">Година</th>
-                <th scope="col">Кратко описание</th>
+                <th scope="col">Относно</th>
+                <th scope="col">Задължен обект</th>
+                <th scope="col">Платец</th>
             </tr>
         </thead>
         <tbody>
@@ -32,12 +34,14 @@
             {
                 <tr class="table-hover">
                     <th scope="row">@(count++)</th>
-                    <td>@expense.ExpenseType</td>
+                    <td>@expense.IncomeDescription</td>
                     <td>@expense.Amount лв.</td>
                     <td>@expense.PaymentType</td>
                     <td>@expense.CreatedOnMonth</td>
                     <td>@expense.CreatedOnYear год.</td>
-                    <td>@expense.Description</td>
+                    <td>@expense.PaymentPeriod</td>
+                    <td>@expense.PropertyId</td>
+                    <td>@expense.PayerName</td>
                 </tr>
             }
         </tbody>
@@ -48,4 +52,3 @@
         </tfoot>
     </table>
 </div>
-

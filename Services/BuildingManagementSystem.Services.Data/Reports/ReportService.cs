@@ -28,15 +28,32 @@
                     CreatedOnYear = x.CreatedOn.ToString("yyyy"),
                     CreatedOnMonth = x.CreatedOn.ToString("MMMM"),
                     Description = x.Description,
+                    PaymentType = x.PaymentType.Type,
                 })
                 .ToList();
 
             return expenses;
         }
 
-        public void IncomesDebdsReport()
+        public IEnumerable<PaidIncomesViewModel> PaidIncomesReport()
         {
-            throw new NotImplementedException();
+            var incomes = this.dbContext
+                .IncomingPayments
+                .Select(x => new PaidIncomesViewModel
+                {
+                    Id = x.Id,
+                    Amount = x.Amount,
+                    CreatedOnMonth = x.CreatedOn.ToString("MMMM"),
+                    CreatedOnYear = x.CreatedOn.ToString("yyyy"),
+                    IncomeDescription = x.IncomeDescription,
+                    PayerName = x.PayerName,
+                    PaymentPeriod = x.PaymentPeriod,
+                    PaymentType = x.PaymentType.Type,
+                    PropertyId = x.Property.Id.ToString(),
+                })
+                .ToList();
+
+            return incomes;
         }
     }
 }

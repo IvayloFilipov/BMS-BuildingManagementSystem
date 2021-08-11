@@ -25,6 +25,7 @@
             this.incomeService = incomeService;
         }
 
+        // [Authorize(Roles = "Admin")]
         public IActionResult AddIncome()
         {
             return this.View(new AddIncomeViewModel
@@ -53,6 +54,7 @@
             return this.RedirectToAction(nameof(this.AddIncome));
         }
 
+        // [Authorize(Roles = "Admin")]
         public IActionResult PayExpense()
         {
             return this.View(new PayExpenseViewModel

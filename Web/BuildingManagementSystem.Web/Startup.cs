@@ -157,8 +157,8 @@
         private void SeedHangfireJobs(IRecurringJobManager recurringJobManager/*, ApplicationDbContext dbContext*/)
         {
 #if DEBUG
-            var cron = Cron.Monthly();
             // var cron = Cron.Minutely();
+            var cron = Cron.Monthly();
 
             recurringJobManager.RemoveIfExists(nameof(GenerateNewDebtsJob));
 #else
