@@ -1,4 +1,6 @@
 ﻿@using BuildingManagementSystem.Common
+@using static BuildingManagementSystem.Common.GlobalConstants
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,12 +45,31 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Contacts" asp-action="Index">Контакти</a>
                         </li>
 
+                        @*//@if (User.IsInRole(OwnerRoleName))*@
+                        @*<li class="nav-item dropdown">
+                            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Публичен_модул
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-controller="Tenants" asp-action="RegisterTenant">Регистриране на наемател</a>
+                                <a class="dropdown-item" asp-controller="Modules" asp-action="Index">Справка: приходи/разходи/задължения</a>
+                                <a class="dropdown-item" asp-controller="Registrations" asp-action="RegisterTenant">Документи</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Registrations" asp-action="Index">Домова_книга</a>
+                        </li>*@
+
+
+                        @*//@if (User.IsInRole(AdministratorRoleName))*@
                         <li class="nav-item dropdown">
                             <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Публичен_модул
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" asp-controller="Tenants" asp-action="RegisterTenant">Регистриране на наемател</a>
+                                <a class="dropdown-item" asp-controller="Reports" asp-action="GetPaidExpenses">Справка разходи: хронологична</a>
                                 <a class="dropdown-item" asp-controller="Modules" asp-action="Index">Справка: приходи/разходи/задължения</a>
                                 <a class="dropdown-item" asp-controller="Registrations" asp-action="RegisterTenant">Документи</a>
                             </div>
@@ -78,6 +99,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Registrations" asp-action="Index">Домова_книга</a>
                         </li>
+
                     </ul>
                 </div>
             </div>

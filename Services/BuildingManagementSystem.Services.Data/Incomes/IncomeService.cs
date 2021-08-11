@@ -22,7 +22,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<decimal> AddIncomeAsync(string incomeDescription, int paymentTypeId, decimal amount, string paymentPeriod, int propertyId, int propertyFloorId, int propertyNumber, string payerName)
+        public async Task<decimal> AddIncomeAsync(decimal amount, string incomeDescription, string payerName, string paymentPeriod, int propertyId, int paymentTypeId)
         {
             Account buildingAccount;
             switch (paymentTypeId)
@@ -37,11 +37,11 @@
                     throw new ArgumentException($"Невалиден тип на плащане {paymentTypeId}", nameof(paymentTypeId));
             }
 
-            var currPropertyId = this.dbContext
-                .Properties
-                .Where(x => x.Id == propertyId)
-                .Select(x => x.Id)
-                .FirstOrDefault();
+            //var currPropertyId = this.dbContext
+            //    .Properties
+            //    .Where(x => x.Id == propertyId)
+            //    .Select(x => x.Id)
+            //    .FirstOrDefault();
 
             var currIncome = new Payment
             {
@@ -49,7 +49,7 @@
                 IncomeDescription = incomeDescription,
                 PayerName = payerName,
                 PaymentPeriod = paymentPeriod,
-                PropertyId = currPropertyId,
+                PropertyId = propertyId,
                 PaymentTypeId = paymentTypeId,
                 AccountId = buildingAccount.Id,
             };
@@ -63,14 +63,20 @@
             return currIncome.Amount;
         }
 
-        public Task AddToAccountAsync()
+        public IEnumerable<GetPropertyDataFormModel> GetAllProperties()
         {
-            throw new NotImplementedException();
-        }
+            var properties = this.dbContext
+                .Properties
+                .Select(x => new GetPropertyDataFormModel
+                {
+                    Id = x.Id,
+                    PropertyType = x.PropertyType.Type,
+                    PropertyFloor = x.PropertyFloor.Floor,
+                    PropertyNumber = x.Number,
+                })
+                .ToList();
 
-        public IEnumerable<Property> GetAllProperties()
-        {
-            throw new NotImplementedException();
+            return properties;
         }
 
         public IEnumerable<PaymentTypeDataModel> GetPaymentType()

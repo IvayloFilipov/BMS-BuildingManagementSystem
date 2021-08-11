@@ -25,34 +25,32 @@
             this.incomeService = incomeService;
         }
 
-        public IActionResult AddIncomeAsync()
+        public IActionResult AddIncome()
         {
             return this.View(new AddIncomeViewModel
             {
                 Payments = this.incomeService.GetPaymentType(),
-                Floors = this.incomeService.GetPropertyFloor(),
-                Properties = this.incomeService.GetPropertyType(),
+                Properties = this.incomeService.GetAllProperties(),
             });
         }
 
         // [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<IActionResult> AddIncomeAsync(AddIncomeViewModel income)
+        public async Task<IActionResult> AddIncome(AddIncomeViewModel income)
         {
             if (!this.ModelState.IsValid)
             {
                 income.Payments = this.incomeService.GetPaymentType();
-                income.Floors = this.incomeService.GetPropertyFloor();
-                income.Properties = this.incomeService.GetPropertyType();
+                income.Properties = this.incomeService.GetAllProperties();
 
                 return this.View(income);
             }
 
             // var user = await this.userManager.GetUserAsync(this.User);
             // var userId = user.Id;
-            await this.incomeService.AddIncomeAsync(income.IncomeDescription, income.PaymentTypeId, income.Amount, income.PaymentPeriod, income.PropertyId, income.PropertyFloorId, income.PropertyNumber, income.PayerName);
+            await this.incomeService.AddIncomeAsync(income.Amount, income.IncomeDescription, income.PayerName, income.PaymentPeriod, income.PropertyId, income.PaymentTypeId);
 
-            return this.RedirectToAction(nameof(this.AddIncomeAsync));
+            return this.RedirectToAction(nameof(this.AddIncome));
         }
 
         public IActionResult PayExpense()

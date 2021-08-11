@@ -3,16 +3,13 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using BuildingManagementSystem.Data.Models.BuildingData;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
 
     public interface IIncomeService
     {
-        Task<decimal> AddIncomeAsync(string incomeDescription, int paymentTypeId, decimal amount, string paymentPeriod, int propertyId, int propertyFloorId, int propertyNumber, string payerName);
+        Task<decimal> AddIncomeAsync(decimal amount, string incomeDescription, string payerName, string paymentPeriod, int propertyId, int paymentTypeId);
 
-        Task AddToAccountAsync();
-
-        IEnumerable<Property> GetAllProperties();
+        IEnumerable<GetPropertyDataFormModel> GetAllProperties();
 
         public IEnumerable<PaymentTypeDataModel> GetPaymentType();
 
