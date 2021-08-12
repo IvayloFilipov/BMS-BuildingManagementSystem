@@ -49,7 +49,7 @@
                     PayerName = x.PayerName,
                     PaymentPeriod = x.PaymentPeriod,
                     PaymentType = x.PaymentType.Type,
-                    PropertyId = x.Property.Id.ToString(),
+                    Property = $"етаж: {x.Property.PropertyFloor.Floor}, {x.Property.PropertyType.Type} № {x.Property.Number}".ToString(),
                 })
                 .ToList();
 

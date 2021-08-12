@@ -12,7 +12,7 @@
             this.reportService = reportService;
         }
 
-        // [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin, Owner, Tenant")]
         public IActionResult GetPaidExpenses()
         {
             var allPaidExpenses = this.reportService.PaidExpencesReport();
@@ -20,7 +20,7 @@
             return this.View(allPaidExpenses);
         }
 
-        // [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin, Owner, Tenant")]
         public IActionResult GetIncomes()
         {
             var allPaidIncomes = this.reportService.PaidIncomesReport();
