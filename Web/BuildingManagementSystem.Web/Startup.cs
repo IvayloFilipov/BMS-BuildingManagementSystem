@@ -10,6 +10,7 @@
     using BuildingManagementSystem.Data.Repositories;
     using BuildingManagementSystem.Data.Seeding;
     using BuildingManagementSystem.Services.Data.Debts;
+    using BuildingManagementSystem.Services.Data.Edits;
     using BuildingManagementSystem.Services.Data.Expenses;
     using BuildingManagementSystem.Services.Data.Incomes;
     using BuildingManagementSystem.Services.Data.Registrations.InitialRegistrations;
@@ -104,6 +105,7 @@
             services.AddTransient<IPropertyService, PropertyService>();
             services.AddTransient<ITenantService, TenantService>();
             services.AddTransient<IReportService, ReportService>();
+            services.AddTransient<IEditPropertyService, EditPropertyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

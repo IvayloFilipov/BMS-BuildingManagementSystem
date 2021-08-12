@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data.Models;
+    using BuildingManagementSystem.Services.Data.Edits;
     using BuildingManagementSystem.Services.Data.Expenses;
     using BuildingManagementSystem.Services.Data.Incomes;
     using BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules;
@@ -17,12 +18,18 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IExpenseService expenseService;
         private readonly IIncomeService incomeService;
+        private readonly IEditPropertyService editPropertyService;
 
-        public ManagerController(UserManager<ApplicationUser> userManager, IExpenseService expenseService, IIncomeService incomeService)
+        public ManagerController(
+            UserManager<ApplicationUser> userManager,
+            IExpenseService expenseService,
+            IIncomeService incomeService,
+            IEditPropertyService editPropertyService)
         {
             this.userManager = userManager;
             this.expenseService = expenseService;
             this.incomeService = incomeService;
+            this.editPropertyService = editPropertyService;
         }
 
         // [Authorize(Roles = "Admin")]
@@ -79,6 +86,32 @@
             await this.expenseService.PayExpenseAsync(expenseType.ExpenseTypeId, expenseType.PaymentTypeId, expenseType.Amount, expenseType.Description);
 
             return this.RedirectToAction(nameof(this.PayExpense));
+        }
+
+        // [Authorize(Roles = "Admin")]
+        public IActionResult GetAllProperties()
+        {
+            var allProperties = this.editPropertyService.AllProperties();
+
+            return this.View(allProperties);
+        }
+
+        // [Authorize(Roles = "Admin")]
+        public IActionResult EditProperty()
+        {
+            return this.View();
+        }
+
+        // [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> EditProperty(int id)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            return null;
         }
 
         public IActionResult ChangeFee() // Not implemented yet
