@@ -1,0 +1,83 @@
+﻿@model BuildingManagementSystem.Web.ViewModels.Properties.EditPropertyViewModel
+
+@{
+    ViewData["Title"] = "гр. София, ул. Първа, №101";
+
+    int count = 1;
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2 mb-5">
+        <h2 class="text-center">Домова книга</h2>
+        <h3 class="text-center text-info">Редактиране на избрания имот</h3>
+        <hr />
+        <hr />
+
+        <p>Моля <b class="text-danger">променете само тези данни</b> във формата, които считате, че подлежат на промяна. След като го направите натиснете бутона <b>'ЗАПИШИ'</b> за да завършите редакцията на избрания имот.</p>
+    </div>
+
+    <a><b>@ViewData["Title"]</b></a>
+    <table class="table table-responsive-sm mt-4 mb-5">
+        <thead class="table-info">
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Тип на имота</th>
+                <th scope="col">Етаж №</th>
+                <th scope="col">Имот №</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-hover">
+                <th scope="row">@count</th>
+                <td>@Model.PropertyType</td>
+                <td>@Model.PropertyFloor</td>
+                <td>@Model.PropertyNumber</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2 mt-3">
+        <form method="post" asp-action="EditProperty" asp-controller="Manager">
+            @*<div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.IsSold"></label>
+                <input type="checkbox" asp-for="@Model.IsSold" class="form-control" />
+                <span asp-validation-for="@Model.IsSold" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <label asp-for="@Model.UserId"></label>
+                <input asp-for="@Model.UserId" class="form-control" />
+                <span asp-validation-for="@Model.UserId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <i class="fas fa-user-plus"></i>
+                <label asp-for="@Model.CoOwner"></label>
+                <input asp-for="@Model.CoOwner" class="form-control" />
+                <span asp-validation-for="@Model.CoOwner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.DogCount"></label>
+                <input asp-for="@Model.DogCount" class="form-control" />
+                <span asp-validation-for="@Model.DogCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-info-circle"></i>
+                <label asp-for="@Model.StatusId"></label>
+                <select asp-for="@Model.StatusId" class="form-control">
+                    @foreach (var currStatus in Model.Statuses)
+                    {
+                        <option value="@currStatus.Id">@currStatus.PropertyStatus</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.StatusId" class="small text-danger"></span>
+            </div>
+            <p class="text-primary mb-3 mt-4">Моля запишете данните!</p>
+
+            <input type="submit" class="btn btn-primary text-uppercase" value="Запиши" />
+            <input type="submit" class="btn btn-primary text-uppercase" value="Откажи" onclick="window.location= '@Url.Action("Info", "Home")'" />
+        </form>
+        <br />
+    </div>
+</div>

@@ -12,7 +12,7 @@
 
         public string IsSold { get; set; }
 
-        // UserId is GUID, must display owner's first and last name
+        // GUID, in view should display owner first and last name
         public string UserId { get; set; }
 
         public string CoOwner { get; set; }

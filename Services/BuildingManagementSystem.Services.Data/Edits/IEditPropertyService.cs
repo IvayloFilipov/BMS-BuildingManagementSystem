@@ -1,6 +1,7 @@
 ﻿namespace BuildingManagementSystem.Services.Data.Edits
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     using BuildingManagementSystem.Web.ViewModels.Properties;
 
@@ -8,6 +9,10 @@
     {
         public IEnumerable<EditPropertyFormModel> AllProperties();
 
-        void Edit(int id, string buildingName, string coowner, int dogCount, int tenantId, int owner, int companyOwner, string userId, bool isSold, int statusId);
+        Task EditAsync(int propertyId, string coowner, int dogCount, int status/*, string userId, bool isSold*/);
+
+        public IEnumerable<PropertyStatusDataModel> GetPropertyStatus();
+
+        Task<EditPropertyViewModel> SelectedPropertyAsync(int propertyId);
     }
 }

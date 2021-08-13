@@ -9,6 +9,7 @@
     using BuildingManagementSystem.Services.Data.Incomes;
     using BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
+    using BuildingManagementSystem.Web.ViewModels.Properties;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -97,21 +98,41 @@
         }
 
         // [Authorize(Roles = "Admin")]
-        public IActionResult EditProperty()
+        public async Task<IActionResult> EditProperty(int id)
         {
-            return this.View();
+            var selectedProperty = await this.editPropertyService.SelectedPropertyAsync(id);
+
+            var propertyToEdit = new EditPropertyViewModel
+            {
+                // UserId = selectedProperty.UserId,
+                // IsSold = selectedProperty.IsSold,
+                Id = selectedProperty.Id,
+                PropertyType = selectedProperty.PropertyType,
+                PropertyFloor = selectedProperty.PropertyFloor,
+                PropertyNumber = selectedProperty.PropertyNumber,
+                CoOwner = selectedProperty.CoOwner,
+                DogCount = selectedProperty.DogCount,
+                StatusId = selectedProperty.StatusId,
+                Statuses = this.editPropertyService.GetPropertyStatus(),
+            };
+
+            return this.View(propertyToEdit);
         }
 
         // [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<IActionResult> EditProperty(int id)
+        public async Task<IActionResult> EditProperty(EditPropertyViewModel currProperty)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View();
+                currProperty.Statuses = this.editPropertyService.GetPropertyStatus();
+
+                return this.View(currProperty);
             }
 
-            return null;
+            await this.editPropertyService.EditAsync(currProperty.Id, currProperty.CoOwner, currProperty.DogCount, currProperty.StatusId/*, currProperty.IsSold, currProperty.UserId*/);
+
+            return this.RedirectToAction(nameof(this.GetAllProperties));
         }
 
         public IActionResult ChangeFee() // Not implemented yet

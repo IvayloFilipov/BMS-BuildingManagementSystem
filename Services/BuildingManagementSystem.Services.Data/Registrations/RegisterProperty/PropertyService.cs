@@ -141,6 +141,7 @@
         public async Task<int> AddPropertyLastDataAsync(string coOwner, int dogCount, string userId, int propertyId)
         {
             var property = await this.dbContext.Properties.FindAsync(propertyId);
+
             if (property is null)
             {
                 throw new System.ArgumentException($"Invalid property ID={propertyId}!", nameof(propertyId));

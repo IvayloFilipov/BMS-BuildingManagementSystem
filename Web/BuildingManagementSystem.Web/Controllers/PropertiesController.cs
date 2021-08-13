@@ -92,6 +92,7 @@
             return this.View(finalModel);
         }
 
+        // [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> ShowSelectedProperties(FinalRegistrationPropertyViewModel data)
         {
