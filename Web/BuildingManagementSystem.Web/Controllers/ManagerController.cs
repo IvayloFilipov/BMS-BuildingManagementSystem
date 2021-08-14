@@ -4,11 +4,13 @@
     using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data.Models;
+    using BuildingManagementSystem.Services.Data.DeleteOwners;
     using BuildingManagementSystem.Services.Data.Edits;
     using BuildingManagementSystem.Services.Data.Expenses;
     using BuildingManagementSystem.Services.Data.Incomes;
     using BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
+    using BuildingManagementSystem.Web.ViewModels.ManagerModules.DeleteOwners;
     using BuildingManagementSystem.Web.ViewModels.Properties;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -20,17 +22,20 @@
         private readonly IExpenseService expenseService;
         private readonly IIncomeService incomeService;
         private readonly IEditPropertyService editPropertyService;
+        private readonly IDeleteOwnerService deleteOwnerService;
 
         public ManagerController(
             UserManager<ApplicationUser> userManager,
             IExpenseService expenseService,
             IIncomeService incomeService,
-            IEditPropertyService editPropertyService)
+            IEditPropertyService editPropertyService,
+            IDeleteOwnerService deleteOwnerService)
         {
             this.userManager = userManager;
             this.expenseService = expenseService;
             this.incomeService = incomeService;
             this.editPropertyService = editPropertyService;
+            this.deleteOwnerService = deleteOwnerService;
         }
 
         // [Authorize(Roles = "Admin")]
@@ -135,14 +140,25 @@
             return this.RedirectToAction(nameof(this.GetAllProperties));
         }
 
-        public IActionResult ChangeFee() // Not implemented yet
+        // [Authorize(Roles = "Admin")]
+        // public IActionResult GetAllOwners()
+        // {
+        //     var allProperties = this.editPropertyService.AllProperties();
+           
+        //     return this.View(allProperties);
+        // }
+
+        // [Authorize(Roles = "Admin")]
+        public IActionResult DeleteOwner() // Not implemented yet
         {
-            return this.View();
+            var allOwners = this.deleteOwnerService.GetAllOwners();
+
+            return this.View(allOwners);
         }
 
+        // [Authorize(Roles = "Admin")]
         [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public IActionResult ChangeFee(string fee) // <- Add view model
+        public async Task<IActionResult> DeleteOwner(string fee) // <- Add view model
         {
             if (!this.ModelState.IsValid)
             {

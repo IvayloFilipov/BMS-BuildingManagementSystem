@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BuildingManagementSystem.Web.ViewModels.ManagerModules.DeleteOwners.DeleteOwnerViewModel>
+
+@{
+    ViewData["Title"] = "гр. София, ул. Първа, №101";
+
+    int count = 1;
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <h2 class="text-center">Домова книга</h2>
+        <h3 class="text-center text-info">Списък на собствениците (Фирми и физически лица)</h3>
+        <hr />
+        <hr />
+        <h5 class="mb-4">Вие се намирате на страницата, която показва всички собственици, <b>ЗАПИСАНИ</b> в електронната Домова книга съобразно притежаваните от тях имоти</h5>
+        <p class="mb-5 text-black"><b>ВАЖНО: </b>За да изтриете собственик от списъка, натиснете бутона "ИЗТРИЙ"</p>
+    </div>
+
+    <a><b>@ViewData["Title"]</b></a>
+    <table class="table table-responsive-sm mt-4">
+        <thead class="table-info">
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Тип на имота</th>
+                <th scope="col">Етаж №</th>
+                <th scope="col">Имот №</th>
+                <th scope="col">Фирма</th>
+                <th scope="col">Собственик</th>
+                <th scope="col">Изтрий</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var owner in Model)
+            {
+            <tr class="table-hover">
+                <th scope="row">@(count++)</th>
+                <td>@owner.PropertyType</td>
+                <td>@owner.PropertyFloor</td>
+                <td>@owner.PropertyNumber</td>
+                <td>@owner.CompanyName</td>
+                <td>@owner.UserId</td>
+                <td>
+                    <div class="align-content-lg-around float-md-none float-md-none">
+                        <a asp-controller="Manager" asp-action="DeleteOwner" asp-route-id="@owner.Id" class="btn btn-outline-danger btn-sm">Изтрий</a>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
