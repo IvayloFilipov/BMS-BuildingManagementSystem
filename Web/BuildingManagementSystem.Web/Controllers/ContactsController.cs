@@ -11,8 +11,6 @@
 
     public class ContactsController : BaseController
     {
-        private const string RedirectedFromContactForm = "RedirectedFromContactForm";
-
         private readonly IRepository<ContactForm> contactsRepository;
 
         private readonly IEmailSender emailSender;
@@ -55,14 +53,14 @@
                 contact.Title,
                 contact.Content);
 
-            this.TempData[RedirectedFromContactForm] = true;
+            this.TempData[GlobalConstants.RedirectedFromContactForm] = true;
 
             return this.RedirectToAction("ThankYou");
         }
 
         public IActionResult ThankYou()
         {
-            if (this.TempData[RedirectedFromContactForm] == null)
+            if (this.TempData[GlobalConstants.RedirectedFromContactForm] == null)
             {
                 return this.NotFound();
             }

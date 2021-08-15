@@ -42,7 +42,10 @@
                     <td>@tenant.Phone</td>
                     <td>
                         <div class="align-content-lg-around float-md-none float-md-none">
-                            <a asp-controller="Tenants" asp-action="ConfirmRegitration" asp-route-id="@tenant.Id" class="btn btn-outline-primary btn-sm" id="buttonId">Регистрирай</a>
+                            @if (!tenant.IsConfirmed)
+                            {
+                                <a asp-controller="Tenants" asp-action="ConfirmRegitration" asp-route-id="@tenant.Id" class="btn btn-outline-primary btn-sm" id="buttonId">Регистрирай</a>
+                            }
                         </div>
                     </td>
                     <td>
@@ -57,9 +60,9 @@
 </div>
 
 @*@section scripts{
-    <script>
-        $("#buttonId").on("click", function () {
-            $(this).prop("disabled", true);
-        });
-    </script>
-}*@
+        <script>
+            $("#buttonId").on("click", function () {
+                $(this).prop("disabled", true);
+            });
+        </script>
+    }*@

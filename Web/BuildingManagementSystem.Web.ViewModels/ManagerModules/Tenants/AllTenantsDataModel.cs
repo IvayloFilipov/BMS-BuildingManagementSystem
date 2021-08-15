@@ -15,5 +15,7 @@
         public string Phone { get; set; }
 
         public string OwnerId { get; set; }
+
+        public bool IsConfirmed { get; set; }
     }
 }

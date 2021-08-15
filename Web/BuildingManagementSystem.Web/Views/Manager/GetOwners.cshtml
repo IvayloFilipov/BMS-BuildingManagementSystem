@@ -41,7 +41,10 @@
                     <td>@data.OwnerNames</td>
                     <td>
                         <div class="align-content-lg-around float-md-none float-md-none">
-                            <a asp-controller="Manager" asp-action="DeleteOwner" asp-route-id="@data.Id" class="btn btn-outline-danger btn-sm">Изтрий</a>
+                            @if (!string.IsNullOrWhiteSpace(data.OwnerNames))
+                            {
+                                <a asp-controller="Manager" asp-action="DeleteOwner" asp-route-id="@data.Id" class="btn btn-outline-danger btn-sm">Изтрий</a>
+                            }
                         </div>
                     </td>
                 </tr>

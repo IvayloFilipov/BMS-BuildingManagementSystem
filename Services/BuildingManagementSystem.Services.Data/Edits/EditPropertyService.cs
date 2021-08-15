@@ -6,6 +6,7 @@
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Web.ViewModels.Properties;
+    using Microsoft.EntityFrameworkCore;
 
     public class EditPropertyService : IEditPropertyService
     {
@@ -73,7 +74,7 @@
 
         public async Task<EditPropertyViewModel> SelectedPropertyAsync(int propertyId)
         {
-            var property = this.dbContext
+            var property = await this.dbContext
                 .Properties
                 .Select(x => new EditPropertyViewModel
                 {
@@ -83,12 +84,9 @@
                     PropertyNumber = x.Number.ToString(),
                     CoOwner = x.CoOwner,
                     DogCount = x.DogCount,
-                    // UserId = $"{x.User.FirstName} {x.User.LastName}",
-                    // UserId = x.UserId,
-                    // IsSold = x.IsSold,
                     StatusId = x.StatusId,
                 })
-                .FirstOrDefault(x => x.Id == propertyId);
+                .FirstOrDefaultAsync(x => x.Id == propertyId);
 
             return property;
         }

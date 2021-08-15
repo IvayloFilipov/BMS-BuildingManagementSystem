@@ -140,17 +140,17 @@
         }
 
         // [Authorize(Roles = "Admin")]
-        public IActionResult GetOwners()
+        public async Task<IActionResult> GetOwners()
         {
-            var allOwners = this.deleteOwnerService.GetAllOwners();
+            var allOwners = await this.deleteOwnerService.GetAllOwners();
 
             return this.View(allOwners);
         }
 
         // [Authorize(Roles = "Admin")]
-        public IActionResult DeleteOwner(int id)
+        public async Task<IActionResult> DeleteOwner(int id)
         {
-            this.deleteOwnerService.RemoveOwner(id);
+            await this.deleteOwnerService.RemoveOwner(id);
 
             return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }

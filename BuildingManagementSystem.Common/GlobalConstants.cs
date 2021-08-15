@@ -3,6 +3,7 @@
     public static class GlobalConstants
     {
         // Common constants
+        public const string RedirectedFromContactForm = "RedirectedFromContactForm";
         public const string SystemName = "Building Management System";
         public const string ShortSystemName = "BMS";
 

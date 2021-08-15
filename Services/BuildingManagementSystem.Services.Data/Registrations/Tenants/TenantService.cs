@@ -64,6 +64,7 @@
                     Email = x.Email,
                     Phone = x.Phone,
                     OwnerId = x.UserId,
+                    IsConfirmed = x.IsConfirmed,
                 })
                 .ToList();
 

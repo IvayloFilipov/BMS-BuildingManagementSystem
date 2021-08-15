@@ -2,9 +2,11 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Web.ViewModels.ManagerModules.DeleteOwners;
+    using Microsoft.EntityFrameworkCore;
 
     public class DeleteOwnerService : IDeleteOwnerService
     {
@@ -15,9 +17,9 @@
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<GetOwnersViewModel> GetAllOwners()
+        public async Task<IEnumerable<GetOwnersViewModel>> GetAllOwners()
         {
-            var propertiesOwners = this.dbContext
+            var propertiesOwners = await this.dbContext
                 .Properties
                 .Select(x => new GetOwnersViewModel
                 {
@@ -32,95 +34,23 @@
                         .Select(co => co.CompanyName)
                         .FirstOrDefault() ?? "N/A",
                 })
-                .ToList();
+                .ToListAsync();
 
             return propertiesOwners;
         }
 
-        //public void RemoveOwner(string userId/*, string roleId*/)
-        //{
-        //    // Remove record from AspNetUserRoles
-        //    // 1-st variant
-        //    //var aspUser = this.dbContext.UserRoles.Find(userId);
-
-        //    //if (aspUser == null)
-        //    //{
-        //    //    return;
-        //    //}
-
-        //    //this.dbContext.UserRoles.Remove(aspUser);
-
-        //    // 2-nd variant
-        //    var aspnetUser = this.dbContext.UserRoles.Single(u => u.UserId == userId);
-
-        //    foreach (var role in aspnetUser.RoleId.ToList())
-        //    {
-        //        aspnetUser.RoleId.Remove(role);
-        //    }
-
-        //    this.dbContext.UserRoles.Remove(aspnetUser);
-
-        //    // 3-rd variant
-        //    // this.dbContext.Users.Find(userId).Roles.Remove(this.dbContext.UserRoles.Find(roleId));
-
-        //    // Set AspNetUser IsDeleted to true and IsRegisteredConfim to false
-        //    var aspUser1 = this.dbContext.Users.Find(userId);
-
-        //    if (aspUser1 != null)
-        //    {
-        //        aspUser1.IsDeleted = true;
-        //        aspUser1.IsRegisterConfirmed = false;
-        //    }
-
-        //    // Remove User's records from Properies
-        //    var property = this.dbContext.Properties.Find(userId);
-
-        //    if (property != null)
-        //    {
-        //        property.CoOwner = null;
-        //        property.DogCount = 0;
-        //        property.UserId = null;
-        //        property.IsSold = false;
-        //    }
-
-        //    // Set Owner/CompanyOwner IsDeleted to true
-        //    var owner = this.dbContext.Owners.Find(userId);
-
-        //    var companyOwner = this.dbContext.CompanyOwners.Find(userId);
-
-        //    if (owner != null)
-        //    {
-        //        owner.IsDeleted = true;
-        //    }
-        //    else
-        //    {
-        //        companyOwner.IsDeleted = true;
-        //    }
-
-        //    // Set IsDeleted in Addresses to true
-        //    var addressUser = this.dbContext.Addresses.Find(userId);
-
-        //    if (addressUser != null)
-        //    {
-        //        addressUser.IsDeleted = true;
-        //    }
-
-        //    // save changes
-        //    this.dbContext.SaveChanges();
-        //}
-
-        public void RemoveOwner(int propertyId/*, string roleId*/)
+        public async Task RemoveOwner(int propertyId/*, string roleId*/)
         {
             // Remove record from AspNetUserRoles
-            var selectedProperty = this.dbContext.Properties.FirstOrDefault(p => p.Id == propertyId);
+            var selectedProperty = await this.dbContext.Properties.FirstOrDefaultAsync(p => p.Id == propertyId);
             var userId = selectedProperty.UserId;
 
-            var aspNetUser = this.dbContext.UserRoles.Single(u => u.UserId == userId);
+            var aspNetUser = await this.dbContext.UserRoles.SingleAsync(u => u.UserId == userId);
 
             this.dbContext.UserRoles.Remove(aspNetUser);
 
             // Set AspNetUser IsDeleted to true and IsRegisteredConfim to false
-            var aspUser = this.dbContext.Users.Find(userId);
+            var aspUser = await this.dbContext.Users.FindAsync(userId);
 
             if (aspUser != null)
             {
@@ -129,7 +59,7 @@
             }
 
             // Remove User's records from Properies
-            var property = this.dbContext.Properties.Find(propertyId);
+            var property = await this.dbContext.Properties.FindAsync(propertyId);
 
             if (property != null)
             {
@@ -140,9 +70,7 @@
             }
 
             // Set Owner/CompanyOwner IsDeleted to true
-            var owner = this.dbContext.Owners.FirstOrDefault(x => x.UserId == userId);
-
-            var companyOwner = this.dbContext.CompanyOwners.FirstOrDefault(x => x.UserId == userId);
+            var owner = await this.dbContext.Owners.FirstOrDefaultAsync(x => x.UserId == userId);
 
             if (owner != null)
             {
@@ -150,18 +78,19 @@
             }
             else
             {
+                var companyOwner = await this.dbContext.CompanyOwners.FirstOrDefaultAsync(x => x.UserId == userId);
                 companyOwner.IsDeleted = true;
             }
 
             // Set IsDeleted in Addresses to true
-            var addressUser = this.dbContext.Addresses.FirstOrDefault(x => x.UserId == userId);
+            var addressUser = await this.dbContext.Addresses.FirstOrDefaultAsync(x => x.UserId == userId);
 
             if (addressUser != null)
             {
                 addressUser.IsDeleted = true;
             }
 
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }
