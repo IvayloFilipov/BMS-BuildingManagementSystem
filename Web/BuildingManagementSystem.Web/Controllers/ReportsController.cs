@@ -1,6 +1,9 @@
 ﻿namespace BuildingManagementSystem.Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using BuildingManagementSystem.Services.Data.Reports;
+    using BuildingManagementSystem.Web.ViewModels.ManagerModules.Reports;
     using Microsoft.AspNetCore.Mvc;
 
     public class ReportsController : BaseController
@@ -26,6 +29,13 @@
             var allPaidIncomes = this.reportService.PaidIncomesReport();
 
             return this.View(allPaidIncomes);
+        }
+
+        public IActionResult GetValues()
+        {
+            var allValues = this.reportService.GetValuesAsync();
+
+            return this.View(allValues);
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿namespace BuildingManagementSystem.Services.Data.Reports
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Web.ViewModels.ManagerModules.Reports;
+    using Microsoft.EntityFrameworkCore;
+    using static BuildingManagementSystem.Common.GlobalConstants;
 
     public class ReportService : IReportService
     {
@@ -54,6 +56,21 @@
                 .ToList();
 
             return incomes;
+        }
+
+        public IEnumerable<AccountsValueViewModel> GetValuesAsync()
+        {
+            var value = this.dbContext
+                .BuildingAccounts
+                .Select(x => new AccountsValueViewModel
+                {
+                    Id = x.Id,
+                    AccountType = x.AccountType,
+                    TotalAmount = x.TotalAmount,
+                })
+                .ToList();
+
+            return value;
         }
     }
 }

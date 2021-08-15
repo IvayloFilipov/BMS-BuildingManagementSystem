@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BuildingManagementSystem.Web.ViewModels.ManagerModules.Reports.AccountsValueViewModel>
+
+@{
+    ViewData["Title"] = "гр. София, ул. Първа, №101";
+
+    int count = 1;
+
+    decimal totalAmount = 0m;
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <h2 class="text-center">Справка за паричните наличности</h2>
+        <hr />
+        <hr />
+        <h5 class="text-center text-info mb-5">Актуална справка за паричните наличности (в лева) за @DateTime.UtcNow.Year год. по банковата сметка и в касата на Етажната собственост</h5>
+    </div>
+
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <a><b>@ViewData["Title"]</b></a>
+        <table class="table table-responsive-sm mt-4">
+            <thead class="table-info">
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">Сметка</th>
+                    <th scope="col">Стойност (лв.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var value in Model)
+                {
+                    totalAmount += value.TotalAmount;
+
+                    <tr class="table-hover">
+                        <th scope="row">@(count++)</th>
+                        <td>@value.AccountType</td>
+                        <td>@value.TotalAmount лв.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
+        <h5 class="text-danger"><b>ОБЩО:</b> @totalAmount лв.</h5>
+    </div>
+</div>

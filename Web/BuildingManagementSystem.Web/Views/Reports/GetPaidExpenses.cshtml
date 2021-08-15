@@ -4,6 +4,8 @@
     ViewData["Title"] = "гр. София, ул. Първа, №101";
 
     int count = 1;
+
+    decimal totalAmount = 0m;
 }
 
 <div class="row">
@@ -11,7 +13,7 @@
         <h2 class="text-center">Справка за разходите</h2>
         <hr />
         <hr />
-        <h5 class="text-center text-black mb-5">Хронологична справка за извършените разходи (в лева) за @DateTime.UtcNow.Year год.</h5>
+        <h5 class="text-center text-info mb-5">Хронологична справка за извършените разходи (в лева) за @DateTime.UtcNow.Year год.</h5>
     </div>
 
     <a><b>@ViewData["Title"]</b></a>
@@ -30,6 +32,8 @@
         <tbody>
             @foreach (var expense in Model)
             {
+                totalAmount += expense.Amount;
+
                 <tr class="table-hover">
                     <th scope="row">@(count++)</th>
                     <td>@expense.ExpenseType</td>
@@ -41,11 +45,9 @@
                 </tr>
             }
         </tbody>
-        <tfoot>
-            <tr>
-                <td><b>ОБЩО</b></td>
-            </tr>
-        </tfoot>
     </table>
+    <div>
+        <h5 class="text-danger"><b>Разходи общо:</b> @totalAmount лв.</h5>
+    </div>
 </div>
 

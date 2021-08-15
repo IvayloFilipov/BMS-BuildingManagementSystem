@@ -4,6 +4,8 @@
     ViewData["Title"] = "гр. София, ул. Първа, №101";
 
     int count = 1;
+
+    decimal totalAmount = 0m;
 }
 
 <div class="row">
@@ -11,7 +13,7 @@
         <h2 class="text-center">Справка за приходите</h2>
         <hr />
         <hr />
-        <h5 class="text-center text-black mb-5">Хронологична справка за получените приходи (в лева) за @DateTime.UtcNow.Year год.</h5>
+        <h5 class="text-center text-info mb-5">Хронологична справка за получените приходи (в лева) за @DateTime.UtcNow.Year год.</h5>
     </div>
 
     <a><b>@ViewData["Title"]</b></a>
@@ -30,25 +32,25 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var expense in Model)
+            @foreach (var income in Model)
             {
+                totalAmount += income.Amount;
+
                 <tr class="table-hover">
                     <th scope="row">@(count++)</th>
-                    <td>@expense.IncomeDescription</td>
-                    <td>@expense.Amount лв.</td>
-                    <td>@expense.PaymentType</td>
-                    <td>@expense.CreatedOnMonth</td>
-                    <td>@expense.CreatedOnYear год.</td>
-                    <td>@expense.PaymentPeriod</td>
-                    <td>@expense.Property</td>
-                    <td>@expense.PayerName</td>
+                    <td>@income.IncomeDescription</td>
+                    <td>@income.Amount лв.</td>
+                    <td>@income.PaymentType</td>
+                    <td>@income.CreatedOnMonth</td>
+                    <td>@income.CreatedOnYear год.</td>
+                    <td>@income.PaymentPeriod</td>
+                    <td>@income.Property</td>
+                    <td>@income.PayerName</td>
                 </tr>
             }
         </tbody>
-        <tfoot>
-            <tr>
-                <td><b>ОБЩО</b></td>
-            </tr>
-        </tfoot>
     </table>
+    <div>
+        <h5 class="text-danger"><b>Приходи общо:</b> @totalAmount лв.</h5>
+    </div>
 </div>

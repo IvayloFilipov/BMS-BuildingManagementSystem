@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data.Models.BuildingFunds;
-    using Microsoft.EntityFrameworkCore;
 
     using static BuildingManagementSystem.Common.GlobalConstants;
 

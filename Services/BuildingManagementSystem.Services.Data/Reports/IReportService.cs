@@ -6,8 +6,10 @@
 
     public interface IReportService
     {
-        public IEnumerable<PaidExpensesViewModel> PaidExpencesReport();
+        IEnumerable<PaidExpensesViewModel> PaidExpencesReport();
 
-        public IEnumerable<PaidIncomesViewModel> PaidIncomesReport();
+        IEnumerable<PaidIncomesViewModel> PaidIncomesReport();
+
+        IEnumerable<AccountsValueViewModel> GetValuesAsync();
     }
 }
