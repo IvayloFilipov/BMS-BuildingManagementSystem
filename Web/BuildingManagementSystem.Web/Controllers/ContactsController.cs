@@ -3,22 +3,18 @@
     using System.Threading.Tasks;
 
     using BuildingManagementSystem.Common;
-    using BuildingManagementSystem.Data.Common.Repositories;
     using BuildingManagementSystem.Data.Models.Common;
-    using BuildingManagementSystem.Services.Messaging;
+    using BuildingManagementSystem.Services.Data.Contacts;
     using BuildingManagementSystem.Web.ViewModels.Contacts;
     using Microsoft.AspNetCore.Mvc;
 
     public class ContactsController : BaseController
     {
-        private readonly IRepository<ContactForm> contactsRepository;
+        private readonly IContactService contactService;
 
-        private readonly IEmailSender emailSender;
-
-        public ContactsController(IRepository<ContactForm> contactsRepository, IEmailSender emailSender)
+        public ContactsController(IContactService contactService)
         {
-            this.contactsRepository = contactsRepository;
-            this.emailSender = emailSender;
+            this.contactService = contactService;
         }
 
         public IActionResult Index()
@@ -43,15 +39,7 @@
                 Content = contact.Content,
             };
 
-            await this.contactsRepository.AddAsync(contactFormEntry);
-            await this.contactsRepository.SaveChangesAsync();
-
-            await this.emailSender.SendEmailAsync(
-                contact.Email,
-                contact.FullName,
-                GlobalConstants.SystemEmail,
-                contact.Title,
-                contact.Content);
+            await this.contactService.SendEmail(contactFormEntry);
 
             this.TempData[GlobalConstants.RedirectedFromContactForm] = true;
 

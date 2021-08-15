@@ -9,6 +9,7 @@
     using BuildingManagementSystem.Data.Models;
     using BuildingManagementSystem.Data.Repositories;
     using BuildingManagementSystem.Data.Seeding;
+    using BuildingManagementSystem.Services.Data.Contacts;
     using BuildingManagementSystem.Services.Data.Debts;
     using BuildingManagementSystem.Services.Data.DeleteOwners;
     using BuildingManagementSystem.Services.Data.Edits;
@@ -108,6 +109,7 @@
             services.AddTransient<IReportService, ReportService>();
             services.AddTransient<IEditPropertyService, EditPropertyService>();
             services.AddTransient<IDeleteOwnerService, DeleteOwnerService>();
+            services.AddTransient<IContactService, ContactService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
