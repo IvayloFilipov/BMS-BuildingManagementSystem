@@ -7,8 +7,8 @@
 
     public interface IDeleteOwnerService
     {
-        public IEnumerable<DeleteOwnerViewModel> GetAllOwners();
+        public IEnumerable<GetOwnersViewModel> GetAllOwners();
 
-        void RemoveOwner(string userId);
+        void RemoveOwner(string userId/*, string roleId*/);
     }
 }

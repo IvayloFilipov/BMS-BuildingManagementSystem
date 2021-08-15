@@ -149,7 +149,7 @@
         // }
 
         // [Authorize(Roles = "Admin")]
-        public IActionResult DeleteOwner() // Not implemented yet
+        public IActionResult DeleteOwner()
         {
             var allOwners = this.deleteOwnerService.GetAllOwners();
 
@@ -158,12 +158,14 @@
 
         // [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<IActionResult> DeleteOwner(string fee) // <- Add view model
+        public IActionResult DeleteOwner(string userId)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
+
+            this.deleteOwnerService.RemoveOwner(userId);
 
             return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }

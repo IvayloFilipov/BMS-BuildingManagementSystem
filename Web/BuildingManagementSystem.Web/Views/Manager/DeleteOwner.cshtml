@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BuildingManagementSystem.Web.ViewModels.ManagerModules.DeleteOwners.DeleteOwnerViewModel>
+﻿@model IEnumerable<BuildingManagementSystem.Web.ViewModels.ManagerModules.DeleteOwners.GetOwnersViewModel>
 
 @{
     ViewData["Title"] = "гр. София, ул. Първа, №101";
@@ -13,7 +13,7 @@
         <hr />
         <hr />
         <h5 class="mb-4">Вие се намирате на страницата, която показва всички собственици, <b>ЗАПИСАНИ</b> в електронната Домова книга съобразно притежаваните от тях имоти</h5>
-        <p class="mb-5 text-black"><b>ВАЖНО: </b>За да изтриете собственик от списъка, натиснете бутона "ИЗТРИЙ"</p>
+        <p class="mb-5 text-black"><b>ВАЖНО: </b>За да изтриете собственик от списъка, натиснете бутона "ИЗТРИЙ"! Изтрийте само ако има смяна на собствеността!!!</p>
     </div>
 
     <a><b>@ViewData["Title"]</b></a>
@@ -30,18 +30,18 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var owner in Model)
+            @foreach (var data in Model)
             {
             <tr class="table-hover">
                 <th scope="row">@(count++)</th>
-                <td>@owner.PropertyType</td>
-                <td>@owner.PropertyFloor</td>
-                <td>@owner.PropertyNumber</td>
-                <td>@owner.CompanyName</td>
-                <td>@owner.UserId</td>
+                <td>@data.PropertyType</td>
+                <td>@data.PropertyFloor</td>
+                <td>@data.PropertyNumber</td>
+                <td>@data.CompanyName</td>
+                <td>@data.OwnerNames</td>
                 <td>
                     <div class="align-content-lg-around float-md-none float-md-none">
-                        <a asp-controller="Manager" asp-action="DeleteOwner" asp-route-id="@owner.Id" class="btn btn-outline-danger btn-sm">Изтрий</a>
+                        <a asp-controller="Manager" asp-action="DeleteOwner" asp-route-id="@data.Id" class="btn btn-outline-danger btn-sm">Изтрий</a>
                     </div>
                 </td>
             </tr>
