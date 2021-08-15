@@ -10,7 +10,6 @@
     using BuildingManagementSystem.Services.Data.Incomes;
     using BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
-    using BuildingManagementSystem.Web.ViewModels.ManagerModules.DeleteOwners;
     using BuildingManagementSystem.Web.ViewModels.Properties;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -141,15 +140,7 @@
         }
 
         // [Authorize(Roles = "Admin")]
-        // public IActionResult GetAllOwners()
-        // {
-        //     var allProperties = this.editPropertyService.AllProperties();
-           
-        //     return this.View(allProperties);
-        // }
-
-        // [Authorize(Roles = "Admin")]
-        public IActionResult DeleteOwner()
+        public IActionResult GetOwners()
         {
             var allOwners = this.deleteOwnerService.GetAllOwners();
 
@@ -157,15 +148,9 @@
         }
 
         // [Authorize(Roles = "Admin")]
-        [HttpPost]
-        public IActionResult DeleteOwner(string userId)
+        public IActionResult DeleteOwner(int id)
         {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View();
-            }
-
-            this.deleteOwnerService.RemoveOwner(userId);
+            this.deleteOwnerService.RemoveOwner(id);
 
             return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }

@@ -37,43 +37,99 @@
             return propertiesOwners;
         }
 
-        public void RemoveOwner(string userId/*, string roleId*/)
+        //public void RemoveOwner(string userId/*, string roleId*/)
+        //{
+        //    // Remove record from AspNetUserRoles
+        //    // 1-st variant
+        //    //var aspUser = this.dbContext.UserRoles.Find(userId);
+
+        //    //if (aspUser == null)
+        //    //{
+        //    //    return;
+        //    //}
+
+        //    //this.dbContext.UserRoles.Remove(aspUser);
+
+        //    // 2-nd variant
+        //    var aspnetUser = this.dbContext.UserRoles.Single(u => u.UserId == userId);
+
+        //    foreach (var role in aspnetUser.RoleId.ToList())
+        //    {
+        //        aspnetUser.RoleId.Remove(role);
+        //    }
+
+        //    this.dbContext.UserRoles.Remove(aspnetUser);
+
+        //    // 3-rd variant
+        //    // this.dbContext.Users.Find(userId).Roles.Remove(this.dbContext.UserRoles.Find(roleId));
+
+        //    // Set AspNetUser IsDeleted to true and IsRegisteredConfim to false
+        //    var aspUser1 = this.dbContext.Users.Find(userId);
+
+        //    if (aspUser1 != null)
+        //    {
+        //        aspUser1.IsDeleted = true;
+        //        aspUser1.IsRegisterConfirmed = false;
+        //    }
+
+        //    // Remove User's records from Properies
+        //    var property = this.dbContext.Properties.Find(userId);
+
+        //    if (property != null)
+        //    {
+        //        property.CoOwner = null;
+        //        property.DogCount = 0;
+        //        property.UserId = null;
+        //        property.IsSold = false;
+        //    }
+
+        //    // Set Owner/CompanyOwner IsDeleted to true
+        //    var owner = this.dbContext.Owners.Find(userId);
+
+        //    var companyOwner = this.dbContext.CompanyOwners.Find(userId);
+
+        //    if (owner != null)
+        //    {
+        //        owner.IsDeleted = true;
+        //    }
+        //    else
+        //    {
+        //        companyOwner.IsDeleted = true;
+        //    }
+
+        //    // Set IsDeleted in Addresses to true
+        //    var addressUser = this.dbContext.Addresses.Find(userId);
+
+        //    if (addressUser != null)
+        //    {
+        //        addressUser.IsDeleted = true;
+        //    }
+
+        //    // save changes
+        //    this.dbContext.SaveChanges();
+        //}
+
+        public void RemoveOwner(int propertyId/*, string roleId*/)
         {
             // Remove record from AspNetUserRoles
-            // 1-st variant
-            //var aspUser = this.dbContext.UserRoles.Find(userId);
+            var selectedProperty = this.dbContext.Properties.FirstOrDefault(p => p.Id == propertyId);
+            var userId = selectedProperty.UserId;
 
-            //if (aspUser == null)
-            //{
-            //    return;
-            //}
+            var aspNetUser = this.dbContext.UserRoles.Single(u => u.UserId == userId);
 
-            //this.dbContext.UserRoles.Remove(aspUser);
-
-            // 2-nd variant
-            var aspnetUser = this.dbContext.UserRoles.Single(u => u.UserId == userId);
-
-            foreach (var role in aspnetUser.RoleId.ToList())
-            {
-                aspnetUser.RoleId.Remove(role);
-            }
-
-            this.dbContext.UserRoles.Remove(aspnetUser);
-
-            // 3-rd variant
-            // this.dbContext.Users.Find(userId).Roles.Remove(this.dbContext.UserRoles.Find(roleId));
+            this.dbContext.UserRoles.Remove(aspNetUser);
 
             // Set AspNetUser IsDeleted to true and IsRegisteredConfim to false
-            var aspUser1 = this.dbContext.Users.Find(userId);
+            var aspUser = this.dbContext.Users.Find(userId);
 
-            if (aspUser1 != null)
+            if (aspUser != null)
             {
-                aspUser1.IsDeleted = true;
-                aspUser1.IsRegisterConfirmed = false;
+                aspUser.IsDeleted = true;
+                aspUser.IsRegisterConfirmed = false;
             }
 
             // Remove User's records from Properies
-            var property = this.dbContext.Properties.Find(userId);
+            var property = this.dbContext.Properties.Find(propertyId);
 
             if (property != null)
             {
@@ -84,9 +140,9 @@
             }
 
             // Set Owner/CompanyOwner IsDeleted to true
-            var owner = this.dbContext.Owners.Find(userId);
+            var owner = this.dbContext.Owners.FirstOrDefault(x => x.UserId == userId);
 
-            var companyOwner = this.dbContext.CompanyOwners.Find(userId);
+            var companyOwner = this.dbContext.CompanyOwners.FirstOrDefault(x => x.UserId == userId);
 
             if (owner != null)
             {
@@ -98,14 +154,13 @@
             }
 
             // Set IsDeleted in Addresses to true
-            var addressUser = this.dbContext.Addresses.Find(userId);
+            var addressUser = this.dbContext.Addresses.FirstOrDefault(x => x.UserId == userId);
 
             if (addressUser != null)
             {
                 addressUser.IsDeleted = true;
             }
 
-            // save changes
             this.dbContext.SaveChanges();
         }
     }

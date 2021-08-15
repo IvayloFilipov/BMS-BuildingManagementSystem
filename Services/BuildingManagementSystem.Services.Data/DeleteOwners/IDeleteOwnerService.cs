@@ -9,6 +9,6 @@
     {
         public IEnumerable<GetOwnersViewModel> GetAllOwners();
 
-        void RemoveOwner(string userId/*, string roleId*/);
+        void RemoveOwner(int propertyId);
     }
 }
