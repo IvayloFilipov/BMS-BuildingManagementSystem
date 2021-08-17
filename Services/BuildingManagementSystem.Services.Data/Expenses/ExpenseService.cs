@@ -10,6 +10,7 @@
     using BuildingManagementSystem.Data.Models.BuildingFunds;
     using BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
+    using Microsoft.EntityFrameworkCore;
 
     using static BuildingManagementSystem.Common.GlobalConstants;
 
@@ -53,7 +54,6 @@
             // {
             //     throw new InvalidOperationException("Недостатъчна наличност по сметката!");
             // }
-
             await this.dbContext.OutgoingPayments.AddAsync(currOutgoingPayment);
 
             buildingAccount.TotalAmount -= amount;
@@ -63,30 +63,30 @@
             return currOutgoingPayment.Amount;
         }
 
-        public IEnumerable<ExpenseTypeDataModel> GetExpenseType()
+        public async Task<IEnumerable<ExpenseTypeDataModel>> GetExpenseType()
         {
-            var expenseType = this.dbContext
+            var expenseType = await this.dbContext
                 .ExpenseTypes
                 .Select(x => new ExpenseTypeDataModel
                 {
                     Id = x.Id,
                     Type = x.Type,
                 })
-                .ToList();
+                .ToListAsync();
 
             return expenseType;
         }
 
-        public IEnumerable<PaymentTypeDataModel> GetExpensePaymentType()
+        public async Task<IEnumerable<PaymentTypeDataModel>> GetExpensePaymentType()
         {
-            var paymentType = this.dbContext
+            var paymentType = await this.dbContext
                 .PaymentTypes
                 .Select(x => new PaymentTypeDataModel
                 {
                     Id = x.Id,
                     PaymentType = x.Type,
                 })
-                .ToList();
+                .ToListAsync();
 
             return paymentType;
         }

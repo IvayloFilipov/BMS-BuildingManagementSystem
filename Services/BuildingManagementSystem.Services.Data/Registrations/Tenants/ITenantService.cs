@@ -9,7 +9,7 @@
     {
         Task<int> AddTenantAsync(string firstName, string middleName, string lastName, string email, string phone, string userId);
 
-        public IEnumerable<AllTenantsDataModel> GetAll();
+        Task<IEnumerable<AllTenantsDataModel>> GetAllAsync();
 
         void ConfirmTenantRegitration(int tenantId);
 

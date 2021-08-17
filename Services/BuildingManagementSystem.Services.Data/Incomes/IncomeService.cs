@@ -9,6 +9,7 @@
     using BuildingManagementSystem.Data.Models.BuildingFunds;
     using BuildingManagementSystem.Data.Models.BuildingIncomes;
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
+    using Microsoft.EntityFrameworkCore;
 
     using static BuildingManagementSystem.Common.GlobalConstants;
 
@@ -56,9 +57,9 @@
             return currIncome.Amount;
         }
 
-        public IEnumerable<GetPropertyDataFormModel> GetAllProperties()
+        public async Task<IEnumerable<GetPropertyDataFormModel>> GetAllProperties()
         {
-            var properties = this.dbContext
+            var properties = await this.dbContext
                 .Properties
                 .Select(x => new GetPropertyDataFormModel
                 {
@@ -67,21 +68,21 @@
                     PropertyFloor = x.PropertyFloor.Floor,
                     PropertyNumber = x.Number,
                 })
-                .ToList();
+                .ToListAsync();
 
             return properties;
         }
 
-        public IEnumerable<PaymentTypeDataModel> GetPaymentType()
+        public async Task<IEnumerable<PaymentTypeDataModel>> GetPaymentType()
         {
-            var payments = this.dbContext
+            var payments = await this.dbContext
                 .PaymentTypes
                 .Select(x => new PaymentTypeDataModel
                 {
                     Id = x.Id,
                     PaymentType = x.Type,
                 })
-                .ToList();
+                .ToListAsync();
 
             return payments;
         }

@@ -7,6 +7,7 @@
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Web.ViewModels.Registrations;
+    using Microsoft.EntityFrameworkCore;
 
     public class InitialRegisterService : IInitialRegisterService
     {
@@ -19,9 +20,9 @@
             this.serviceProvider = serviceProvider;
         }
 
-        public IEnumerable<RegisteredUsersDataModel> GetAllUsers()
+        public async Task<IEnumerable<RegisteredUsersDataModel>> GetAllUsersAsync()
         {
-            var users = this.dbContext
+            var users = await this.dbContext
                 .Users
                 .Select(x => new RegisteredUsersDataModel
                 {
@@ -32,17 +33,17 @@
                     PhoneNumber = x.PhoneNumber,
                     IsRegisterConfirmed = x.IsRegisterConfirmed,
                 })
-                .ToList();
+                .ToListAsync();
 
             return users;
         }
 
         public async Task<string> SetRoleAsync(string userId, string roleId)
         {
-            var currUser = this.dbContext
+            var currUser = await this.dbContext
                 .Users
                 .Where(x => x.Id == userId)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             var currUserId = currUser.Id;
 

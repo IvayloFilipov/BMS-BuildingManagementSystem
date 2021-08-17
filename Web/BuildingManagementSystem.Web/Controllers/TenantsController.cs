@@ -50,9 +50,9 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult GetAllTenants()
+        public async Task<IActionResult> GetAllTenants()
         {
-            var allTenants = this.tenantService.GetAll();
+            var allTenants = await this.tenantService.GetAllAsync();
 
             return this.View(allTenants);
         }
@@ -69,7 +69,7 @@
 
             this.tenantService.ConfirmTenantRegitration(tenantId);
 
-            return this.RedirectToAction(nameof(HomeController.Index), "Home");
+            return this.RedirectToAction(nameof(this.GetAllTenants));
         }
 
         [Authorize(Roles = AdministratorRoleName)]
@@ -84,7 +84,7 @@
 
             this.tenantService.RemoveTenant(tenantId);
 
-            return this.RedirectToAction(nameof(HomeController.Index), "Home");
+            return this.RedirectToAction(nameof(this.GetAllTenants));
         }
     }
 }

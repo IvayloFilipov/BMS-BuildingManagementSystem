@@ -9,6 +9,6 @@
     {
         Task<int> AddAddressAsync(int cityId, string district, string street, string streetNumber, string blockNumber, string entranceNumber, string floor, string appartNumber, string userId);
 
-        public IEnumerable<AllCitiesDataModel> GetAllCities();
+        Task<IEnumerable<AllCitiesDataModel>> GetAllCitiesAsync();
     }
 }

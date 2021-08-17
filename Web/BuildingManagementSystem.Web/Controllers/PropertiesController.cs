@@ -22,15 +22,15 @@
             this.userManager = userManager;
         }
 
-        [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult ShowAllProperties()
+        [Authorize(Roles = OwnerRoleName)]
+        public async Task<IActionResult> ShowAllProperties()
         {
-            var allProperties = this.propertyService.AllProperties();
+            var allProperties = await this.propertyService.AllPropertiesAsync();
 
             return this.View(allProperties);
         }
 
-        [Authorize(Roles = AdministratorRoleName)]
+        [Authorize(Roles = OwnerRoleName)]
         public IActionResult ConfirmPropertyRegitration(ShowAllPropertiesViewModel property)
         {
             var propertyId = property.Id;
@@ -45,10 +45,10 @@
             return this.RedirectToAction(nameof(PropertiesController.ShowSelectedProperties), "Properties", new { id = propertyId });
         }
 
-        [Authorize(Roles = AdministratorRoleName)]
+        [Authorize(Roles = OwnerRoleName)]
         public async Task<IActionResult> ShowSelectedProperties(int id)
         {
-            var selectedProperty = await this.propertyService.SelectedProperty(id);
+            var selectedProperty = await this.propertyService.SelectedPropertyAsync(id);
 
             var finalModel = new FinalRegistrationPropertyViewModel
             {
@@ -64,7 +64,7 @@
         }
 
         [HttpPost]
-        [Authorize(Roles = AdministratorRoleName)]
+        [Authorize(Roles = OwnerRoleName)]
         public async Task<IActionResult> ShowSelectedProperties(FinalRegistrationPropertyViewModel data)
         {
             if (!this.ModelState.IsValid)
@@ -72,7 +72,6 @@
                 return this.View(data);
             }
 
-            // var userId = this.User.GetId();
             var user = await this.userManager.GetUserAsync(this.User);
             var userId = user.Id;
 

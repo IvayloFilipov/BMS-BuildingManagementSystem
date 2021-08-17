@@ -7,7 +7,7 @@
 
     public interface IDeleteOwnerService
     {
-        public Task<IEnumerable<GetOwnersViewModel>> GetAllOwners();
+        Task<IEnumerable<GetOwnersViewModel>> GetAllOwners();
 
         Task RemoveOwner(int propertyId);
     }

@@ -17,9 +17,9 @@
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<EditPropertyFormModel> AllProperties()
+        public async Task<IEnumerable<EditPropertyFormModel>> AllPropertiesAsync()
         {
-            var property = this.dbContext
+            var property = await this.dbContext
                 .Properties
                 .Select(x => new EditPropertyFormModel
                 {
@@ -33,7 +33,7 @@
                     DogCount = x.DogCount,
                     StatusId = x.Status.Status,
                 })
-                .ToList();
+                .ToListAsync();
 
             return property;
         }
@@ -56,16 +56,16 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public IEnumerable<PropertyStatusDataModel> GetPropertyStatus()
+        public async Task<IEnumerable<PropertyStatusDataModel>> GetPropertyStatus()
         {
-            var status = this.dbContext
+            var status = await this.dbContext
                 .PropertyStatusMonthly
                 .Select(s => new PropertyStatusDataModel
                 {
                     Id = s.Id,
                     PropertyStatus = s.Status,
                 })
-                .ToList();
+                .ToListAsync();
 
             return status;
         }

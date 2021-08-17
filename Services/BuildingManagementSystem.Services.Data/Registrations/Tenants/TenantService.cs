@@ -7,6 +7,7 @@
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Data.Models.BuildingData;
     using BuildingManagementSystem.Web.ViewModels.Tenants.ManagerModules;
+    using Microsoft.EntityFrameworkCore;
 
     public class TenantService : ITenantService
     {
@@ -50,9 +51,9 @@
             return currTenant.Id;
         }
 
-        public IEnumerable<AllTenantsDataModel> GetAll()
+        public async Task<IEnumerable<AllTenantsDataModel>> GetAllAsync()
         {
-            var tenants = this.dbContext
+            var tenants = await this.dbContext
                 .Tenants
                 .Select(x => new AllTenantsDataModel
                 {
@@ -65,7 +66,7 @@
                     OwnerId = x.UserId,
                     IsConfirmed = x.IsConfirmed,
                 })
-                .ToList();
+                .ToListAsync();
 
             return tenants;
         }

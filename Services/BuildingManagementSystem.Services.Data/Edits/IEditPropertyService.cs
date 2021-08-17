@@ -7,11 +7,11 @@
 
     public interface IEditPropertyService
     {
-        public IEnumerable<EditPropertyFormModel> AllProperties();
+        Task<IEnumerable<EditPropertyFormModel>> AllPropertiesAsync();
 
         Task EditAsync(int propertyId, string coowner, int dogCount, int status);
 
-        public IEnumerable<PropertyStatusDataModel> GetPropertyStatus();
+        Task<IEnumerable<PropertyStatusDataModel>> GetPropertyStatus();
 
         Task<EditPropertyViewModel> SelectedPropertyAsync(int propertyId);
     }

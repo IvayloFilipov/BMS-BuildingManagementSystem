@@ -7,7 +7,7 @@
 
     public interface IInitialRegisterService
     {
-        public IEnumerable<RegisteredUsersDataModel> GetAllUsers();
+        Task<IEnumerable<RegisteredUsersDataModel>> GetAllUsersAsync();
 
         Task<string> SetRoleAsync(string userId, string roleId);
 

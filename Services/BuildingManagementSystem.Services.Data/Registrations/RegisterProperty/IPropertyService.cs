@@ -7,12 +7,12 @@
 
     public interface IPropertyService
     {
-        public IEnumerable<ShowAllPropertiesViewModel> AllProperties();
+        Task<IEnumerable<ShowAllPropertiesViewModel>> AllPropertiesAsync();
 
         void ConfirmSelectedPropertyRegitration(int propertyId);
 
         Task<int> AddPropertyLastDataAsync(string coowner, int dogCount, string userId, int propertyId);
 
-        Task<ShowAllPropertiesViewModel> SelectedProperty(int propertyId);
+        Task<ShowAllPropertiesViewModel> SelectedPropertyAsync(int propertyId);
     }
 }

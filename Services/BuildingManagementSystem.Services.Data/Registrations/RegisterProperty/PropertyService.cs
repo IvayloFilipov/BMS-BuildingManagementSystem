@@ -17,9 +17,9 @@
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<ShowAllPropertiesViewModel> AllProperties()
+        public async Task<IEnumerable<ShowAllPropertiesViewModel>> AllPropertiesAsync()
         {
-            var property = this.dbContext
+            var property = await this.dbContext
                 .Properties
                 .Where(x => x.IsSold == false)
                 .Select(x => new ShowAllPropertiesViewModel
@@ -31,12 +31,12 @@
                     PropertyNumber = x.Number.ToString(),
                     PropertyPart = x.PropertyPart,
                 })
-                .ToList();
+                .ToListAsync();
 
             return property;
         }
 
-        public async Task<ShowAllPropertiesViewModel> SelectedProperty(int propertyId)
+        public async Task<ShowAllPropertiesViewModel> SelectedPropertyAsync(int propertyId)
         {
             var property = await this.dbContext
                 .Properties

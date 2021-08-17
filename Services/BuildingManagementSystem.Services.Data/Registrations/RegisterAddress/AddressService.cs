@@ -7,6 +7,7 @@
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Data.Models.BuildingData;
     using BuildingManagementSystem.Web.ViewModels.Registrations;
+    using Microsoft.EntityFrameworkCore;
 
     public class AddressService : IAddressService
     {
@@ -51,16 +52,16 @@
             return address.Id;
         }
 
-        public IEnumerable<AllCitiesDataModel> GetAllCities()
+        public async Task<IEnumerable<AllCitiesDataModel>> GetAllCitiesAsync()
         {
-            var cities = this.dbContext
+            var cities = await this.dbContext
                 .Cities
                 .Select(x => new AllCitiesDataModel
                 {
                     Id = x.Id,
                     City = x.Name,
                 })
-                .ToList();
+                .ToListAsync();
 
             return cities;
         }

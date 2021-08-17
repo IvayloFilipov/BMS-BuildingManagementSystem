@@ -43,12 +43,12 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult AddIncome()
+        public async Task<IActionResult> AddIncome()
         {
             return this.View(new AddIncomeViewModel
             {
-                Payments = this.incomeService.GetPaymentType(),
-                Properties = this.incomeService.GetAllProperties(),
+                Payments = await this.incomeService.GetPaymentType(),
+                Properties = await this.incomeService.GetAllProperties(),
             });
         }
 
@@ -58,8 +58,8 @@
         {
             if (!this.ModelState.IsValid)
             {
-                income.Payments = this.incomeService.GetPaymentType();
-                income.Properties = this.incomeService.GetAllProperties();
+                income.Payments = await this.incomeService.GetPaymentType();
+                income.Properties = await this.incomeService.GetAllProperties();
 
                 return this.View(income);
             }
@@ -70,12 +70,12 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult PayExpense()
+        public async Task<IActionResult> PayExpense()
         {
             return this.View(new PayExpenseViewModel
             {
-                Expenses = this.expenseService.GetExpenseType(),
-                Payments = this.expenseService.GetExpensePaymentType(),
+                Expenses = await this.expenseService.GetExpenseType(),
+                Payments = await this.expenseService.GetExpensePaymentType(),
             });
         }
 
@@ -85,7 +85,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                expenseType.Expenses = this.expenseService.GetExpenseType();
+                expenseType.Expenses = await this.expenseService.GetExpenseType();
                 expenseType.Expenses = (IEnumerable<ExpenseTypeDataModel>)this.expenseService.GetExpensePaymentType();
 
                 return this.View(expenseType);
@@ -97,9 +97,9 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult GetAllProperties()
+        public async Task<IActionResult> GetAllProperties()
         {
-            var allProperties = this.editPropertyService.AllProperties();
+            var allProperties = await this.editPropertyService.AllPropertiesAsync();
 
             return this.View(allProperties);
         }
@@ -118,7 +118,7 @@
                 CoOwner = selectedProperty.CoOwner,
                 DogCount = selectedProperty.DogCount,
                 StatusId = selectedProperty.StatusId,
-                Statuses = this.editPropertyService.GetPropertyStatus(),
+                Statuses = await this.editPropertyService.GetPropertyStatus(),
             };
 
             return this.View(propertyToEdit);
@@ -130,7 +130,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                currProperty.Statuses = this.editPropertyService.GetPropertyStatus();
+                currProperty.Statuses = await this.editPropertyService.GetPropertyStatus();
 
                 return this.View(currProperty);
             }
@@ -153,7 +153,7 @@
         {
             await this.deleteOwnerService.RemoveOwner(id);
 
-            return this.RedirectToAction(nameof(HomeController.Index), "Home");
+            return this.RedirectToAction(nameof(this.GetOwners));
         }
     }
 }

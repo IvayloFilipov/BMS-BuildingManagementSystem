@@ -10,8 +10,8 @@
     {
         Task<decimal> PayExpenseAsync(int expenseTypeId, int paymentTypeId, decimal amount, string description);
 
-        public IEnumerable<ExpenseTypeDataModel> GetExpenseType();
+        Task<IEnumerable<ExpenseTypeDataModel>> GetExpenseType();
 
-        public IEnumerable<PaymentTypeDataModel> GetExpensePaymentType();
+        Task<IEnumerable<PaymentTypeDataModel>> GetExpensePaymentType();
     }
 }

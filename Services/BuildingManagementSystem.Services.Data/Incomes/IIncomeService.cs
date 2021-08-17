@@ -9,8 +9,8 @@
     {
         Task<decimal> AddIncomeAsync(decimal amount, string incomeDescription, string payerName, string paymentPeriod, int propertyId, int paymentTypeId);
 
-        IEnumerable<GetPropertyDataFormModel> GetAllProperties();
+        Task<IEnumerable<GetPropertyDataFormModel>> GetAllProperties();
 
-        public IEnumerable<PaymentTypeDataModel> GetPaymentType();
+        Task<IEnumerable<PaymentTypeDataModel>> GetPaymentType();
     }
 }

@@ -90,11 +90,11 @@
         }
 
         [Authorize(Roles = OwnerRoleName)]
-        public IActionResult RegisterAddress()
+        public async Task<IActionResult> RegisterAddress()
         {
             return this.View(new RegisterAddressViewModel
             {
-                AllCities = this.addressService.GetAllCities(),
+                AllCities = await this.addressService.GetAllCitiesAsync(),
             });
         }
 
@@ -104,7 +104,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                address.AllCities = this.addressService.GetAllCities();
+                address.AllCities = await this.addressService.GetAllCitiesAsync();
 
                 return this.View(address);
             }
@@ -118,9 +118,9 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult ShowAllUsers()
+        public async Task<IActionResult> ShowAllUsers()
         {
-            var allUsers = this.initialRegister.GetAllUsers();
+            var allUsers = await this.initialRegister.GetAllUsersAsync();
 
             var newModelShowUsers = new ShowAllUsersViewModel()
             {
@@ -158,7 +158,7 @@
 
             await this.userManager.AddToRoleAsync(selectedUser, roleId.ToString());
 
-            return this.RedirectToAction(nameof(this.Index), "Registrations");
+            return this.RedirectToAction(nameof(this.ShowAllUsers));
         }
 
         [Authorize(Roles = AdministratorRoleName)]
@@ -173,7 +173,7 @@
 
             this.initialRegister.RemoveUser(userId);
 
-            return this.RedirectToAction(nameof(this.Index), "Registrations");
+            return this.RedirectToAction(nameof(this.Index));
         }
     }
 }

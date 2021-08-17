@@ -6,6 +6,6 @@
 
     public interface IContactService
     {
-        public Task SendEmail(ContactForm contactForm);
+        Task SendEmail(ContactForm contactForm);
     }
 }
