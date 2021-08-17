@@ -13,6 +13,7 @@
             this.userManager = userManager;
         }
 
+        // Not implemented
         public IActionResult UploadDocument()
         {
             return this.View();
@@ -26,7 +27,7 @@
                 return this.View();
             }
 
-            return this.RedirectToAction(nameof(HomeController.Index), "Home"); // change path
+            return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }

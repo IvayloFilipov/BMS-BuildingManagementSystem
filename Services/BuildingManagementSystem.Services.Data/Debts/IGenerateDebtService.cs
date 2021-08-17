@@ -2,6 +2,7 @@
 {
     public interface IGenerateDebtService
     {
+        // Not implemented
         void GenerateDebt();
     }
 }

@@ -16,25 +16,25 @@
         }
 
         [Authorize(Roles = "Admin, Owner, Tenant")]
-        public IActionResult GetPaidExpenses()
+        public async Task<IActionResult> GetPaidExpenses()
         {
-            var allPaidExpenses = this.reportService.PaidExpencesReport();
+            var allPaidExpenses = await this.reportService.PaidExpencesReportAsync();
 
             return this.View(allPaidExpenses);
         }
 
         [Authorize(Roles = "Admin, Owner, Tenant")]
-        public IActionResult GetIncomes()
+        public async Task<IActionResult> GetIncomes()
         {
-            var allPaidIncomes = this.reportService.PaidIncomesReport();
+            var allPaidIncomes = await this.reportService.PaidIncomesReportAsync();
 
             return this.View(allPaidIncomes);
         }
 
         [Authorize(Roles = "Admin, Owner, Tenant")]
-        public IActionResult GetValues()
+        public async Task<IActionResult> GetValues()
         {
-            var allValues = this.reportService.GetValuesAsync();
+            var allValues = await this.reportService.GetValuesAsync();
 
             return this.View(allValues);
         }

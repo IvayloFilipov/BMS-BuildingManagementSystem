@@ -1,15 +1,16 @@
 ﻿namespace BuildingManagementSystem.Services.Data.Reports
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     using BuildingManagementSystem.Web.ViewModels.ManagerModules.Reports;
 
     public interface IReportService
     {
-        IEnumerable<PaidExpensesViewModel> PaidExpencesReport();
+        Task<IEnumerable<PaidExpensesViewModel>> PaidExpencesReportAsync();
 
-        IEnumerable<PaidIncomesViewModel> PaidIncomesReport();
+        Task<IEnumerable<PaidIncomesViewModel>> PaidIncomesReportAsync();
 
-        IEnumerable<AccountsValueViewModel> GetValuesAsync();
+        Task<IEnumerable<AccountsValueViewModel>> GetValuesAsync();
     }
 }

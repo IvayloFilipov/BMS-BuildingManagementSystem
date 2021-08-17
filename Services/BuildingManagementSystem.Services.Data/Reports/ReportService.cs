@@ -2,9 +2,10 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Threading.Tasks;
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Web.ViewModels.ManagerModules.Reports;
+    using Microsoft.EntityFrameworkCore;
 
     public class ReportService : IReportService
     {
@@ -15,9 +16,9 @@
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<PaidExpensesViewModel> PaidExpencesReport()
+        public async Task<IEnumerable<PaidExpensesViewModel>> PaidExpencesReportAsync()
         {
-            var expenses = this.dbContext
+            var expenses = await this.dbContext
                 .OutgoingPayments
                 .Select(x => new PaidExpensesViewModel
                 {
@@ -29,14 +30,14 @@
                     Description = x.Description,
                     PaymentType = x.PaymentType.Type,
                 })
-                .ToList();
+                .ToListAsync();
 
             return expenses;
         }
 
-        public IEnumerable<PaidIncomesViewModel> PaidIncomesReport()
+        public async Task<IEnumerable<PaidIncomesViewModel>> PaidIncomesReportAsync()
         {
-            var incomes = this.dbContext
+            var incomes = await this.dbContext
                 .IncomingPayments
                 .Select(x => new PaidIncomesViewModel
                 {
@@ -50,14 +51,14 @@
                     PaymentType = x.PaymentType.Type,
                     Property = $"етаж: {x.Property.PropertyFloor.Floor}, {x.Property.PropertyType.Type} № {x.Property.Number}".ToString(),
                 })
-                .ToList();
+                .ToListAsync();
 
             return incomes;
         }
 
-        public IEnumerable<AccountsValueViewModel> GetValuesAsync()
+        public async Task<IEnumerable<AccountsValueViewModel>> GetValuesAsync()
         {
-            var value = this.dbContext
+            var value = await this.dbContext
                 .BuildingAccounts
                 .Select(x => new AccountsValueViewModel
                 {
@@ -65,7 +66,7 @@
                     AccountType = x.AccountType,
                     TotalAmount = x.TotalAmount,
                 })
-                .ToList();
+                .ToListAsync();
 
             return value;
         }

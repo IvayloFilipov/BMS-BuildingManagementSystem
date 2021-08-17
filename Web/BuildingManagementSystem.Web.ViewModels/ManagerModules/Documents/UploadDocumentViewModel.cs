@@ -6,6 +6,7 @@
 
     public class UploadDocumentViewModel
     {
+        // Not implemented
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете името на документа")]
         [StringLength(100, ErrorMessage = DistrictNameErrorMessage, MinimumLength = 10)]
         [Display(Name = "Име на документа")]

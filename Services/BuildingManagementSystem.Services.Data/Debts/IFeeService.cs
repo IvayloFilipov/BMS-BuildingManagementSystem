@@ -2,6 +2,7 @@
 {
     public interface IFeeService
     {
+        // Not implemented
         void ChangeFee();
     }
 }
