@@ -49,22 +49,6 @@
                     }
                 </select>
             </div>
-            @*<div class="form-group">
-                    <i class="fas fa-info-circle"></i>
-                    <label asp-for="@Model.PropertyFloorId"></label>
-                    <select asp-for="@Model.PropertyFloorId" class="form-control">
-                        @foreach (var floor in Model.Floors)
-                        {
-                            <option value="@floor.Id"> @floor.PropertyFloor</option>
-                        }
-                    </select>
-                </div>
-                <div class="form-group mb-4">
-                    <i class="fas fa-info-circle"></i>
-                    <label asp-for="@Model.PropertyNumber"></label>
-                    <input asp-for="@Model.PropertyNumber" class="form-control" />
-                    <span asp-validation-for="PropertyNumber" class="text-danger"></span>
-                </div>*@
             <div class="form-group mb-4">
                 <i class="fas fa-user-alt"></i>
                 <label asp-for="@Model.PayerName"></label>

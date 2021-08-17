@@ -13,7 +13,5 @@
         public string PhoneNumber { get; set; }
 
         public bool IsRegisterConfirmed { get; set; }
-
-        public string RoleId { get; set; }
     }
 }

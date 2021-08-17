@@ -33,7 +33,7 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Info">Начало</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Info">Модули</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Поверителност</a>
@@ -55,13 +55,13 @@
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" asp-area="Admin" asp-controller="Administration" asp-action="AddIncome">Добавяне на приход</a>
                                         <a class="dropdown-item" asp-area="Admin" asp-controller="Administration" asp-action="PayExpense">Плащане на разход</a>
-                                        <a class="dropdown-item" asp-controller="Reports" asp-action="GetIncomes">Справка "Приходи": хронологична</a>
-                                        <a class="dropdown-item" asp-controller="Reports" asp-action="GetPaidExpenses">Справка "Разходи": хронологична</a>
-                                        <a class="dropdown-item" asp-controller="Reports" asp-action="GetValues">Справка "Парична наличност"</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Reports" asp-action="GetIncomes">Справка "Приходи": хронологична</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Reports" asp-action="GetPaidExpenses">Справка "Разходи": хронологична</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Reports" asp-action="GetValues">Справка "Парична наличност"</a>
                                         <a class="dropdown-item" asp-area="Admin" asp-controller="Administration" asp-action="GetAllProperties">Редактиране на имот</a>
                                         <a class="dropdown-item" asp-area="Admin" asp-controller="Administration" asp-action="GetOwners">Изтриване на собственик</a>
-                                        <a class="dropdown-item" asp-controller="Tenants" asp-action="GetAllTenants">Списък на регистрираните наематели</a>
-                                        <a class="dropdown-item" asp-controller="Registrations" asp-action="ShowAllUsers">Списък на регистрираните потребители</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Tenants" asp-action="GetAllTenants">Списък на регистрираните наематели</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Registrations" asp-action="ShowAllUsers">Списък на регистрираните потребители</a>
                                     </div>
                                 </div>
                             </li>

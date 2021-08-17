@@ -2,12 +2,9 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using BuildingManagementSystem.Data.Models.BuildingData;
-    using BuildingManagementSystem.Services.Mapping;
-
     using static BuildingManagementSystem.Common.GlobalConstants;
 
-    public class RegisterTenantViewModel : IMapFrom<Tenant>
+    public class RegisterTenantViewModel
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете името на наемателя")]
         [StringLength(TenantFirstNameMaxLength, ErrorMessage = FirstNameErrorMessage, MinimumLength = 3)]

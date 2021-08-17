@@ -41,7 +41,6 @@
                 return this.View(tenant);
             }
 
-            // var loggedUserId = this.User.GetId();
             var loggedUser = await this.userManager.GetUserAsync(this.User);
             var loggedUserId = loggedUser.Id;
 

@@ -7,14 +7,12 @@
 
     public class RegisterAddressViewModel
     {
-        // [StringLength(30, ErrorMessage = CityNameErrorMessage, MinimumLength = 3)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете името на града")]
         [Display(Name = "Населено място")]
         public int CityId { get; set; }
 
         public IEnumerable<AllCitiesDataModel> AllCities { get; set; }
 
-        // [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете името на квартала")]
         [StringLength(DistrictMaxLength, ErrorMessage = DistrictNameErrorMessage, MinimumLength = 3)]
         [Display(Name = "Квартал")]
         public string District { get; set; }

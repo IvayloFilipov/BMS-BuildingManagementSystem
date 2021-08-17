@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        // Партер, 1, 2, ... до 5
+        // Партер, 1, 2, ...
         public string FloorName { get; set; }
     }
 }

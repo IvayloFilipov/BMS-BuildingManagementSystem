@@ -13,12 +13,6 @@
 
         public string PropertyNumber { get; set; }
 
-        //[Display(Name = "Маркиран чек-бутон - продаден. Размаркиран чек-бутон - непродаден. (Размаркирай само при смяна на собственика!)")]
-        //public bool IsSold { get; set; }
-
-        //[Display(Name = "Собственик (Изтрий само при смяна на собственика!)")]
-        //public string UserId { get; set; }
-
         [StringLength(100, ErrorMessage = "Въведените данни не могат да бъдат по-малко от {1} и повече от {2} символа.", MinimumLength = 3)]
         [Display(Name = "Съсобственик")]
         public string CoOwner { get; set; }

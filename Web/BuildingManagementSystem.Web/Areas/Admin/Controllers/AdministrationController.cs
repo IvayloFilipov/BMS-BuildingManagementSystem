@@ -52,8 +52,8 @@
             });
         }
 
-        [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
         public async Task<IActionResult> AddIncome(AddIncomeViewModel income)
         {
             if (!this.ModelState.IsValid)
@@ -64,8 +64,6 @@
                 return this.View(income);
             }
 
-            // var user = await this.userManager.GetUserAsync(this.User);
-            // var userId = user.Id;
             await this.incomeService.AddIncomeAsync(income.Amount, income.IncomeDescription, income.PayerName, income.PaymentPeriod, income.PropertyId, income.PaymentTypeId);
 
             return this.RedirectToAction(nameof(this.AddIncome));

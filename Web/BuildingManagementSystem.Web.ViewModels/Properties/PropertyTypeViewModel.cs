@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        // магазин, апартамент, ателие, гараж
+        // магазин, апартамент, ателие, гараж ...
         public string TypeName { get; set; }
     }
 }
