@@ -3,7 +3,6 @@
     using System.Diagnostics;
 
     using BuildingManagementSystem.Web.ViewModels;
-    using BuildingManagementSystem.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController

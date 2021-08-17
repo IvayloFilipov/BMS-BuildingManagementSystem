@@ -41,6 +41,7 @@
         public const string TenantLastName = "Иванов";
 
         public const string DefaultAdminPasswordHash = "AQAAAAEAACcQAAAAEDgWx7KpiWu/PVzOgTqPkWk7HaPtBFHdgUjVhQ8WNotJ/OUhJcvjGiWDg+HCGddlbQ==";
+        public const string AdminArea = "Admin";
 
         // Input models constraints
         // Folder - Building Data

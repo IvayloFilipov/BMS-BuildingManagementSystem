@@ -1,4 +1,4 @@
-﻿@*@model IEnumerable<BuildingManagementSystem.Web.ViewModels.Properties.EditPropertyFormModel>
+﻿@model IEnumerable<BuildingManagementSystem.Web.ViewModels.Properties.EditPropertyFormModel>
 
 @{
     ViewData["Title"] = "гр. София, ул. Първа, №101";
@@ -47,7 +47,7 @@
                     <td>@property.StatusId</td>
                     <td>
                         <div class="align-content-lg-around float-md-none float-md-none">
-                            <a asp-action="EditProperty" asp-controller="Manager" asp-route-id="@property.Id" class="btn btn-outline-warning btn-sm ">Редактирай</a>
+                            <a asp-action="EditProperty" asp-controller="Administration" asp-route-id="@property.Id" class="btn btn-outline-warning btn-sm ">Редактирай</a>
                         </div>
                     </td>
                 </tr>
@@ -59,4 +59,4 @@
         <button class="btn btn-warning text-uppercase align-items-lg-end" onclick="window.print()">Принтирай</button>
     </div>
     <br />
-</div>*@
+</div>

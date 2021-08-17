@@ -43,7 +43,6 @@
                 UserId = userId,
             };
 
-            // this.dbContext.Entry(currTenant).Property(x => x.UserId).IsModified = true;
             await this.dbContext.Tenants.AddAsync(currTenant);
 
             await this.dbContext.SaveChangesAsync();

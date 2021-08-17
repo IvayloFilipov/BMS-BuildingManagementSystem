@@ -10,8 +10,11 @@
     using BuildingManagementSystem.Services.Data.Registrations.RegisterOwner;
     using BuildingManagementSystem.Web.Infrastructure;
     using BuildingManagementSystem.Web.ViewModels.Registrations;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+
+    using static BuildingManagementSystem.Common.GlobalConstants;
 
     public class RegistrationsController : BaseController
     {
@@ -46,8 +49,8 @@
             return this.View();
         }
 
-        // [Authorize(Roles = "Owner")]
         [HttpPost]
+        [Authorize(Roles = OwnerRoleName)]
         public async Task<IActionResult> RegisterPerson(RegisterPersonViewModel person)
         {
             if (!this.ModelState.IsValid)
@@ -63,14 +66,14 @@
             return this.RedirectToAction(nameof(this.RegisterAddress));
         }
 
-        // [Authorize(Roles = "Owner")]
+        [Authorize(Roles = OwnerRoleName)]
         public IActionResult RegisterCompany()
         {
             return this.View();
         }
 
-        // [Authorize(Roles = "Owner")]
         [HttpPost]
+        [Authorize(Roles = OwnerRoleName)]
         public async Task<IActionResult> RegisterCompany(RegisterCompanyViewModel company)
         {
             if (!this.ModelState.IsValid)
@@ -87,6 +90,7 @@
             return this.RedirectToAction(nameof(this.RegisterAddress));
         }
 
+        [Authorize(Roles = OwnerRoleName)]
         public IActionResult RegisterAddress()
         {
             return this.View(new RegisterAddressViewModel
@@ -95,8 +99,8 @@
             });
         }
 
-        // [Authorize(Roles = "Owner")]
         [HttpPost]
+        [Authorize(Roles = OwnerRoleName)]
         public async Task<IActionResult> RegisterAddress(RegisterAddressViewModel address)
         {
             if (!this.ModelState.IsValid)
@@ -116,7 +120,7 @@
             return this.RedirectToAction(nameof(PropertiesController.ShowAllProperties), "Properties");
         }
 
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult ShowAllUsers()
         {
             var allUsers = this.initialRegister.GetAllUsers();
@@ -131,6 +135,7 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
         public async Task<IActionResult> SetRoleToUser(string userId, BuildingManagementSystem.Data.Models.Enums.IdentityRole roleId)
         {
             if (roleId == Data.Models.Enums.IdentityRole.Admin)
@@ -159,20 +164,7 @@
             return this.RedirectToAction(nameof(this.Index), "Registrations");
         }
 
-        //// [Authorize(Roles = "Admin")]
-        // public async Task<IActionResult> DeleteUser(string id)
-        // {
-        //     var user = await this.userManager.FindByIdAsync(id);
-        //     if (user is null)
-        //     {
-        //         return this.BadRequest();
-        //     }
-        //     user.IsDeleted = true;
-        //     await this.userManager.UpdateAsync(user);
-        //     return this.RedirectToAction(nameof(this.Index), "Registrations");
-        // }
-
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult DeleteUser()
         {
             var userId = this.User.GetId();

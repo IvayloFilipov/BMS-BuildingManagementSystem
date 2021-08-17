@@ -7,8 +7,11 @@
     using BuildingManagementSystem.Services.Data.Registrations.Tenants;
     using BuildingManagementSystem.Web.ViewModels.Tenants;
     using BuildingManagementSystem.Web.ViewModels.Tenants.ManagerModules;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+
+    using static BuildingManagementSystem.Common.GlobalConstants;
 
     public class TenantsController : BaseController
     {
@@ -23,14 +26,14 @@
             this.tenantService = tenantService;
         }
 
-        // [Authorize(Roles = "Owner, Admin")]
+        [Authorize(Roles = OwnerRoleName)]
         public IActionResult RegisterTenantAsync()
         {
             return this.View();
         }
 
-        // [Authorize(Roles = "Owner, Admin")]
         [HttpPost]
+        [Authorize(Roles = OwnerRoleName)]
         public async Task<IActionResult> RegisterTenantAsync(RegisterTenantViewModel tenant)
         {
             if (!this.ModelState.IsValid)
@@ -47,7 +50,7 @@
             return this.RedirectToAction(nameof(HomeController.Info), "Home");
         }
 
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult GetAllTenants()
         {
             var allTenants = this.tenantService.GetAll();
@@ -55,7 +58,7 @@
             return this.View(allTenants);
         }
 
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult ConfirmRegitration(AllTenantsDataModel tenant)
         {
             var tenantId = tenant.Id;
@@ -70,7 +73,7 @@
             return this.RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = AdministratorRoleName)]
         public IActionResult DeleteTenant(AllTenantsDataModel tenant)
         {
             var tenantId = tenant.Id;

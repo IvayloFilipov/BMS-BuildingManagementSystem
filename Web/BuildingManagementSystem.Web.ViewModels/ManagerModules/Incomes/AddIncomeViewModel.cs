@@ -35,22 +35,5 @@
         public int PropertyId { get; set; }
 
         public IEnumerable<GetPropertyDataFormModel> Properties { get; set; }
-
-        // [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете типа на имота на задълженият  обект")]
-        // [Display(Name = "Задължен обект (тип на имота)")]
-        // public int PropertyId { get; set; }
-           
-        // public IEnumerable<PropertyTypeDataModel> Properties { get; set; }
-           
-        // [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете етажа на задълженият обект")]
-        // [Display(Name = "Задължен обект (етаж)")]
-        // public int PropertyFloorId { get; set; }
-           
-        // public IEnumerable<PropertyFloorDataModel> Floors { get; set; }
-           
-        // [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете номера задълженият обект")]
-        // [Range(1, 15, ErrorMessage = "Номерата в полето '{0}' трябва да са между {1} и {2}.")]
-        // [Display(Name = "Задължен обект (номер на жилището/магазина)")]
-        // public int PropertyNumber { get; set; }
     }
 }

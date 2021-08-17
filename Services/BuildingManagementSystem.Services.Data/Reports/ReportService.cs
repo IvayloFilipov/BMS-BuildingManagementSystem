@@ -2,12 +2,9 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     using BuildingManagementSystem.Data;
     using BuildingManagementSystem.Web.ViewModels.ManagerModules.Reports;
-    using Microsoft.EntityFrameworkCore;
-    using static BuildingManagementSystem.Common.GlobalConstants;
 
     public class ReportService : IReportService
     {

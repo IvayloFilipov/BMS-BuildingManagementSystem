@@ -53,7 +53,6 @@
             return currUserId;
         }
 
-        // was DeleteUser
         public void RemoveUser(string userId)
         {
             var user = this.dbContext

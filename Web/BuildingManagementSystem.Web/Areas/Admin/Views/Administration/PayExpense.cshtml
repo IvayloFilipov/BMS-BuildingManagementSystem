@@ -1,4 +1,4 @@
-﻿@*@model BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules.PayExpenseViewModel
+﻿@model BuildingManagementSystem.Web.ViewModels.Expenses.ManagerModules.PayExpenseViewModel
 
 <div class="row">
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2">
@@ -10,7 +10,7 @@
     </div>
 
     <div class="col-sm-12 col-md-8 offset-md-2 col-ld-6 offset-ld-2 mt-4">
-        <form method="post" asp-action="PayExpense" asp-controller="Manager">
+        <form method="post" asp-action="PayExpense" asp-controller="Administration">
             <div class="form-group">
                 <i class="fas fa-info-circle"></i>
                 <label asp-for="@Model.ExpenseTypeId"></label>
@@ -51,4 +51,4 @@
         </form>
         <br />
     </div>
-</div>*@
+</div>

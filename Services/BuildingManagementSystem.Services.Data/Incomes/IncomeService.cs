@@ -85,32 +85,5 @@
 
             return payments;
         }
-
-        //public IEnumerable<PropertyFloorDataModel> GetPropertyFloor()
-        //{
-        //    var floors = this.dbContext
-        //           .PropertyFloors
-        //           .Select(x => new PropertyFloorDataModel
-        //           {
-        //               Id = x.Id,
-        //               PropertyFloor = x.Floor,
-        //           })
-        //           .ToList();
-
-        //    return floors;
-        //}
-
-        //public IEnumerable<PropertyTypeDataModel> GetPropertyType()
-        //{
-        //    var properties = this.dbContext
-        //           .PropertyTypes
-        //           .Select(x => new PropertyTypeDataModel
-        //           {
-        //               Id = x.Id,
-        //               PropertyType = x.Type,
-        //           })
-        //           .ToList();
-        //    return properties;
-        //}
     }
 }

@@ -38,7 +38,7 @@
             return property;
         }
 
-        public async Task EditAsync(int propertyId, string coowner, int dogCount, int status/*, string userId, bool isSold*/)
+        public async Task EditAsync(int propertyId, string coowner, int dogCount, int status)
         {
             var selectedProperty = this.dbContext
                 .Properties
@@ -49,8 +49,6 @@
                 throw new System.ArgumentException($"Invalid property ID={propertyId}!", nameof(propertyId));
             }
 
-            // selectedProperty.UserId = userId;
-            // selectedProperty.IsSold = isSold;
             selectedProperty.CoOwner = coowner;
             selectedProperty.DogCount = dogCount;
             selectedProperty.StatusId = status;

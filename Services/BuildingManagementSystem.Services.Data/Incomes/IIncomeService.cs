@@ -12,9 +12,5 @@
         IEnumerable<GetPropertyDataFormModel> GetAllProperties();
 
         public IEnumerable<PaymentTypeDataModel> GetPaymentType();
-
-        //public IEnumerable<PropertyFloorDataModel> GetPropertyFloor();
-
-        //public IEnumerable<PropertyTypeDataModel> GetPropertyType();
     }
 }

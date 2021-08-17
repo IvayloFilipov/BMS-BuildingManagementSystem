@@ -9,7 +9,7 @@
     {
         public IEnumerable<EditPropertyFormModel> AllProperties();
 
-        Task EditAsync(int propertyId, string coowner, int dogCount, int status/*, string userId, bool isSold*/);
+        Task EditAsync(int propertyId, string coowner, int dogCount, int status);
 
         public IEnumerable<PropertyStatusDataModel> GetPropertyStatus();
 

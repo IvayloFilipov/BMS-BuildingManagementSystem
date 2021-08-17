@@ -45,8 +45,30 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Contacts" asp-action="Index">Контакти</a>
                         </li>
 
-                        @*//@if (User.IsInRole(OwnerRoleName))*@
-                        @*<li class="nav-item dropdown">
+                        @if (this.User.IsInRole(AdministratorRoleName))
+                        {
+                            <li class="nav-item">
+                                <div class="dropdown flex-grow-1">
+                                    <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Административен_модул
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Administration" asp-action="AddIncome">Добавяне на приход</a>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Administration" asp-action="PayExpense">Плащане на разход</a>
+                                        <a class="dropdown-item" asp-controller="Reports" asp-action="GetIncomes">Справка "Приходи": хронологична</a>
+                                        <a class="dropdown-item" asp-controller="Reports" asp-action="GetPaidExpenses">Справка "Разходи": хронологична</a>
+                                        <a class="dropdown-item" asp-controller="Reports" asp-action="GetValues">Справка "Парична наличност"</a>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Administration" asp-action="GetAllProperties">Редактиране на имот</a>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Administration" asp-action="GetOwners">Изтриване на собственик</a>
+                                        <a class="dropdown-item" asp-controller="Tenants" asp-action="GetAllTenants">Списък на регистрираните наематели</a>
+                                        <a class="dropdown-item" asp-controller="Registrations" asp-action="ShowAllUsers">Списък на регистрираните потребители</a>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        else if (this.User.IsInRole(OwnerRoleName))
+                        {
+                            <li class="nav-item dropdown">
                                 <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Публичен_модул
                                 </button>
@@ -60,45 +82,21 @@
 
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Registrations" asp-action="Index">Домова_книга</a>
-                            </li>*@
-
-
-                        @*//@if (User.IsInRole(AdministratorRoleName))*@
-                        <li class="nav-item dropdown">
-                            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Публичен_модул
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-controller="Tenants" asp-action="RegisterTenant">Регистриране на наемател</a>
-                                <a class="dropdown-item" asp-controller="Reports" asp-action="GetIncomes">Справка "Приходи": хронологична</a>
-                                <a class="dropdown-item" asp-controller="Reports" asp-action="GetPaidExpenses">Справка "Разходи": хронологична</a>
-                                <a class="dropdown-item" asp-controller="Reports" asp-action="GetValues">Справка "Парична наличност"</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item">
-                            <div class="dropdown flex-grow-1">
+                            </li>
+                        }
+                        else if (this.User.IsInRole(TenantRoleName))
+                        {
+                            <li class="nav-item dropdown">
                                 <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Административен_модул
+                                    Публичен_модул
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" asp-controller="Manager" asp-action="AddIncome">Добавяне на приход</a>
-                                    <a class="dropdown-item" asp-controller="Manager" asp-action="PayExpense">Плащане на разход</a>
                                     <a class="dropdown-item" asp-controller="Reports" asp-action="GetIncomes">Справка "Приходи": хронологична</a>
                                     <a class="dropdown-item" asp-controller="Reports" asp-action="GetPaidExpenses">Справка "Разходи": хронологична</a>
                                     <a class="dropdown-item" asp-controller="Reports" asp-action="GetValues">Справка "Парична наличност"</a>
-                                    <a class="dropdown-item" asp-controller="Manager" asp-action="GetAllProperties">Редактиране на имот</a>
-                                    <a class="dropdown-item" asp-controller="Manager" asp-action="GetOwners">Изтриване на собственик</a>
-                                    <a class="dropdown-item" asp-controller="Tenants" asp-action="GetAllTenants">Списък на регистрираните наематели</a>
-                                    <a class="dropdown-item" asp-controller="Registrations" asp-action="ShowAllUsers">Списък на регистрираните потребители</a>
                                 </div>
-                            </div>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Registrations" asp-action="Index">Домова_книга</a>
-                        </li>
-
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
