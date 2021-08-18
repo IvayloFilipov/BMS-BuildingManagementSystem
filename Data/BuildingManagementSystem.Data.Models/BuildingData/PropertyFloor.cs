@@ -13,7 +13,7 @@
         [Key]
         public int Id { get; set; }
 
-        // (Подземни гаражи, Партер, 1, 2 ...)
+        // Подземни гаражи, Партер, 1, 2 ...
         [Required]
         [MaxLength(50)]
         public string Floor { get; set; }

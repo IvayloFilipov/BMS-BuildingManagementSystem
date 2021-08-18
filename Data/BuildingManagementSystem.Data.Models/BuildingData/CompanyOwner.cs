@@ -38,12 +38,12 @@
         [MaxLength(CompanyPhoneMaxLength)]
         public string Phone { get; set; }
 
-        // one-to-one with Address - one/every CompanyOwner has only one permanent address
+        // one-to-one with Address - one/every CompanyOwner has one permanent address
         public int? AddressId { get; set; }
 
         public virtual Address Address { get; set; }
 
-        // many-to-one with Property - one Company can have/owne many Properties
+        // many-to-one with Property - one Company can have many Properties
         public virtual ICollection<Property> CompanyProperties { get; set; }
 
         [Required]

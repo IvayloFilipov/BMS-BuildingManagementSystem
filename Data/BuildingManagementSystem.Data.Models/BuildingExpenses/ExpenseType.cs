@@ -9,7 +9,7 @@
 
     public class ExpenseType : BaseDeletableModel<int>
     {
-        // ElevatorFee, Cleaning, ManagementFee, BankFee, ElectricityElevator, ElectricityStairs, OtherExpenses -> should be describe into field Description
+        // ElevatorFee, Cleaning, ManagementFee, BankFee, ElectricityElevator, ElectricityStairs, OtherExpenses...
         [Required]
         [MaxLength(ExpenseTypeMaxLength)]
         public string Type { get; set; }

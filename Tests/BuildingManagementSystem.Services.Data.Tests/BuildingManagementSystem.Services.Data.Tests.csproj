@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.6" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.9" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
@@ -29,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\BuildingManagementSystem.Data\BuildingManagementSystem.Data.csproj" />
     <ProjectReference Include="..\..\Services\BuildingManagementSystem.Services.Data\BuildingManagementSystem.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Web\BuildingManagementSystem.Web\BuildingManagementSystem.Web.csproj" />
   </ItemGroup>
 
 </Project>

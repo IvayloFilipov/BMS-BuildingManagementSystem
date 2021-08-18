@@ -18,15 +18,15 @@
             this.OutgoingPayments = new HashSet<Transaction>();
         }
 
-        // cash account & bank account
+        // Cash account & bank account
         [Required]
         [MaxLength(AccountTypeMaxLength)]
         public string AccountType { get; set; }
 
-        // total curr amount in cash & total curr amount in bank
+        // Total curr amount in cash & total curr amount in bank
         public decimal TotalAmount { get; set; }
 
-        // one-to-many with Building // was public int -> (not null)
+        // one-to-many with Building
         public int? BuildingId { get; set; }
 
         public virtual Building Buildings { get; set; }

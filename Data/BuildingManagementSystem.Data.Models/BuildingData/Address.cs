@@ -8,7 +8,7 @@
 
     public class Address : BaseDeletableModel<int>
     {
-        // one-to-many with City -> one unique address can be/have in only one City
+        // one-to-many with City
         public int CityId { get; set; }
 
         public virtual City City { get; set; }
@@ -42,10 +42,10 @@
 
         public virtual Building Building { get; set; }
 
-        // one-to-one with Owner - an Owner has only one permanent address
+        // one-to-one with Owner
         public virtual Owner Owner { get; set; }
 
-        // one-to-one with CompanyOwner - a CompanyOwner has only one permanent address
+        // one-to-one with CompanyOwner
         public virtual CompanyOwner CompanyOwner { get; set; }
     }
 }

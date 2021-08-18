@@ -37,7 +37,7 @@
         // many-to-many with Property - make class PropertyOwner
         public virtual ICollection<PropertyOwner> Properties { get; set; }
 
-        // one-to-one with Address - every Owner has only one permanent address
+        // one-to-one with Address - every Owner has one permanent address
         public int? AddressId { get; set; }
 
         public virtual Address Address { get; set; }

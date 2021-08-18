@@ -2,11 +2,12 @@
 {
     using System.Threading.Tasks;
 
-    using BuildingManagementSystem.Common;
     using BuildingManagementSystem.Data.Models.Common;
     using BuildingManagementSystem.Services.Data.Contacts;
     using BuildingManagementSystem.Web.ViewModels.Contacts;
     using Microsoft.AspNetCore.Mvc;
+
+    using static BuildingManagementSystem.Common.GlobalConstants;
 
     public class ContactsController : BaseController
     {
@@ -41,14 +42,14 @@
 
             await this.contactService.SendEmail(contactFormEntry);
 
-            this.TempData[GlobalConstants.RedirectedFromContactForm] = true;
+            this.TempData[RedirectedFromContactForm] = true;
 
             return this.RedirectToAction("ThankYou");
         }
 
         public IActionResult ThankYou()
         {
-            if (this.TempData[GlobalConstants.RedirectedFromContactForm] == null)
+            if (this.TempData[RedirectedFromContactForm] == null)
             {
                 return this.NotFound();
             }

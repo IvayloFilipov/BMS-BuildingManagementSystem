@@ -19,7 +19,7 @@
         [MaxLength(CityNameMaxLength)]
         public string Name { get; set; }
 
-        // many-to-one with Address - many addresses can be in one city
+        // many-to-one with Address - many addresses in one city
         public virtual ICollection<Address> Addresses { get; set; }
     }
 }

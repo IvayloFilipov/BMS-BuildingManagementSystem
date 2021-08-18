@@ -18,7 +18,7 @@
         [Key]
         public int Id { get; set; }
 
-        // one-to-many with Building -
+        // one-to-many with Building
         public int BuildingId { get; set; }
 
         public virtual Building Building { get; set; }
@@ -56,7 +56,7 @@
         // many-to-many with Owner
         public virtual ICollection<PropertyOwner> Owners { get; set; }
 
-        // many-to-one with PropertyDebt (in Debts folder) - one Property can have many monthly debts (if not pay on time)
+        // many-to-one with PropertyDebt (in Debts folder) - one Property can have many monthly debts (if not pay them on time)
         public virtual ICollection<PropertyDebt> PropertyMonthlyDebt { get; set; }
 
         // many-to-one with Payment
