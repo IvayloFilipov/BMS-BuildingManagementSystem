@@ -1,8 +1,5 @@
 ﻿namespace BuildingManagementSystem.Services.Data.Tests.ControllersTests.ContactsController
 {
-    using BuildingManagementSystem.Services.Data.Contacts;
-    using BuildingManagementSystem.Services.Data.Tests.Mocks;
-    using BuildingManagementSystem.Services.Messaging;
     using Xunit;
 
     public class ContactsControllerTests
