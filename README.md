@@ -77,7 +77,7 @@ This website is designed and runs using the **main** technologies below:
 ## Template created by Nikolay Kostov
 - *A ready-to-use template for ASP.NET Core with repositories, services, models mapping, DI and StyleCop warnings fixed.*
 
-- (https://github.com/NikolayIT/ASP.NET-Core-Template)
+- [@NikolayIT](https://github.com/NikolayIT/ASP.NET-Core-Template)
 
 ------------
 ------------
