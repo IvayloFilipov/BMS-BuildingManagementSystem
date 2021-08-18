@@ -113,7 +113,7 @@ This website is designed and runs using the **main** technologies below:
 
 #### Project template
 - *A ready-to-use template for ASP.NET Core with repositories, services, models mapping, DI and StyleCop warnings fixed.*
-*Authors*
+- *Authors*
 [Nikolay Kostov](https://github.com/NikolayIT/ASP.NET-Core-Template)
 [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
 
