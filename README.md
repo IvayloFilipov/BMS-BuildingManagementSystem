@@ -35,6 +35,7 @@ The database schema consists of the following main entities:
 * ###### Hangfire Database Schema inside the main production DB
 
 #### **See the Database Schema below:**
+
 <p align="center">
   <img width="1000" src="Web/BuildingManagementSystem.Web/wwwroot/BMS.dbDiagram.png" alt="Diagram"> 
 </p>
@@ -45,6 +46,39 @@ The web project contains:
 * 30+ service methods
 * 7 controllers
 * 20+ views
+
+## **Features**
+
+This web platform allows a guest to the website to **view** only the general information.
+
+A guest can also **contact** the House manager by using the contact form and make registration after compliting the owner's home book.
+If he is a owner, registration will be confirmed by the House manager.
+In order to receive notes the owners must be registered and compliting **the owner's application home book.**
+
+The **Owners** have special public dashboard.
+Signed in **Owner** can:
+* Check the **incomes** and **expenses**
+* Check the **total amount** of the Building fund
+* Register a **tenant** if there is one
+* Send requests to the House manager by using the contact form
+
+The **Tenants** have special public dashboard.
+**Tenants** can;
+* Check the **incomes** and **expenses**
+* Check the **total amount** of the Building fund
+* Create requests on recurring basis - for payments by the owner or to the owner
+* Send payment to the manager
+
+The **Admin**/**House manager** has special admin dashboard.
+The House manager has the **main** responsibility about:
+* Confirm or delete the initial registrations of the guests.
+* Set roles of the confirmed users
+* Make corrections concerning tenants, property status, dogs ect., after **owner's** requests
+* Delete the old owners
+* Clear the old data concernin the property after a change of ownership
+* Confirm registration and set role to the new owner after the registration
+* Correctly to fulfill the incoming payments
+* Correctly to fulfill the outgoing payments
 
 ## **Technologies Used**
 
@@ -72,14 +106,13 @@ This website is designed and runs using the **main** technologies below:
 [MIT](https://choosealicense.com/licenses/mit/)
 
 ## Author
-- [@IvayloFilipov](https://github.com/IvayloFilipov/BMS-BuildingManagementSystem)
+[@IvayloFilipov](https://github.com/IvayloFilipov/BMS-BuildingManagementSystem)
 
-## Template created by Nikolay Kostov
+### Template created by Nikolay Kostov
 - *A ready-to-use template for ASP.NET Core with repositories, services, models mapping, DI and StyleCop warnings fixed.*
 
-- [@NikolayIT](https://github.com/NikolayIT/ASP.NET-Core-Template)
+[@NikolayIT](https://github.com/NikolayIT/ASP.NET-Core-Template)
 
-------------
 ------------
 
 #### This application has been created solely for educational purposes.
