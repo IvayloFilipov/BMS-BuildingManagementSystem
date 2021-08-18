@@ -108,9 +108,8 @@ This website is designed and runs using the **main** technologies below:
 ## Author
 [@IvayloFilipov](https://github.com/IvayloFilipov/BMS-BuildingManagementSystem)
 
-### Template
+### Template: [@NikolayIT](https://github.com/NikolayIT/ASP.NET-Core-Template)
 - *A ready-to-use template for ASP.NET Core with repositories, services, models mapping, DI and StyleCop warnings fixed.*
-[@NikolayIT](https://github.com/NikolayIT/ASP.NET-Core-Template)
 
 ------------
 
