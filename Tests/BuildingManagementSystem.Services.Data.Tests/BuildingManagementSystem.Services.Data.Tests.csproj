@@ -33,4 +33,13 @@
     <ProjectReference Include="..\..\Web\BuildingManagementSystem.Web\BuildingManagementSystem.Web.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ServicesTests\Contacts\" />
+    <Folder Include="ServicesTests\DeleteOwners\" />
+    <Folder Include="ServicesTests\Edits\" />
+    <Folder Include="ServicesTests\Expenses\" />
+    <Folder Include="ServicesTests\Reports\" />
+    <Folder Include="ServicesTests\Rgistrations\" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace BuildingManagementSystem.Services.Data.Tests.ControllersTests.HomeController
+﻿namespace BuildingManagementSystem.Services.Data.Tests.ControllersTests
 {
     using BuildingManagementSystem.Web.Controllers;
     using Microsoft.AspNetCore.Mvc;

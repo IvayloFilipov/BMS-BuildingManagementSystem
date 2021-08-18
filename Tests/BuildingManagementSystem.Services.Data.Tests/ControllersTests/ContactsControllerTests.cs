@@ -1,4 +1,4 @@
-﻿namespace BuildingManagementSystem.Services.Data.Tests.ControllersTests.ContactsController
+﻿namespace BuildingManagementSystem.Services.Data.Tests.ControllersTests
 {
     using Xunit;
 
