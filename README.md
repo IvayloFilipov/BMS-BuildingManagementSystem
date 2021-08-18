@@ -34,7 +34,7 @@ The database schema consists of the following main entities:
 * Contact form
 * ###### Hangfire Database Schema inside the main production DB
 
-### **See the Database Schema below:**
+### **See the Database schema below:**
 
 <p align="center">
   <img width="1000" src="Web/BuildingManagementSystem.Web/wwwroot/BMS.dbDiagram.png" alt="Diagram"> 
@@ -108,9 +108,10 @@ This website is designed and runs using the **main** technologies below:
 ## Author
 [IvayloFilipov](https://github.com/IvayloFilipov/BMS-BuildingManagementSystem)
 
-### Template
+#### Project template
 [NikolayIT](https://github.com/NikolayIT/ASP.NET-Core-Template)
 - *A ready-to-use template for ASP.NET Core with repositories, services, models mapping, DI and StyleCop warnings fixed.*
+
 
 ------------
 
