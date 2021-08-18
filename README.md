@@ -34,7 +34,7 @@ The database schema consists of the following main entities:
 * Contact form
 * ###### Hangfire Database Schema inside the main production DB
 
-See the Database Schema below:
+#### **See the Database Schema below:**
 <p align="center">
   <img width="1000" src="Web/BuildingManagementSystem.Web/wwwroot/BMS.dbDiagram.png" alt="Diagram"> 
 </p>
@@ -46,3 +46,42 @@ The web project contains:
 * 7 controllers
 * 20+ views
 
+## **Technologies Used**
+
+This website is designed and runs using the **main** technologies below:
+
+   1) **[C#](https://en.wikipedia.org/wiki/C_Sharp_(programming_language))**
+   2) **[ASP.NET Core](https://en.wikipedia.org/wiki/ASP.NET_Core)**
+   3) **[Entity Framework Core](https://en.wikipedia.org/wiki/Entity_Framework?wprov=srpw1_0)**
+   4) **[MS SQL Server](https://en.wikipedia.org/wiki/Microsoft_SQL_Server)**
+   5) **[Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/)**
+   6) **[JavaScript](https://en.wikipedia.org/wiki/JavaScript)**
+   7) **[HTML5](https://en.wikipedia.org/wiki/HTML)**
+   8) **[CSS](https://www.w3schools.com/css/css_intro.asp)**
+   9) **[MS Visual Studio 2019](https://code.visualstudio.com/)**
+   10) **[MS SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)**
+   11) **[Hangfire](https://www.hangfire.io/)**
+   12) **[Google reCAPTCHA v3 API](https://developers.google.com/recaptcha/docs/v3)**
+   13) **[Sendgrid API](https://sendgrid.com/docs/API_Reference/api_v3.html)**
+
+## Admin Credentials:
+- Email: admin@admin.com
+- Password: admin123
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Author
+- [@IvayloFilipov](https://github.com/IvayloFilipov/BMS-BuildingManagementSystem)
+
+## Template created by Nikolay Kostov
+- *A ready-to-use template for ASP.NET Core with repositories, services, models mapping, DI and StyleCop warnings fixed.*
+
+- (https://github.com/NikolayIT/ASP.NET-Core-Template)
+
+------------
+------------
+
+#### This application has been created solely for educational purposes.
+
+------------
