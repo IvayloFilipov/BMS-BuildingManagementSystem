@@ -10,7 +10,7 @@
 ------------
 - *Building Management System (BMS) is an online platform for managing properies, located in a single block of flats. Some of the properties could be rented for long-term period.*
 
-- *The platform meets owners, tenants and property manager needs for easy ant transperant management. Quite often, the owners don't live close to their properties. They could even live in another country. Managing their properties scattered everywhere, is a challenge.*
+- *The platform meets owners, tenants and the house manager needs for easy ant transperant management. Quite often, the owners don't live close to their properties. They could even live in another country. Managing their properties scattered everywhere, is a challenge.*
 
 ------------
 
@@ -34,7 +34,7 @@ The database schema consists of the following main entities:
 * Contact form
 * ###### Hangfire Database Schema inside the main production DB
 
-#### **See the Database Schema below:**
+### **See the Database Schema below:**
 
 <p align="center">
   <img width="1000" src="Web/BuildingManagementSystem.Web/wwwroot/BMS.dbDiagram.png" alt="Diagram"> 
@@ -53,7 +53,7 @@ This web platform allows a guest to the website to **view** only the general inf
 
 A guest can also **contact** the House manager by using the contact form and make registration after compliting the owner's home book.
 If he is a owner, registration will be confirmed by the House manager.
-In order to receive notes the owners must be registered and compliting **the owner's application home book.**
+In order to receive notes, the owners must be registered and compliting **the owner's application home book.**
 
 The **Owners** have special public dashboard.
 Signed in **Owner** can:
@@ -73,9 +73,9 @@ The **Admin**/**House manager** has special admin dashboard.
 The House manager has the **main** responsibility about:
 * Confirm or delete the initial registrations of the guests.
 * Set roles of the confirmed users
-* Make corrections concerning tenants, property status, dogs ect., after **owner's** requests
+* Make corrections concerning tenants, property status, dogs ect., after **owner's** request
 * Delete the old owners
-* Clear the old data concernin the property after a change of ownership
+* Clear the old data concerning the property after a change of ownership
 * Confirm registration and set role to the new owner after the registration
 * Correctly to fulfill the incoming payments
 * Correctly to fulfill the outgoing payments
@@ -108,9 +108,9 @@ This website is designed and runs using the **main** technologies below:
 ## Author
 [@IvayloFilipov](https://github.com/IvayloFilipov/BMS-BuildingManagementSystem)
 
-### Template created by Nikolay Kostov
+### Template
 - *A ready-to-use template for ASP.NET Core with repositories, services, models mapping, DI and StyleCop warnings fixed.*
-
+#### Author: Nikolay Kostov
 [@NikolayIT](https://github.com/NikolayIT/ASP.NET-Core-Template)
 
 ------------
