@@ -97,6 +97,7 @@ This website is designed and runs using the **main** technologies below:
    11) **[Hangfire](https://www.hangfire.io/)**
    12) **[Google reCAPTCHA v3 API](https://developers.google.com/recaptcha/docs/v3)**
    13) **[Sendgrid API](https://sendgrid.com/docs/API_Reference/api_v3.html)**
+   14) **[xUnit.net](https://sendgrid.com/docs/API_Reference/api_v3.html)**
 
 ## Admin Credentials:
 - Email: admin@admin.com
@@ -108,9 +109,14 @@ This website is designed and runs using the **main** technologies below:
 ## Author
 [IvayloFilipov](https://github.com/IvayloFilipov/BMS-BuildingManagementSystem)
 
+- LinkedIn: [Ivaylo Filipov](https://www.linkedin.com/in/ivaylo-filipov-44149420b/)
+
 #### Project template
-[NikolayIT](https://github.com/NikolayIT/ASP.NET-Core-Template)
 - *A ready-to-use template for ASP.NET Core with repositories, services, models mapping, DI and StyleCop warnings fixed.*
+Authors
+[Nikolay Kostov](https://github.com/NikolayIT/ASP.NET-Core-Template)
+[Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
+
 
 
 ------------
