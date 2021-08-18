@@ -37,6 +37,7 @@ The database schema consists of the following main entities:
 See the Database Schema below:
 <p align="center">
   <img width="1000" src="BuildingManagementSystem.Web/wwwroot/BMS.dbDiagram.png" alt="Diagram"> 
+  <img width="1000" src="C:\BMS\Web\BuildingManagementSystem.Web\wwwroot\BMS.dbDiagram.png" alt="Diagram"> 
 </p>
 
 ## **Backend**
