@@ -9,7 +9,6 @@
         [Fact]
         public void ShowAllPropertiesShouldReturnView()
         {
-
         }
     }
 }

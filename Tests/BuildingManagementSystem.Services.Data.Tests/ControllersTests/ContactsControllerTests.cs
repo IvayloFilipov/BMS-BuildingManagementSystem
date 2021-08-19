@@ -1,5 +1,6 @@
 ﻿namespace BuildingManagementSystem.Services.Data.Tests.ControllersTests
 {
+    using BuildingManagementSystem.Services.Data.Tests.Mock;
     using Xunit;
 
     public class ContactsControllerTests
@@ -9,7 +10,7 @@
         {
             // Arrange
             // var data = DataBaseMock.Instance;
-            // var emailSender = IEmailSender;
+            // var emailSender = new EmailSender();
 
             // var contactService = new ContactService(data, emailSender);
 

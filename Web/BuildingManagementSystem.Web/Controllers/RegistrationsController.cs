@@ -171,7 +171,7 @@
                 return this.BadRequest(userId);
             }
 
-            this.initialRegister.RemoveUser(userId);
+            this.initialRegister.RemoveUserAsync(userId);
 
             return this.RedirectToAction(nameof(this.Index));
         }

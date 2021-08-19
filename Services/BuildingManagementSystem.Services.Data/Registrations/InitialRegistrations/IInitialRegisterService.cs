@@ -9,8 +9,8 @@
     {
         Task<IEnumerable<RegisteredUsersDataModel>> GetAllUsersAsync();
 
-        Task<string> SetRoleAsync(string userId, string roleId);
+        Task<string> IsRegisterConfirmAsync(string userId, string roleId);
 
-        void RemoveUser(string userId);
+        Task RemoveUserAsync(string userId);
     }
 }

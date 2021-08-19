@@ -12,12 +12,10 @@
     public class InitialRegisterService : IInitialRegisterService
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly IServiceProvider serviceProvider;
 
-        public InitialRegisterService(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
+        public InitialRegisterService(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.serviceProvider = serviceProvider;
         }
 
         public async Task<IEnumerable<RegisteredUsersDataModel>> GetAllUsersAsync()
@@ -38,28 +36,28 @@
             return users;
         }
 
-        public async Task<string> SetRoleAsync(string userId, string roleId)
+        public async Task<string> IsRegisterConfirmAsync(string userId, string roleId)
         {
-            var currUser = await this.dbContext
+            var selectedUser = await this.dbContext
                 .Users
                 .Where(x => x.Id == userId)
                 .FirstOrDefaultAsync();
 
-            var currUserId = currUser.Id;
+            var currUserId = selectedUser.Id;
 
-            currUser.IsRegisterConfirmed = true;
+            selectedUser.IsRegisterConfirmed = true;
 
             await this.dbContext.SaveChangesAsync();
 
             return currUserId;
         }
 
-        public void RemoveUser(string userId)
+        public async Task RemoveUserAsync(string userId)
         {
-            var user = this.dbContext
+            var user = await this.dbContext
                 .Users
                 .Where(x => x.Id == userId)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             if (user == null)
             {
@@ -68,7 +66,7 @@
 
             user.IsDeleted = true;
 
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

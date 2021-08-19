@@ -11,18 +11,22 @@
     using BuildingManagementSystem.Web.ViewModels.Incomes.ManagerModules;
     using Xunit;
 
+    using static BuildingManagementSystem.Common.GlobalConstants;
+
     public class IncomeServiceTests
     {
         [Fact]
-        public void AddIncome()
+        public void AddIncomeShouldAddTheIncomeIntoTheCorrectBuildingAccount()
         {
             // Arrange
             using var dbContext = DataBaseMock.Instance;
 
-            var bankAccount = new BuildingManagementSystem.Data.Models.BuildingFunds.Account() { AccountType = Common.GlobalConstants.UbbBankAccountType, Id = 5 };
+            var bankAccount = new BuildingManagementSystem.Data.Models.BuildingFunds.Account() { AccountType = UbbBankAccountType, Id = 5 };
+
             dbContext.BuildingAccounts.Add(bankAccount);
 
-            var cashAccount = new BuildingManagementSystem.Data.Models.BuildingFunds.Account() { AccountType = Common.GlobalConstants.CashAccounType, Id = 12 };
+            var cashAccount = new BuildingManagementSystem.Data.Models.BuildingFunds.Account() { AccountType = CashAccounType, Id = 12 };
+
             dbContext.BuildingAccounts.Add(cashAccount);
 
             dbContext.SaveChanges();
@@ -31,7 +35,7 @@
             var initialAccountAmount = bankAccount.TotalAmount;
 
             // Act
-            var result = incomeService.AddIncomeAsync(10, "Income descr", "Ivan", "august", 1, 1).GetAwaiter().GetResult();
+            var result = incomeService.AddIncomeAsync(10, "Описание", "Иван", "за м. Август", 1, 1).GetAwaiter().GetResult();
 
             // Assert
             Assert.Equal(10, result);
@@ -41,7 +45,7 @@
 
             Assert.Equal(bankAccount.Id, payment.AccountId);
             Assert.Equal(10, payment.Amount);
-            Assert.Equal("Income descr", payment.IncomeDescription);
+            Assert.Equal("Описание", payment.IncomeDescription);
 
             Assert.Equal(initialAccountAmount + 10, bankAccount.TotalAmount);
         }
@@ -50,12 +54,12 @@
         public void GetAllPropertiesReturnsAllOfTheAvailablePropeties()
         {
             // Arrange
-            using var data = DataBaseMock.Instance;
+            using var dbContext = DataBaseMock.Instance;
 
-            data.Properties.AddRange(Enumerable.Range(1, 3).Select(x => new Property() { PropertyFloor = new PropertyFloor(), PropertyType = new PropertyType() }));
-            data.SaveChanges();
+            dbContext.Properties.AddRange(Enumerable.Range(1, 3).Select(x => new Property() { PropertyFloor = new PropertyFloor(), PropertyType = new PropertyType() }));
+            dbContext.SaveChanges();
 
-            var incomeService = new IncomeService(data);
+            var incomeService = new IncomeService(dbContext);
 
             // Act
             var result = incomeService.GetAllProperties().GetAwaiter().GetResult();
@@ -70,12 +74,12 @@
             // Arrange
             const string paymentType = "В брой";
 
-            using var data = DataBaseMock.Instance;
+            using var dbContext = DataBaseMock.Instance;
 
-            data.PaymentTypes.Add(new PaymentType { Type = paymentType });
-            data.SaveChanges();
+            dbContext.PaymentTypes.Add(new PaymentType { Type = paymentType });
+            dbContext.SaveChanges();
 
-            var incomeService = new IncomeService(data);
+            var incomeService = new IncomeService(dbContext);
 
             // Act
             var result = await incomeService.GetPaymentType();
@@ -85,7 +89,7 @@
             Assert.Equal(paymentType, result.First().PaymentType);
         }
 
-        // Test tests
+        // Payment types to seed
         public List<PaymentType> AllTypes()
         {
             return new List<PaymentType>
@@ -105,15 +109,16 @@
         public async Task GetPaymentTypesShoulReturnTheAllPaymentTypes()
         {
             // Arrange
-            using var data = DataBaseMock.Instance;
+            using var dbContext = DataBaseMock.Instance;
+
             foreach (var paymentType in this.AllTypes())
             {
-                data.Add(paymentType);
+                dbContext.Add(paymentType);
             }
 
-            data.SaveChanges();
+            dbContext.SaveChanges();
 
-            var incomeService = new IncomeService(data);
+            var incomeService = new IncomeService(dbContext);
 
             // Act
             var result = await incomeService.GetPaymentType();

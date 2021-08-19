@@ -1,5 +1,7 @@
 ﻿namespace BuildingManagementSystem.Services.Data.Tests.ServicesTests.DeleteOwners
 {
+    using System;
+
     using BuildingManagementSystem.Services.Data.DeleteOwners;
     using BuildingManagementSystem.Services.Data.Tests.Mock;
     using Xunit;
@@ -15,18 +17,19 @@
         public void RemoveOwnerShouldDeleteSelectedOwner()
         {
             // Arrange
-            var dbContext = DataBaseMock.Instance;
+            using var dbContext = DataBaseMock.Instance;
             var deleteOwnerService = new DeleteOwnerService(dbContext);
 
             var propertyId = 1;
-            var userId = System.Guid.NewGuid().ToString("D");
+            var userId = Guid.NewGuid().ToString("D");
+            var roleId = Guid.NewGuid().ToString("D");
 
             dbContext.Owners.Add(new BuildingManagementSystem.Data.Models.BuildingData.Owner() { UserId = userId });
 
             var property = new BuildingManagementSystem.Data.Models.BuildingData.Property() { Id = propertyId, UserId = userId, IsSold = true, DogCount = 2 };
             dbContext.Properties.Add(property);
 
-            dbContext.UserRoles.Add(new Microsoft.AspNetCore.Identity.IdentityUserRole<string>() { UserId = userId, RoleId = System.Guid.NewGuid().ToString("D") });
+            dbContext.UserRoles.Add(new Microsoft.AspNetCore.Identity.IdentityUserRole<string>() { UserId = userId, RoleId = roleId });
 
             dbContext.Users.Add(new BuildingManagementSystem.Data.Models.ApplicationUser() { Id = userId });
 
