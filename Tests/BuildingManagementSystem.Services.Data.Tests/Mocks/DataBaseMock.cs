@@ -1,4 +1,4 @@
-﻿namespace BuildingManagementSystem.Services.Data.Tests.Mocks
+﻿namespace BuildingManagementSystem.Services.Data.Tests.Mock
 {
     using System;
 

@@ -12,7 +12,7 @@
         public string CompanyName { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Моля въведете ЕИК")]
-        [MaxLength(9, ErrorMessage = "Полето трябва да съдържа точно {1} цифри")]
+        [StringLength(9, ErrorMessage = "Полето не може да съдържа по-малко от {1} и повече от {2} цифри", MinimumLength = 9)]
         [Display(Name = "Единен идентификационен код (ЕИК)")]
         public string UIC { get; set; }
 

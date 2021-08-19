@@ -39,15 +39,15 @@
             return propertiesOwners;
         }
 
-        public async Task RemoveOwner(int propertyId/*, string roleId*/)
+        public async Task RemoveOwner(int propertyId)
         {
             // Remove record from AspNetUserRoles
             var selectedProperty = await this.dbContext.Properties.FirstOrDefaultAsync(p => p.Id == propertyId);
             var userId = selectedProperty.UserId;
 
-            var aspNetUser = await this.dbContext.UserRoles.SingleAsync(u => u.UserId == userId);
+            var aspNetUserRole = await this.dbContext.UserRoles.SingleAsync(u => u.UserId == userId);
 
-            this.dbContext.UserRoles.Remove(aspNetUser);
+            this.dbContext.UserRoles.Remove(aspNetUserRole);
 
             // Set AspNetUser IsDeleted to true and IsRegisteredConfim to false
             var aspUser = await this.dbContext.Users.FindAsync(userId);
