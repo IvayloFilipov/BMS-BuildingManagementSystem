@@ -71,12 +71,12 @@
             return tenants;
         }
 
-        public void ConfirmTenantRegitration(int tenantId)
+        public async Task ConfirmTenantRegitrationAsync(int tenantId)
         {
-            var currTenant = this.dbContext
+            var currTenant = await this.dbContext
                 .Tenants
                 .Where(x => x.Id == tenantId && x.IsConfirmed == false)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             if (currTenant == null)
             {
@@ -85,15 +85,15 @@
 
             currTenant.IsConfirmed = true;
 
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
 
-        public void RemoveTenant(int tenantId)
+        public async Task RemoveTenantAsync(int tenantId)
         {
-            var currTenant = this.dbContext
+            var currTenant = await this.dbContext
                 .Tenants
                 .Where(x => x.Id == tenantId && x.IsDeleted == false)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             if (currTenant == null)
             {
@@ -102,7 +102,7 @@
 
             currTenant.IsDeleted = true;
 
-            this.dbContext.SaveChanges();
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

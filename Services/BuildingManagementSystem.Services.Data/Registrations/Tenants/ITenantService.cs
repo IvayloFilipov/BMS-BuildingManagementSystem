@@ -11,8 +11,8 @@
 
         Task<IEnumerable<AllTenantsDataModel>> GetAllAsync();
 
-        void ConfirmTenantRegitration(int tenantId);
+        Task ConfirmTenantRegitrationAsync(int tenantId);
 
-        void RemoveTenant(int tenantId);
+        Task RemoveTenantAsync(int tenantId);
     }
 }

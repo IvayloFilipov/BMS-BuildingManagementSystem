@@ -58,7 +58,7 @@
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult ConfirmRegitration(AllTenantsDataModel tenant)
+        public async Task<IActionResult> ConfirmRegitration(AllTenantsDataModel tenant)
         {
             var tenantId = tenant.Id;
 
@@ -67,13 +67,13 @@
                 return this.BadRequest();
             }
 
-            this.tenantService.ConfirmTenantRegitration(tenantId);
+            await this.tenantService.ConfirmTenantRegitrationAsync(tenantId);
 
             return this.RedirectToAction(nameof(this.GetAllTenants));
         }
 
         [Authorize(Roles = AdministratorRoleName)]
-        public IActionResult DeleteTenant(AllTenantsDataModel tenant)
+        public async Task<IActionResult> DeleteTenant(AllTenantsDataModel tenant)
         {
             var tenantId = tenant.Id;
 
@@ -82,7 +82,7 @@
                 return this.BadRequest();
             }
 
-            this.tenantService.RemoveTenant(tenantId);
+            await this.tenantService.RemoveTenantAsync(tenantId);
 
             return this.RedirectToAction(nameof(this.GetAllTenants));
         }
