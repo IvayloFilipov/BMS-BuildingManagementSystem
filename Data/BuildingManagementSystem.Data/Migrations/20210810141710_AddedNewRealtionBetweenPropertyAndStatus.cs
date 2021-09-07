@@ -6,9 +6,11 @@
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql(@"INSERT INTO [PropertyStatusMonthly] ([Status], [CreatedOn], [IsDeleted], ) VALUES (N'Обитаем', '2021-08-10', 0) WHERE NOT EXISTS (SELECT * FROM PropertyStatusMonthly
-              WHERE id = 1)");
-
+        // migrationBuilder.Sql(@"IF NOT EXISTS (SELECT * FROM PropertyStatusMonthly WHERE id = 1)
+        // BEGIN
+        // INSERT INTO [PropertyStatusMonthly] ([Status], [CreatedOn], [IsDeleted])
+        // VALUES (N'Обитаем', '2021-08-10', 0)
+        // END");
             migrationBuilder.DropForeignKey(
                 name: "FK_PropertyDebtsMonthly_PropertyStatusMonthly_PropertyStatusId",
                 table: "PropertyDebtsMonthly");

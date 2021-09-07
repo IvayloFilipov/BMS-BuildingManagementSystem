@@ -57,6 +57,7 @@
                     PropertyFloorId = currProp.PropertyFloorId,
                     Number = currProp.PropertyNumber,
                     PropertyPart = currProp.PropertyParts,
+                    StatusId = 1,
                 });
             }
         }

@@ -22,7 +22,11 @@
                 .Select(b => b.Id)
                 .FirstOrDefault();
 
-            var defaultUserId = "2a0d500d-2cb2-4578-9fcb-603d41285f5c";
+            var defaultUserId = dbContext
+                .Users
+                .Where(c => c.UserName == "admin@admin.com")
+                .Select(c => c.Id)
+                .FirstOrDefault();
 
             var buildingAddress = new Address()
             {
