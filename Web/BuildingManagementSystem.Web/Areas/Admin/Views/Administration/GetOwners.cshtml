@@ -40,7 +40,7 @@
                     <td>@data.CompanyName</td>
                     <td>@data.OwnerNames</td>
                     <td>
-                        <div class="align-content-lg-around float-md-none float-md-none">
+                        <div class="align-content-lg-around float-md-none">
                             @if (!string.IsNullOrWhiteSpace(data.OwnerNames))
                             {
                                 <a asp-action="DeleteOwner" asp-controller="Administration" asp-route-id="@data.Id" class="btn btn-outline-danger btn-sm">Изтрий</a>

@@ -79,8 +79,8 @@
             });
         }
 
-        [Authorize(Roles = AdministratorRoleName)]
         [HttpPost]
+        [Authorize(Roles = AdministratorRoleName)]
         public async Task<IActionResult> PayExpense(PayExpenseViewModel expenseType)
         {
             if (!this.ModelState.IsValid)
