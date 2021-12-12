@@ -66,8 +66,7 @@ The **Tenants** have special public dashboard.
 **Tenants** can;
 * Check the **incomes** and **expenses**
 * Check the **total amount** of the Building fund
-* Create requests on recurring basis - for payments by the owner or to the owner
-* Send payment to the manager
+* Send requests to the House manager by using the contact form
 
 The **Admin**/**House manager** has special admin dashboard.
 The House manager has the **main** responsibility about:
@@ -97,7 +96,8 @@ This website is designed and runs using the **main** technologies below:
    11) **[Hangfire](https://www.hangfire.io/)**
    12) **[Google reCAPTCHA v3 API](https://developers.google.com/recaptcha/docs/v3)**
    13) **[Sendgrid API](https://sendgrid.com/docs/API_Reference/api_v3.html)**
-   14) **[xUnit.net](https://sendgrid.com/docs/API_Reference/api_v3.html)**
+   14) **[xUnit.net](https://sendgrid.com/solutions/email-api/)**
+   15) **[Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio)**
 
 ## Admin Credentials:
 - Email: admin@admin.com
@@ -115,7 +115,8 @@ This website is designed and runs using the **main** technologies below:
 - *A ready-to-use template for ASP.NET Core with repositories, services, models mapping, DI and StyleCop warnings fixed.*
 - *Authors*
 [Nikolay Kostov](https://github.com/NikolayIT/ASP.NET-Core-Template),
-[Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
+[Vladislav Karamfilov](https://github.com/vladislav-karamfilov),
+[Stoyan Shopov](https://github.com/StoyanShopov)
 
 
 

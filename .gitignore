@@ -361,6 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+<<<<<<< HEAD
 
 # Custom ignores
 appsettings.Production.json
+=======
+>>>>>>> a795a32dc68342afe196a4505bcbbb693affa947
